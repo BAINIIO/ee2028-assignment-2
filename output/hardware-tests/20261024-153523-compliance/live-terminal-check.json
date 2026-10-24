@@ -1,0 +1,7 @@
+{
+  "method": "Debugger-injected attacked state backdated9500ms with last-log timestamp initialized. Verifies real UART cutoff and viewer terminal lifecycle; not a physical inversion or full10-second real-time duration test.",
+  "seconds_injection_to_terminal_frame": 0.5272903749719262,
+  "terminal_closed_owned_socket_and_process": true,
+  "seconds_silent_after_final_line": 3.0272706249882466,
+  "passed": true
+}

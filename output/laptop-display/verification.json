@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-24",
+  "firmware_checks": "Default ARM build, OLED-disabled build, mirror-disabled build, and existing host suites passed",
+  "new_host_checks": "Laptop-only render/terminal/NULL tests, nine transport tests, framebuffer decoding self-test, launcher syntax",
+  "live_hardware_check": "Eight coherent frames received; all eight framebuffer hashes differed",
+  "window_check": {
+    "state": "live",
+    "frame_count": 43,
+    "title": "Garden Guard \u2014 laptop display",
+    "exists": true
+  },
+  "visual_check": "Live standby screen inspected; clear Garden Guard artwork and DOUBLE TO START instruction",
+  "buzzer_pin": "D6/PB1",
+  "controls": "Physical USER button on board; double to start, single to charge/auto-fire",
+  "launch_again": "sh tools/live_display.command",
+  "note": "Viewer currently running. Close it before another ST-Link tool connects."
+}

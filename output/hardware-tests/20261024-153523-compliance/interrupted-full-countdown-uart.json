@@ -1,0 +1,118 @@
+[
+  {
+    "seconds": 0.676,
+    "text": "WARNING M magnitude: 240.75 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 1.624,
+    "text": "Drone Was Attacked! "
+  },
+  {
+    "seconds": 1.675,
+    "text": "WARNING M magnitude: 240.92 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 2.62,
+    "text": "Drone Was Attacked! "
+  },
+  {
+    "seconds": 2.67,
+    "text": "WARNING M magnitude: 240.68 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 3.611,
+    "text": "Drone Was Attacked! "
+  },
+  {
+    "seconds": 3.662,
+    "text": "WARNING M magnitude: 241.03 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 4.605,
+    "text": "Drone Was Attacked! "
+  },
+  {
+    "seconds": 4.66,
+    "text": "WARNING M magnitude: 240.88 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 5.6,
+    "text": "Drone Was Attacked! "
+  },
+  {
+    "seconds": 5.656,
+    "text": "WARNING M magnitude: 240.65 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 6.597,
+    "text": "Drone Was Attacked! "
+  },
+  {
+    "seconds": 6.649,
+    "text": "WARNING M magnitude: 240.85 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 7.592,
+    "text": "Drone Was Attacked! "
+  },
+  {
+    "seconds": 7.646,
+    "text": "WARNING M magnitude: 240.40 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 8.587,
+    "text": "Drone Was Attacked! "
+  },
+  {
+    "seconds": 8.642,
+    "text": "WARNING M magnitude: 240.99 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 9.348,
+    "text": "Drone rescued; resuming BATTLE MODE"
+  },
+  {
+    "seconds": 9.635,
+    "text": "WARNING M magnitude: 241.27 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 10.632,
+    "text": "WARNING M magnitude: 241.60 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 10.769,
+    "text": "LASERGUN_CHARGING: 3/10"
+  },
+  {
+    "seconds": 11.628,
+    "text": "WARNING M magnitude: 241.73 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 12.622,
+    "text": "WARNING M magnitude: 242.89 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 13.229,
+    "text": "LASERGUN_CHARGING: 6/10"
+  },
+  {
+    "seconds": 13.235,
+    "text": "LASERGUN_FIRED: -5/10; remaining 1/10; target=NONE"
+  },
+  {
+    "seconds": 13.241,
+    "text": "Human hit: penalty; score=-5"
+  },
+  {
+    "seconds": 13.244,
+    "text": "TARGET: ZOMBIE"
+  },
+  {
+    "seconds": 13.617,
+    "text": "WARNING M magnitude: 241.85 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 14.613,
+    "text": "WARNING M magnitude: 242.19 uT, outside [0.00, 200.00] uT"
+  }
+]

@@ -1,0 +1,22 @@
+Open On-Chip Debugger 0.12.0+dev-00623-g0ba753ca7 (2025-04-30-14:20) [https://github.com/STMicroelectronics/OpenOCD]
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+none separate
+Info : STLINK V2J46M33 (API v2) VID:PID 0483:374B
+Info : Target voltage: 3.238020
+Info : clock speed 4000 kHz
+Info : stlink_dap_op_connect(connect)
+Info : SWD DPIDR 0x2ba01477
+Info : [STM32L4S5VITx.cpu] Cortex-M4 r0p1 processor detected
+Info : [STM32L4S5VITx.cpu] target has 6 breakpoints, 4 watchpoints
+Info : [STM32L4S5VITx.cpu] Examination succeed
+Info : gdb port disabled
+D6_BUZZER battle_sound timer_running=1 timer_enabled=1 PB1_level=1
+D6_BUZZER trial1 timer_running=1 timer_enabled=1 PB1_level=1
+D6_BUZZER trial2 timer_running=1 timer_enabled=1 PB1_level=1
+D6_BUZZER trial3 timer_running=1 timer_enabled=1 PB1_level=0
+D6_BUZZER trial4 timer_running=1 timer_enabled=1 PB1_level=1
+D6_BUZZER trial5 timer_running=1 timer_enabled=1 PB1_level=1
+D6_BUZZER finished timer_running=0 timer_enabled=0 PB1_level=0
+shutdown command invoked

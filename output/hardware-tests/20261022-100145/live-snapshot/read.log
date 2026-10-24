@@ -1,0 +1,56 @@
+      -------------------------------------------------------------------
+                        STM32CubeProgrammer v2.20.0                  
+      -------------------------------------------------------------------
+
+ST-LINK SN  : 066EFF3231454D3043044250
+ST-LINK FW  : V2J37M27
+Board       : STM32L4S5I-DK
+Voltage     : 3.21V
+SWD freq    : 4000 KHz
+Connect mode: Hot Plug
+Reset mode  : Software reset
+Device ID   : 0x470
+Revision ID : Rev W
+Device name : STM32L4Rxxx/STM32L4Sxxx
+Flash size  : 2 MBytes
+Device type : MCU
+Device CPU  : Cortex-M4
+BL Version  : 0x95
+Debug in Low Power mode enabled
+
+
+UPLOADING ...
+  File          : /Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-100145/live-snapshot/game.bin
+  Size          : 580 Bytes
+  Address:      : 0x20001CAC
+Read progress:
+[==================================================] 100% 
+
+
+Data read successfully
+Warning: The file game.bin already exists, it will be overwritten
+Time elapsed during read operation is: 00:00:00.041
+
+UPLOADING ...
+  File          : /Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-100145/live-snapshot/sensors.bin
+  Size          : 52 Bytes
+  Address:      : 0x20001C68
+Read progress:
+[==================================================] 100% 
+
+
+Data read successfully
+Warning: The file sensors.bin already exists, it will be overwritten
+Time elapsed during read operation is: 00:00:00.038
+
+UPLOADING ...
+  File          : /Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-100145/live-snapshot/uwTick.bin
+  Size          : 4 Bytes
+  Address:      : 0x20001F78
+Read progress:
+[==================================================] 100% 
+
+
+Data read successfully
+Warning: The file uwTick.bin already exists, it will be overwritten
+Time elapsed during read operation is: 00:00:00.038

@@ -1,0 +1,24 @@
+      -------------------------------------------------------------------
+                        STM32CubeProgrammer v2.20.0                  
+      -------------------------------------------------------------------
+
+ST-LINK SN  : 066EFF3231454D3043044250
+ST-LINK FW  : V2J37M27
+Board       : STM32L4S5I-DK
+Voltage     : 3.21V
+SWD freq    : 4000 KHz
+Connect mode: Under Reset
+Reset mode  : Hardware reset
+Device ID   : 0x470
+Revision ID : Rev W
+Device name : STM32L4Rxxx/STM32L4Sxxx
+Flash size  : 2 MBytes
+Device type : MCU
+Device CPU  : Cortex-M4
+BL Version  : 0x95
+Debug in Low Power mode enabled
+
+
+MCU Reset
+
+Software reset is performed

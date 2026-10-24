@@ -1,0 +1,12 @@
+{
+  "buzzer_pin": "D6/PB1",
+  "firmware_sha256": "29482bb7fa407f45a36a4d7fb7334e8f0ef6b46f677f162d5b2c3bcf0441a4c3",
+  "flash_verified": true,
+  "build_and_host_tests": "passed",
+  "buzzer_audibility": "User confirmed audible: Yes, it works now",
+  "method": "Normal game sound events triggered through software EXTI13; no game state injection",
+  "logs": "output/hardware-tests/20261024-150023-buzzer-d6",
+  "gpio_observations": "D6/PB1 high and low observed during sound, TIM2 running; timer stopped and PB1 low afterward",
+  "result": "Buzzer works with corrected D6/PB1 default wiring",
+  "limitation": "Pitch, voltage and waveform were not measured"
+}

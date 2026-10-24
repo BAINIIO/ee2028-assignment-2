@@ -1,0 +1,185 @@
+      -------------------------------------------------------------------
+                        STM32CubeProgrammer v2.20.0                  
+      -------------------------------------------------------------------
+
+ST-LINK SN  : 066EFF3231454D3043044250
+ST-LINK FW  : V2J37M27
+Board       : STM32L4S5I-DK
+Voltage     : 3.21V
+SWD freq    : 4000 KHz
+Connect mode: Hot Plug
+Reset mode  : Software reset
+Device ID   : 0x470
+Revision ID : Rev W
+Device name : STM32L4Rxxx/STM32L4Sxxx
+Flash size  : 2 MBytes
+Device type : MCU
+Device CPU  : Cortex-M4
+BL Version  : 0x95
+Debug in Low Power mode enabled
+
+
+UPLOADING ...
+  File          : /Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-102414/ir-card-held/external_i2c.bin
+  Size          : 84 Bytes
+  Address:      : 0x20001BEC
+Read progress:
+[==================================================] 100% 
+
+
+Data read successfully
+Time elapsed during read operation is: 00:00:00.040
+
+UPLOADING ...
+  File          : /Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-102414/ir-card-held/oled_online.bin
+  Size          : 1 Bytes
+  Address:      : 0x20001C56
+Read progress:
+[==================================================] 100% 
+
+
+Data read successfully
+Time elapsed during read operation is: 00:00:00.039
+
+UPLOADING ...
+  File          : /Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-102414/ir-card-held/oled_dirty.bin
+  Size          : 1 Bytes
+  Address:      : 0x200013E7
+Read progress:
+[==================================================] 100% 
+
+
+Data read successfully
+Time elapsed during read operation is: 00:00:00.037
+
+UPLOADING ...
+  File          : /Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-102414/ir-card-held/ir_raw.bin
+  Size          : 1 Bytes
+  Address:      : 0x20001388
+Read progress:
+[==================================================] 100% 
+
+
+Data read successfully
+Time elapsed during read operation is: 00:00:00.041
+
+UPLOADING ...
+  File          : /Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-102414/ir-card-held/ir_present.bin
+  Size          : 1 Bytes
+  Address:      : 0x20001389
+Read progress:
+[==================================================] 100% 
+
+
+Data read successfully
+Time elapsed during read operation is: 00:00:00.039
+
+UPLOADING ...
+  File          : /Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-102414/ir-card-held/oled_sending.bin
+  Size          : 1 Bytes
+  Address:      : 0x200013E6
+Read progress:
+[==================================================] 100% 
+
+
+Data read successfully
+Time elapsed during read operation is: 00:00:00.039
+
+UPLOADING ...
+  File          : /Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-102414/ir-card-held/oled_buffer.bin
+  Size          : 1024 Bytes
+  Address:      : 0x200017E8
+Read progress:
+[==================================================] 100% 
+
+
+Data read successfully
+Time elapsed during read operation is: 00:00:00.045
+
+UPLOADING ...
+  File          : /Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-102414/ir-card-held/oled_send_buffer.bin
+  Size          : 1024 Bytes
+  Address:      : 0x200013E8
+Read progress:
+[==================================================] 100% 
+
+
+Data read successfully
+Time elapsed during read operation is: 00:00:00.064
+
+UPLOADING ...
+  File          : /Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-102414/ir-card-held/oled_offset.bin
+  Size          : 2 Bytes
+  Address:      : 0x200013E4
+Read progress:
+[==================================================] 100% 
+
+
+Data read successfully
+Time elapsed during read operation is: 00:00:00.045
+
+UPLOADING ...
+  File          : /Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-102414/ir-card-held/game.bin
+  Size          : 580 Bytes
+  Address:      : 0x20001CBC
+Read progress:
+[==================================================] 100% 
+
+
+Data read successfully
+Time elapsed during read operation is: 00:00:00.050
+
+UPLOADING ...
+  File          : /Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-102414/ir-card-held/sensors.bin
+  Size          : 52 Bytes
+  Address:      : 0x20001C78
+Read progress:
+[==================================================] 100% 
+
+
+Data read successfully
+Time elapsed during read operation is: 00:00:00.039
+
+UPLOADING ...
+  File          : /Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-102414/ir-card-held/uwTick.bin
+  Size          : 4 Bytes
+  Address:      : 0x20001F88
+Read progress:
+[==================================================] 100% 
+
+
+Data read successfully
+Time elapsed during read operation is: 00:00:00.040
+
+UPLOADING ...
+  File          : /Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-102414/ir-card-held/gpioc.bin
+  Size          : 24 Bytes
+  Address:      : 0x48000800
+Read progress:
+[==================================================] 100% 
+
+
+Data read successfully
+Time elapsed during read operation is: 00:00:00.000
+
+UPLOADING ...
+  File          : /Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-102414/ir-card-held/i2c1.bin
+  Size          : 28 Bytes
+  Address:      : 0x40005400
+Read progress:
+[==================================================] 100% 
+
+
+Data read successfully
+Time elapsed during read operation is: 00:00:00.000
+
+UPLOADING ...
+  File          : /Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-102414/ir-card-held/gpiob_inputs.bin
+  Size          : 4 Bytes
+  Address:      : 0x48000410
+Read progress:
+[==================================================] 100% 
+
+
+Data read successfully
+Time elapsed during read operation is: 00:00:00.000

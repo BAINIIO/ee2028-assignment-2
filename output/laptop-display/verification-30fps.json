@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-24",
+  "result": "Viewer reopened and displaying approximately 30 fps",
+  "target_fps": 30,
+  "measured_mean_received_fps": 29.41,
+  "measured_mean_displayed_fps": 29.53,
+  "read_benchmark": {
+    "8_bit_reads": {
+      "mean_ms": 92.75,
+      "min_ms": 91.33,
+      "max_ms": 93.71,
+      "coherent_reads": 1,
+      "total_reads": 6
+    },
+    "32_bit_reads": {
+      "mean_ms": 8.36,
+      "min_ms": 7.62,
+      "max_ms": 10.21,
+      "coherent_reads": 6,
+      "total_reads": 6
+    }
+  },
+  "firmware_period_ms": 33,
+  "transport": "Aligned 32-bit block reads, TCP_NODELAY, bounded coherent-snapshot retries",
+  "ui": "Deadline-based polling, measured frame rates, Tk updates every 8 ms",
+  "checks": "ARM build; all six C host suites; fourteen Python transport tests; framebuffer and frame-rate self-tests passed",
+  "window": {
+    "exists": true,
+    "title": "Garden Guard \u2014 laptop display",
+    "geometry": "848x670+34+64"
+  },
+  "state": "live"
+}

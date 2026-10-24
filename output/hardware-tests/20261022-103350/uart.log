@@ -1,0 +1,23 @@
+[2.548] Entering STANDBY MODE
+[2.563] Zombie game ready; sensors=0x3f/0x3f; OLED=online; IR=enabled; buzzer=configured
+[2.568] Keep board still and upright at boot to calibrate orientation.
+[2.787] DISPLAY: OLED transfer failed; retry pending
+[3.563] T: 30.77 degC, P: 1010.10 hPa, H: 56.76 %RH, A: [-0.14,-0.02,10.00] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [10.36,-178.33,-26.59] uT
+[3.779] DISPLAY: OLED recovered
+[4.029] DISPLAY: OLED transfer failed; retry pending
+[4.555] T: 30.79 degC, P: 1010.06 hPa, H: 56.88 %RH, A: [-0.13,-0.03,10.00] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [10.23,-178.22,-25.91] uT
+[5.021] DISPLAY: OLED recovered
+[5.328] DISPLAY: OLED transfer failed; retry pending
+[5.549] T: 30.79 degC, P: 1010.12 hPa, H: 56.81 %RH, A: [-0.13,-0.03,10.00] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [10.30,-178.68,-27.03] uT
+[6.321] DISPLAY: OLED recovered
+[6.542] T: 30.79 degC, P: 1010.08 hPa, H: 56.85 %RH, A: [-0.14,-0.03,9.99] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [10.50,-178.46,-26.63] uT
+[6.559] DISPLAY: OLED transfer failed; retry pending
+[7.535] T: 30.83 degC, P: 1010.13 hPa, H: 56.95 %RH, A: [-0.14,-0.03,9.99] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [10.46,-178.39,-27.01] uT
+[7.552] DISPLAY: OLED recovered
+[8.018] DISPLAY: OLED transfer failed; retry pending
+[8.527] T: 30.83 degC, P: 1010.10 hPa, H: 56.84 %RH, A: [-0.13,-0.03,9.99] m/s^2, G: [-0.35,-2.03,0.28] deg/s, M: [9.97,-178.77,-26.24] uT
+[9.012] DISPLAY: OLED recovered
+[9.387] DISPLAY: OLED transfer failed; retry pending
+[9.520] T: 30.77 degC, P: 1010.21 hPa, H: 56.81 %RH, A: [-0.13,-0.03,9.99] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [10.16,-178.42,-26.45] uT
+[10.379] DISPLAY: OLED recovered
+[10.514] T: 30.81 degC, P: 1010.02 hPa, H: 56.77 %RH, A: [-0.13,-0.03,9.99] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [10.18,-178.56,-26.32] uT

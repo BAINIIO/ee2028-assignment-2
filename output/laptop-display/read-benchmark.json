@@ -1,0 +1,16 @@
+{
+  "8_bit_reads": {
+    "mean_ms": 92.75,
+    "min_ms": 91.33,
+    "max_ms": 93.71,
+    "coherent_reads": 1,
+    "total_reads": 6
+  },
+  "32_bit_reads": {
+    "mean_ms": 8.36,
+    "min_ms": 7.62,
+    "max_ms": 10.21,
+    "coherent_reads": 6,
+    "total_reads": 6
+  }
+}

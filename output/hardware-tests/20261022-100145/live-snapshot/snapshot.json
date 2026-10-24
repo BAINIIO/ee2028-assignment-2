@@ -1,0 +1,40 @@
+{
+  "sensor_readings": {
+    "temperature_c": 30.200475692749023,
+    "pressure_hpa": 1010.198486328125,
+    "humidity_pct": 59.9562873840332,
+    "acceleration_ms2": [
+      -0.12203395366668701,
+      -0.07776673883199692,
+      9.997213363647461
+    ],
+    "angular_rate_dps": [
+      -0.2800000011920929,
+      -1.9600000381469727,
+      0.2800000011920929
+    ],
+    "magnetic_ut": [
+      -30.338001251220703,
+      -217.6580047607422,
+      -23.562000274658203
+    ],
+    "valid_mask": "0x3f"
+  },
+  "game": {
+    "mode": 0,
+    "round": 0,
+    "target": 0,
+    "colour": 0,
+    "aim_locked": false,
+    "attacked": false,
+    "energy": 0,
+    "lives": 3,
+    "zombie_hits": 0,
+    "score": 0,
+    "has_reference": true,
+    "attack_armed": true
+  },
+  "tick_ms": 83388,
+  "method": "read-only SWD HOTPLUG; no input injection, halt or reset",
+  "layout": "Game field offsets and sizes resolved from target ELF debug information"
+}

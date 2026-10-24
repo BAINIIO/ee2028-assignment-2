@@ -1,0 +1,68 @@
+{
+  "sensor_readings": {
+    "temperature_c": 30.681140899658203,
+    "pressure_hpa": 1010.130859375,
+    "humidity_pct": 57.54153060913086,
+    "acceleration_ms2": [
+      NaN,
+      NaN,
+      NaN
+    ],
+    "angular_rate_dps": [
+      NaN,
+      NaN,
+      NaN
+    ],
+    "magnetic_ut": [
+      11.214000701904297,
+      -199.97601318359375,
+      -27.56599998474121
+    ],
+    "valid_mask": "0x27"
+  },
+  "game": {
+    "mode": 1,
+    "round": 0,
+    "target": 2,
+    "colour": 0,
+    "aim_locked": false,
+    "attacked": false,
+    "energy": 4,
+    "lives": 2,
+    "zombie_hits": 0,
+    "score": -5,
+    "has_reference": true,
+    "attack_armed": true
+  },
+  "ir_diagnostics": {
+    "A0_PC5_level": 1,
+    "A0_PC5_mode": 0,
+    "A0_PC5_pull": 1,
+    "A1_PC4_level": 0,
+    "A1_PC4_mode": 3,
+    "gpio_modes": "0=input, 1=output, 2=alternate, 3=analog (digital input disabled)",
+    "ir_present": false,
+    "ir_raw": false
+  },
+  "tick_ms": 30254,
+  "method": "read-only SWD HOTPLUG; no input injection, halt or reset",
+  "layout": "Game field offsets and sizes resolved from target ELF debug information",
+  "oled_diagnostics": {
+    "oled_online": false,
+    "oled_offset": 160,
+    "oled_sending": true,
+    "oled_dirty": false,
+    "oled_failures": 23,
+    "oled_busy_deferrals": 0,
+    "oled_recoveries": 23,
+    "oled_last_status": 1,
+    "oled_last_error": 4,
+    "oled_buffer_sha256": "5ae0248359f34c85b3eb8d2043115bd41e14ba6abcc42a36b6d359c260ac85d9",
+    "oled_send_buffer_sha256": "5ae0248359f34c85b3eb8d2043115bd41e14ba6abcc42a36b6d359c260ac85d9",
+    "hal_i2c_error": "0x4",
+    "i2c1_cr1": "0x1",
+    "i2c1_isr": "0x1",
+    "SCL_PB8": 1,
+    "SDA_PB9": 1
+  }
+}

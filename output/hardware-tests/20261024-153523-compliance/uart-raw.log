@@ -1,0 +1,9 @@
+Entering STANDBY MODE
+Zombie game ready; sensors=0x3f/0x3f; OLED=online; IR=enabled; buzzer=configured
+Keep board still and upright at boot to calibrate orientation.
+WARNING M magnitude: 241.37 uT, outside [0.00, 200.00] uT
+WARNING M magnitude: 241.57 uT, outside [0.00, 200.00] uT
+WARNING M magnitude: 241.29 uT, outside [0.00, 200.00] uT
+WARNING M magnitude: 242.22 uT, outside [0.00, 200.00] uT
+WARNING M magnitude: 241.31 uT, outside [0.00, 200.00] uT
+WARNING M magnitude: 241.59 uT, outside [0.00, 200.00] uT

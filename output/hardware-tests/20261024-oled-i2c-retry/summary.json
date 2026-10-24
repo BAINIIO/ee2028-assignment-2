@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-24",
+  "user_reported_wiring": "OLED Grove cable moved from D3 to I2C; buzzer remains D6/PB1",
+  "firmware_changed": false,
+  "method": "Reset current firmware; capture eight seconds of UART without concurrent SWD; read-only SWD snapshot afterward",
+  "oled_detected": true,
+  "address": "0x3c",
+  "bus": "I2C1, SCL PB8/D15, SDA PB9/D14",
+  "uart_display_failures_during_capture": 0,
+  "oled_diagnostics": {
+    "oled_online": true,
+    "oled_offset": 128,
+    "oled_sending": true,
+    "oled_dirty": false,
+    "oled_failures": 0,
+    "oled_busy_deferrals": 0,
+    "oled_recoveries": 0,
+    "oled_last_status": 0,
+    "oled_last_error": 0,
+    "oled_buffer_sha256": "bf02a6f1b1426544a99ea4ea4a3a6f077cfde83a150b03cc173ef5e2fdec3b04",
+    "oled_send_buffer_sha256": "bf02a6f1b1426544a99ea4ea4a3a6f077cfde83a150b03cc173ef5e2fdec3b04",
+    "hal_i2c_error": "0x0",
+    "i2c1_cr1": "0x1",
+    "i2c1_isr": "0x8000",
+    "SCL_PB8": 0,
+    "SDA_PB9": 0
+  },
+  "user_visual_observation": "Some pixels, but damaged or distorted",
+  "result": "I2C connection restored; visible image remains distorted",
+  "limitation": "Panel damage not independently confirmed. Communication success does not establish image quality or long-term stability."
+}

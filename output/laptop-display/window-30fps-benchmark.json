@@ -1,0 +1,61 @@
+{
+  "target_fps": 30,
+  "mean_received_fps": 29.41,
+  "mean_displayed_fps": 29.53,
+  "samples": [
+    {
+      "received_fps": 29.36,
+      "displayed_fps": 29.52,
+      "frame_count": 91,
+      "displayed_frame_count": 91
+    },
+    {
+      "received_fps": 29.26,
+      "displayed_fps": 29.33,
+      "frame_count": 106,
+      "displayed_frame_count": 106
+    },
+    {
+      "received_fps": 29.76,
+      "displayed_fps": 29.85,
+      "frame_count": 121,
+      "displayed_frame_count": 121
+    },
+    {
+      "received_fps": 29.22,
+      "displayed_fps": 29.51,
+      "frame_count": 135,
+      "displayed_frame_count": 135
+    },
+    {
+      "received_fps": 29.05,
+      "displayed_fps": 29.15,
+      "frame_count": 150,
+      "displayed_frame_count": 150
+    },
+    {
+      "received_fps": 29.4,
+      "displayed_fps": 29.5,
+      "frame_count": 166,
+      "displayed_frame_count": 166
+    },
+    {
+      "received_fps": 29.32,
+      "displayed_fps": 29.41,
+      "frame_count": 181,
+      "displayed_frame_count": 181
+    },
+    {
+      "received_fps": 29.91,
+      "displayed_fps": 29.95,
+      "frame_count": 196,
+      "displayed_frame_count": 196
+    }
+  ],
+  "window": {
+    "exists": true,
+    "title": "Garden Guard \u2014 laptop display",
+    "geometry": "848x670+34+64"
+  },
+  "state": "live"
+}

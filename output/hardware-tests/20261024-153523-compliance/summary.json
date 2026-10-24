@@ -1,0 +1,44 @@
+{
+  "firmware_sha256": "4f18a88f7a81fcba3ac7b6df86cad44b9f04eaa7888f9d8140eb65b868682554",
+  "programmed_and_verified": true,
+  "startup_seen": true,
+  "lines": [
+    {
+      "seconds": 3.279,
+      "text": "Entering STANDBY MODE"
+    },
+    {
+      "seconds": 3.3,
+      "text": "Zombie game ready; sensors=0x3f/0x3f; OLED=online; IR=enabled; buzzer=configured"
+    },
+    {
+      "seconds": 3.314,
+      "text": "Keep board still and upright at boot to calibrate orientation."
+    },
+    {
+      "seconds": 4.293,
+      "text": "WARNING M magnitude: 241.37 uT, outside [0.00, 200.00] uT"
+    },
+    {
+      "seconds": 5.29,
+      "text": "WARNING M magnitude: 241.57 uT, outside [0.00, 200.00] uT"
+    },
+    {
+      "seconds": 6.284,
+      "text": "WARNING M magnitude: 241.29 uT, outside [0.00, 200.00] uT"
+    },
+    {
+      "seconds": 7.279,
+      "text": "WARNING M magnitude: 242.22 uT, outside [0.00, 200.00] uT"
+    },
+    {
+      "seconds": 8.275,
+      "text": "WARNING M magnitude: 241.31 uT, outside [0.00, 200.00] uT"
+    },
+    {
+      "seconds": 9.271,
+      "text": "WARNING M magnitude: 241.59 uT, outside [0.00, 200.00] uT"
+    }
+  ],
+  "method": "Actual board flash, reset and receive-only UART; no physical controls exercised"
+}

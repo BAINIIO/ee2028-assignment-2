@@ -1,0 +1,64 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "STM32: build zombie game",
+            "type": "process",
+            "command": "make",
+            "args": [
+                "-j4"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "STM32: test game on Mac",
+            "type": "process",
+            "command": "make",
+            "args": [
+                "host-test"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "test"
+        },
+        {
+            "label": "STM32: detect board",
+            "type": "process",
+            "command": "python3",
+            "args": [
+                "tools/board.py",
+                "detect"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "STM32: flash zombie game",
+            "type": "process",
+            "command": "python3",
+            "args": [
+                "tools/board.py",
+                "flash"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

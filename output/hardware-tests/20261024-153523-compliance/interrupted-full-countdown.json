@@ -1,0 +1,4 @@
+{
+  "method": "Debugger-injected attacked state on real board, including log timestamp initialization normally performed by the attack event. Waited actual10-second timeout. No physical inversion/rescue verified. Initial backdated injection omitted that event initialization and caused artificial log catch-up; retained as initial-* evidence.",
+  "outcome": "No timeout: a real double press rescued the injected attacked state; subsequent physical singles charged/fired. See interrupted-full-countdown-uart.json. Physical flip remains untested."
+}

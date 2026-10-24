@@ -1,0 +1,28 @@
+Open On-Chip Debugger 0.12.0+dev-00623-g0ba753ca7 (2025-04-30-14:20) [https://github.com/STMicroelectronics/OpenOCD]
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+none separate
+Info : STLINK V2J46M33 (API v2) VID:PID 0483:374B
+Info : Target voltage: 3.241188
+Info : clock speed 4000 kHz
+Info : stlink_dap_op_connect(connect)
+Info : SWD DPIDR 0x2ba01477
+Info : [STM32L4S5VITx.cpu] Cortex-M4 r0p1 processor detected
+Info : [STM32L4S5VITx.cpu] target has 6 breakpoints, 4 watchpoints
+Info : [STM32L4S5VITx.cpu] Examination succeed
+Info : gdb port disabled
+BUZZER baseline tick=186649 running=0 tune=0x0 timer_enabled=0 interrupt_enabled=0 ARR=1274 D7=0
+Triggering buzzer trial 1 with one software button interrupt
+BUZZER trial1_tone1 tick=187188 running=1 tune=0x800bc9c timer_enabled=1 interrupt_enabled=1 ARR=415 D7=0
+BUZZER trial1_tone2 tick=187221 running=1 tune=0x800bc9c timer_enabled=1 interrupt_enabled=1 ARR=415 D7=0
+BUZZER trial1_finished tick=187626 running=0 tune=0x0 timer_enabled=0 interrupt_enabled=0 ARR=311 D7=0
+Triggering buzzer trial 2 with one software button interrupt
+BUZZER trial2_tone1 tick=188667 running=1 tune=0x800bca4 timer_enabled=1 interrupt_enabled=1 ARR=276 D7=0
+BUZZER trial2_tone2 tick=188702 running=1 tune=0x800bca4 timer_enabled=1 interrupt_enabled=1 ARR=276 D7=0
+BUZZER trial2_finished tick=189108 running=0 tune=0x0 timer_enabled=0 interrupt_enabled=0 ARR=499 D7=0
+Triggering buzzer trial 3 with one software button interrupt
+BUZZER trial3_tone1 tick=190150 running=1 tune=0x800bc9c timer_enabled=1 interrupt_enabled=1 ARR=415 D7=1
+BUZZER trial3_tone2 tick=190184 running=1 tune=0x800bc9c timer_enabled=0 interrupt_enabled=0 ARR=415 D7=0
+BUZZER trial3_finished tick=190592 running=0 tune=0x0 timer_enabled=0 interrupt_enabled=0 ARR=311 D7=0
+shutdown command invoked

@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-24",
+  "probe_serial": "0667FF515652787187041646",
+  "firmware_changed": false,
+  "buzzer": {
+    "method": "Isolated software EXTI13 events exercised existing charge/shot sounds; MCU remained running",
+    "initial_trials": 3,
+    "repeat_trials": 6,
+    "uart_charge_and_shot_events": true,
+    "timer_running_and_interrupt_enabled_observed": true,
+    "gpio_D7_PA4_high_and_low_observed": true,
+    "returned_to_idle": true,
+    "user_initial_report": "No sound",
+    "user_repeat_report": "No, still silent",
+    "result": "Audibility failed; firmware activity observed. External wiring, supply, module type and module function remain unverified.",
+    "limitation": "SWD register observations are not a voltage, waveform, current or sound measurement"
+  },
+  "ir": {
+    "status": "Stopped at user request",
+    "initial_PC5_level": 1,
+    "initial_presence": false,
+    "user_indicator_observation": "It changes with the card",
+    "live_capture": "Board remained in clear state during capture; card timing was not confirmed",
+    "result": "No end-to-end IR pass or fail assigned"
+  },
+  "evidence": [
+    "baseline/snapshot.json",
+    "buzzer-debugger.log",
+    "buzzer-uart.log",
+    "buzzer-repeat-debugger.log",
+    "buzzer-repeat-uart.log",
+    "ir-live.log"
+  ]
+}

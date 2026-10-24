@@ -1,0 +1,24 @@
+Entering STANDBY MODE
+Zombie game ready; sensors=0x3f/0x3f; OLED=online; IR=enabled; buzzer=configured
+Keep board still and upright at boot to calibrate orientation.
+DISPLAY: OLED transfer failed; retry pending
+T: 30.77 degC, P: 1010.10 hPa, H: 56.76 %RH, A: [-0.14,-0.02,10.00] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [10.36,-178.33,-26.59] uT
+DISPLAY: OLED recovered
+DISPLAY: OLED transfer failed; retry pending
+T: 30.79 degC, P: 1010.06 hPa, H: 56.88 %RH, A: [-0.13,-0.03,10.00] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [10.23,-178.22,-25.91] uT
+DISPLAY: OLED recovered
+DISPLAY: OLED transfer failed; retry pending
+T: 30.79 degC, P: 1010.12 hPa, H: 56.81 %RH, A: [-0.13,-0.03,10.00] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [10.30,-178.68,-27.03] uT
+DISPLAY: OLED recovered
+T: 30.79 degC, P: 1010.08 hPa, H: 56.85 %RH, A: [-0.14,-0.03,9.99] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [10.50,-178.46,-26.63] uT
+DISPLAY: OLED transfer failed; retry pending
+T: 30.83 degC, P: 1010.13 hPa, H: 56.95 %RH, A: [-0.14,-0.03,9.99] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [10.46,-178.39,-27.01] uT
+DISPLAY: OLED recovered
+DISPLAY: OLED transfer failed; retry pending
+T: 30.83 degC, P: 1010.10 hPa, H: 56.84 %RH, A: [-0.13,-0.03,9.99] m/s^2, G: [-0.35,-2.03,0.28] deg/s, M: [9.97,-178.77,-26.24] uT
+DISPLAY: OLED recovered
+DISPLAY: OLED transfer failed; retry pending
+T: 30.77 degC, P: 1010.21 hPa, H: 56.81 %RH, A: [-0.13,-0.03,9.99] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [10.16,-178.42,-26.45] uT
+DISPLAY: OLED recovered
+T: 30.81 degC, P: 1010.02 hPa, H: 56.77 %RH, A: [-0.13,-0.03,9.99] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [10.18,-178.56,-26.32] uT
+DISPLA

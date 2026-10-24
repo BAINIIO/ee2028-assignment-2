@@ -1,0 +1,28 @@
+Entering STANDBY MODE
+Zombie game ready; sensors=0x3f/0x3f; OLED=absent; IR=enabled; buzzer=configured
+Keep board still and upright at boot to calibrate orientation.
+WARNING M magnitude: 233.12 uT, outside [0.00, 200.00] uT
+WARNING M magnitude: 233.09 uT, outside [0.00, 200.00] uT
+Entering BATTLE MODE
+TARGET: ZOMBIE
+WARNING M magnitude: 232.93 uT, outside [0.00, 200.00] uT
+LASERGUN_CHARGING: 3/10
+WARNING M magnitude: 233.58 uT, outside [0.00, 200.00] uT
+LASERGUN_CHARGING: 6/10
+LASERGUN_FIRED: -5/10; remaining 1/10; target=ZOMBIE
+Zombie hit; score=10
+TARGET: HUMAN
+WARNING M magnitude: 233.10 uT, outside [0.00, 200.00] uT
+WARNING M magnitude: 233.56 uT, outside [0.00, 200.00] uT
+LASERGUN_CHARGING: 4/10
+WARNING M magnitude: 232.88 uT, outside [0.00, 200.00] uT
+LASERGUN_CHARGING: 7/10
+LASERGUN_FIRED: -5/10; remaining 2/10; target=HUMAN
+Human hit: penalty; score=5
+TARGET: HUMAN
+WARNING M magnitude: 233.55 uT, outside [0.00, 200.00] uT
+LASERGUN_CHARGING: 5/10
+LASERGUN_FIRED: -5/10; remaining 0/10; target=HUMAN
+Human hit: penalty; score=0
+TARGET: ZOMBIE
+WARNING M magnitude: 233.09 uT, outside [0.00, 200.00] uT

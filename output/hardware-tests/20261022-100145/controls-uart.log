@@ -1,0 +1,508 @@
+[2026-10-22T10:02:53.744+08:00] �Qg5��e7��e7�Y�g5�Y�c5!a!aYy1��Ag5�!n1��eWARNING M magnitude: 217.70 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:02:54.738+08:00] WARNING M magnitude: 217.61 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:02:55.730+08:00] WARNING M magnitude: 216.95 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:02:56.724+08:00] WARNING M magnitude: 216.86 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:02:57.717+08:00] WARNING M magnitude: 217.45 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:02:58.709+08:00] WARNING M magnitude: 216.99 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:02:59.704+08:00] WARNING M magnitude: 217.20 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:00.695+08:00] WARNING M magnitude: 217.57 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:01.687+08:00] WARNING M magnitude: 216.99 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:02.684+08:00] WARNING M magnitude: 217.05 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:03.677+08:00] WARNING M magnitude: 217.39 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:04.667+08:00] WARNING M magnitude: 216.76 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:05.661+08:00] WARNING M magnitude: 216.25 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:06.654+08:00] WARNING M magnitude: 218.01 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:07.650+08:00] WARNING M magnitude: 220.58 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:08.640+08:00] WARNING M magnitude: 220.84 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:09.636+08:00] WARNING M magnitude: 220.65 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:10.629+08:00] WARNING M magnitude: 218.97 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:11.622+08:00] WARNING M magnitude: 217.40 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:12.616+08:00] WARNING M magnitude: 218.33 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:13.609+08:00] WARNING M magnitude: 217.43 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:14.602+08:00] WARNING M magnitude: 218.02 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:15.595+08:00] WARNING M magnitude: 217.84 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:16.586+08:00] WARNING M magnitude: 218.04 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:17.582+08:00] WARNING M magnitude: 219.04 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:18.575+08:00] WARNING M magnitude: 219.25 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:19.568+08:00] WARNING M magnitude: 219.14 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:20.559+08:00] WARNING M magnitude: 218.74 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:21.555+08:00] WARNING M magnitude: 219.01 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:22.548+08:00] WARNING M magnitude: 219.15 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:23.541+08:00] WARNING M magnitude: 218.86 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:24.535+08:00] WARNING M magnitude: 218.39 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:25.528+08:00] WARNING M magnitude: 219.19 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:26.519+08:00] WARNING M magnitude: 222.72 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:27.515+08:00] WARNING M magnitude: 222.49 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:28.508+08:00] WARNING M magnitude: 222.50 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:29.499+08:00] WARNING M magnitude: 221.65 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:30.492+08:00] WARNING M magnitude: 221.65 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:31.486+08:00] WARNING M magnitude: 221.96 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:31.895+08:00] Entering STANDBY MODE
+[2026-10-22T10:03:31.908+08:00] Zombie game ready; sensors=0x3f/0x3f; OLED=absent; IR=enabled; buzzer=configured
+[2026-10-22T10:03:31.913+08:00] Keep board still and upright at boot to calibrate orientation.
+[2026-10-22T10:03:32.901+08:00] WARNING M magnitude: 223.03 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:33.465+08:00] Entering STANDBY MODE
+[2026-10-22T10:03:33.477+08:00] Zombie game ready; sensors=0x3f/0x3f; OLED=absent; IR=enabled; buzzer=configured
+[2026-10-22T10:03:33.483+08:00] Keep board still and upright at boot to calibrate orientation.
+[2026-10-22T10:03:34.174+08:00] Entering STANDBY MODE
+[2026-10-22T10:03:34.186+08:00] Zombie game ready; sensors=0x3f/0x3f; OLED=absent; IR=enabled; buzzer=configured
+[2026-10-22T10:03:34.192+08:00] Keep board still and upright at boot to calibrate orientation.
+[2026-10-22T10:03:35.142+08:00] Entering STANDBY MODE
+[2026-10-22T10:03:35.155+08:00] Zombie game ready; sensors=0x3f/0x3f; OLED=absent; IR=enabled; buzzer=configured
+[2026-10-22T10:03:35.160+08:00] Keep board still and upright at boot to calibrate orientation.
+[2026-10-22T10:03:36.148+08:00] WARNING M magnitude: 221.41 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:37.141+08:00] WARNING M magnitude: 221.50 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:37.698+08:00] Entering STANDBY MODE
+[2026-10-22T10:03:37.710+08:00] Zombie game ready; sensors=0x3f/0x3f; OLED=absent; IR=enabled; buzzer=configured
+[2026-10-22T10:03:37.716+08:00] Keep board still and upright at boot to calibrate orientation.
+[2026-10-22T10:03:38.724+08:00] Entering STANDBY MODE
+[2026-10-22T10:03:38.737+08:00] Zombie game ready; sensors=0x3f/0x3f; OLED=absent; IR=enabled; buzzer=configured
+[2026-10-22T10:03:38.742+08:00] Keep board still and upright at boot to calibrate orientation.
+[2026-10-22T10:03:39.730+08:00] WARNING M magnitude: 222.66 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:40.140+08:00] Entering STANDBY MODE
+[2026-10-22T10:03:40.153+08:00] Zombie game ready; sensors=0x3f/0x3f; OLED=absent; IR=enabled; buzzer=configured
+[2026-10-22T10:03:40.158+08:00] Keep board still and upright at boot to calibrate orientation.
+[2026-10-22T10:03:41.145+08:00] WARNING M magnitude: 222.14 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:42.138+08:00] WARNING M magnitude: 222.11 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:43.044+08:00] Entering STANDBY MODE
+[2026-10-22T10:03:43.057+08:00] Zombie game ready; sensors=0x3f/0x3f; OLED=absent; IR=enabled; buzzer=configured
+[2026-10-22T10:03:43.062+08:00] Keep board still and upright at boot to calibrate orientation.
+[2026-10-22T10:03:44.049+08:00] WARNING M magnitude: 222.02 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:45.042+08:00] WARNING M magnitude: 220.91 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:46.035+08:00] WARNING M magnitude: 221.31 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:47.028+08:00] WARNING M magnitude: 221.59 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:48.021+08:00] WARNING M magnitude: 221.32 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:49.011+08:00] WARNING M magnitude: 221.25 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:50.004+08:00] WARNING M magnitude: 221.13 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:50.997+08:00] WARNING M magnitude: 221.49 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:51.990+08:00] WARNING M magnitude: 221.44 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:52.983+08:00] WARNING M magnitude: 221.22 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:53.976+08:00] WARNING M magnitude: 221.44 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:54.969+08:00] WARNING M magnitude: 221.13 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:55.962+08:00] WARNING M magnitude: 221.00 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:56.955+08:00] WARNING M magnitude: 221.29 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:57.948+08:00] WARNING M magnitude: 221.45 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:58.941+08:00] WARNING M magnitude: 221.01 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:03:59.937+08:00] WARNING M magnitude: 221.35 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:00.929+08:00] WARNING M magnitude: 221.06 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:01.923+08:00] WARNING M magnitude: 220.80 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:02.915+08:00] WARNING M magnitude: 221.10 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:03.906+08:00] WARNING M magnitude: 220.89 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:04.899+08:00] WARNING M magnitude: 221.06 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:05.893+08:00] WARNING M magnitude: 220.86 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:06.885+08:00] WARNING M magnitude: 221.14 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:07.877+08:00] WARNING M magnitude: 220.87 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:08.870+08:00] WARNING M magnitude: 220.96 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:09.865+08:00] WARNING M magnitude: 221.25 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:10.858+08:00] WARNING M magnitude: 220.84 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:11.851+08:00] WARNING M magnitude: 221.02 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:12.843+08:00] WARNING M magnitude: 220.83 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:13.833+08:00] WARNING M magnitude: 221.17 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:14.826+08:00] WARNING M magnitude: 220.95 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:15.819+08:00] WARNING M magnitude: 220.97 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:16.812+08:00] WARNING M magnitude: 220.43 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:17.805+08:00] WARNING M magnitude: 221.00 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:18.798+08:00] WARNING M magnitude: 220.87 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:19.791+08:00] WARNING M magnitude: 220.80 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:20.787+08:00] WARNING M magnitude: 220.81 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:21.780+08:00] WARNING M magnitude: 221.56 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:48.584+08:00] WARNING M magnitude: 221.21 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:49.576+08:00] WARNING M magnitude: 220.94 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:50.572+08:00] WARNING M magnitude: 221.44 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:51.565+08:00] WARNING M magnitude: 221.10 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:52.558+08:00] WARNING M magnitude: 221.30 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:53.551+08:00] WARNING M magnitude: 221.17 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:54.541+08:00] WARNING M magnitude: 221.36 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:55.534+08:00] WARNING M magnitude: 221.15 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:56.527+08:00] WARNING M magnitude: 221.25 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:57.520+08:00] WARNING M magnitude: 221.70 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:58.513+08:00] WARNING M magnitude: 221.44 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:04:59.506+08:00] WARNING M magnitude: 222.09 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:00.501+08:00] WARNING M magnitude: 220.90 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:01.494+08:00] WARNING M magnitude: 221.43 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:02.485+08:00] WARNING M magnitude: 220.91 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:03.478+08:00] WARNING M magnitude: 220.92 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:04.473+08:00] WARNING M magnitude: 221.16 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:05.466+08:00] WARNING M magnitude: 221.02 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:06.456+08:00] WARNING M magnitude: 221.39 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:07.449+08:00] WARNING M magnitude: 221.26 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:08.442+08:00] WARNING M magnitude: 221.06 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:09.435+08:00] WARNING M magnitude: 221.01 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:10.427+08:00] WARNING M magnitude: 221.02 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:11.423+08:00] WARNING M magnitude: 221.55 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:12.415+08:00] WARNING M magnitude: 221.54 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:13.408+08:00] WARNING M magnitude: 221.02 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:14.401+08:00] WARNING M magnitude: 221.49 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:15.392+08:00] WARNING M magnitude: 220.87 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:16.385+08:00] WARNING M magnitude: 221.07 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:17.380+08:00] WARNING M magnitude: 221.66 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:18.370+08:00] WARNING M magnitude: 221.26 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:19.363+08:00] WARNING M magnitude: 221.40 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:20.356+08:00] WARNING M magnitude: 221.26 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:21.349+08:00] WARNING M magnitude: 221.34 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:22.342+08:00] WARNING M magnitude: 220.88 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:23.335+08:00] WARNING M magnitude: 221.17 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:24.328+08:00] WARNING M magnitude: 221.02 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:25.323+08:00] WARNING M magnitude: 221.09 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:26.316+08:00] WARNING M magnitude: 220.99 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:27.309+08:00] WARNING M magnitude: 221.14 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:28.302+08:00] WARNING M magnitude: 221.24 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:29.293+08:00] WARNING M magnitude: 221.34 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:30.286+08:00] WARNING M magnitude: 221.47 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:31.281+08:00] WARNING M magnitude: 221.09 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:32.274+08:00] WARNING M magnitude: 220.97 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:33.265+08:00] WARNING M magnitude: 221.38 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:34.258+08:00] WARNING M magnitude: 221.04 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:35.254+08:00] WARNING M magnitude: 221.01 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:36.247+08:00] WARNING M magnitude: 221.07 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:37.238+08:00] WARNING M magnitude: 220.70 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:38.233+08:00] WARNING M magnitude: 221.10 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:39.226+08:00] WARNING M magnitude: 220.75 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:40.217+08:00] WARNING M magnitude: 221.31 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:41.210+08:00] WARNING M magnitude: 221.70 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:42.203+08:00] WARNING M magnitude: 221.49 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:43.198+08:00] WARNING M magnitude: 221.67 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:44.191+08:00] WARNING M magnitude: 221.48 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:45.182+08:00] WARNING M magnitude: 221.48 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:46.175+08:00] WARNING M magnitude: 220.92 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:47.171+08:00] WARNING M magnitude: 221.68 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:48.164+08:00] WARNING M magnitude: 220.86 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:49.155+08:00] WARNING M magnitude: 221.15 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:50.148+08:00] WARNING M magnitude: 219.17 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:51.141+08:00] WARNING M magnitude: 219.93 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:52.135+08:00] WARNING M magnitude: 220.29 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:53.130+08:00] WARNING M magnitude: 220.13 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:54.123+08:00] WARNING M magnitude: 220.20 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:55.117+08:00] WARNING M magnitude: 220.37 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:56.110+08:00] WARNING M magnitude: 219.98 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:57.104+08:00] WARNING M magnitude: 219.63 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:58.095+08:00] WARNING M magnitude: 220.43 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:05:59.091+08:00] WARNING M magnitude: 219.55 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:00.082+08:00] WARNING M magnitude: 220.38 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:01.077+08:00] WARNING M magnitude: 220.05 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:02.071+08:00] WARNING M magnitude: 219.97 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:03.062+08:00] WARNING M magnitude: 220.17 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:04.057+08:00] WARNING M magnitude: 220.20 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:05.051+08:00] WARNING M magnitude: 220.24 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:06.044+08:00] WARNING M magnitude: 220.64 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:07.037+08:00] WARNING M magnitude: 221.27 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:08.030+08:00] WARNING M magnitude: 221.49 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:09.021+08:00] WARNING M magnitude: 221.49 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:10.014+08:00] WARNING M magnitude: 221.31 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:11.010+08:00] WARNING M magnitude: 221.01 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:12.003+08:00] WARNING M magnitude: 221.26 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:12.996+08:00] WARNING M magnitude: 221.39 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:13.986+08:00] WARNING M magnitude: 221.07 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:14.979+08:00] WARNING M magnitude: 221.06 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:15.975+08:00] WARNING M magnitude: 220.90 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:16.965+08:00] WARNING M magnitude: 221.49 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:23.919+08:00] WARNING M magnitude: 220.99 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:24.912+08:00] WARNING M magnitude: 221.26 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:25.905+08:00] WARNING M magnitude: 221.28 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:26.896+08:00] WARNING M magnitude: 221.51 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:27.891+08:00] WARNING M magnitude: 221.79 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:28.884+08:00] WARNING M magnitude: 221.32 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:29.877+08:00] WARNING M magnitude: 221.46 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:30.868+08:00] WARNING M magnitude: 221.50 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:31.861+08:00] WARNING M magnitude: 221.77 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:32.854+08:00] WARNING M magnitude: 221.01 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:33.849+08:00] WARNING M magnitude: 224.00 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:34.841+08:00] WARNING M magnitude: 219.99 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:35.832+08:00] WARNING M magnitude: 219.71 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:36.827+08:00] WARNING M magnitude: 220.21 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:37.819+08:00] WARNING M magnitude: 220.11 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:38.812+08:00] WARNING M magnitude: 220.10 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:39.806+08:00] WARNING M magnitude: 219.89 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:40.094+08:00] Entering BATTLE MODE
+[2026-10-22T10:06:40.095+08:00] TARGET: ZOMBIE
+[2026-10-22T10:06:40.799+08:00] WARNING M magnitude: 220.36 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:41.792+08:00] WARNING M magnitude: 219.89 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:42.785+08:00] WARNING M magnitude: 220.21 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:43.778+08:00] WARNING M magnitude: 220.24 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:44.067+08:00] Zombie escaped: penalty; score=-5
+[2026-10-22T10:06:44.068+08:00] TARGET: HUMAN
+[2026-10-22T10:06:44.771+08:00] WARNING M magnitude: 220.15 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:45.764+08:00] WARNING M magnitude: 220.28 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:46.757+08:00] WARNING M magnitude: 219.41 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:47.750+08:00] WARNING M magnitude: 219.88 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:48.038+08:00] Human saved; score=0
+[2026-10-22T10:06:48.039+08:00] TARGET: HUMAN
+[2026-10-22T10:06:48.741+08:00] WARNING M magnitude: 219.99 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:49.736+08:00] WARNING M magnitude: 220.41 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:50.729+08:00] WARNING M magnitude: 219.86 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:51.723+08:00] WARNING M magnitude: 219.99 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:52.010+08:00] Human saved; score=5
+[2026-10-22T10:06:52.011+08:00] TARGET: ZOMBIE
+[2026-10-22T10:06:52.716+08:00] WARNING M magnitude: 219.76 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:53.709+08:00] WARNING M magnitude: 220.38 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:54.702+08:00] WARNING M magnitude: 220.14 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:55.695+08:00] WARNING M magnitude: 219.89 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:55.983+08:00] Zombie escaped: penalty; score=0
+[2026-10-22T10:06:55.984+08:00] TARGET: HUMAN
+[2026-10-22T10:06:56.688+08:00] WARNING M magnitude: 220.01 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:57.681+08:00] WARNING M magnitude: 219.78 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:58.674+08:00] WARNING M magnitude: 219.71 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:59.668+08:00] WARNING M magnitude: 220.13 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:06:59.955+08:00] Human saved; score=5
+[2026-10-22T10:06:59.956+08:00] TARGET: ZOMBIE
+[2026-10-22T10:07:00.658+08:00] WARNING M magnitude: 219.74 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:01.654+08:00] WARNING M magnitude: 220.03 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:02.648+08:00] WARNING M magnitude: 220.00 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:03.641+08:00] WARNING M magnitude: 219.91 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:03.929+08:00] Zombie escaped: penalty; score=0
+[2026-10-22T10:07:03.933+08:00] DEFEAT! No lives left. Double press for standby.
+[2026-10-22T10:07:04.634+08:00] WARNING M magnitude: 219.52 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:05.627+08:00] WARNING M magnitude: 220.15 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:06.621+08:00] WARNING M magnitude: 219.84 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:07.614+08:00] WARNING M magnitude: 219.37 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:08.608+08:00] WARNING M magnitude: 220.10 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:09.601+08:00] WARNING M magnitude: 220.28 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:10.594+08:00] WARNING M magnitude: 220.12 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:11.587+08:00] WARNING M magnitude: 220.12 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:12.580+08:00] WARNING M magnitude: 220.26 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:13.322+08:00] LASERGUN_CHARGING: 3/10
+[2026-10-22T10:07:13.573+08:00] WARNING M magnitude: 220.27 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:14.566+08:00] WARNING M magnitude: 220.19 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:15.559+08:00] WARNING M magnitude: 220.28 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:16.552+08:00] WARNING M magnitude: 219.73 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:17.438+08:00] LASERGUN_CHARGING: 6/10
+[2026-10-22T10:07:17.443+08:00] LASERGUN_FIRED: -5/10; remaining 1/10; target=NONE
+[2026-10-22T10:07:17.545+08:00] WARNING M magnitude: 220.22 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:18.538+08:00] WARNING M magnitude: 220.24 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:19.531+08:00] WARNING M magnitude: 220.28 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:20.525+08:00] WARNING M magnitude: 220.43 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:21.518+08:00] WARNING M magnitude: 220.12 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:22.512+08:00] WARNING M magnitude: 220.12 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:23.504+08:00] WARNING M magnitude: 219.91 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:24.498+08:00] WARNING M magnitude: 219.54 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:25.488+08:00] WARNING M magnitude: 220.46 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:26.481+08:00] WARNING M magnitude: 221.73 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:27.476+08:00] WARNING M magnitude: 221.68 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:28.468+08:00] WARNING M magnitude: 220.77 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:29.461+08:00] WARNING M magnitude: 220.79 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:30.454+08:00] WARNING M magnitude: 221.00 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:31.446+08:00] WARNING M magnitude: 220.45 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:32.439+08:00] WARNING M magnitude: 220.28 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:33.432+08:00] WARNING M magnitude: 220.67 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:34.424+08:00] WARNING M magnitude: 220.91 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:35.417+08:00] WARNING M magnitude: 220.41 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:36.409+08:00] WARNING M magnitude: 220.32 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:37.402+08:00] WARNING M magnitude: 220.42 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:38.394+08:00] WARNING M magnitude: 220.43 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:39.387+08:00] WARNING M magnitude: 220.18 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:40.379+08:00] WARNING M magnitude: 219.66 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:41.370+08:00] WARNING M magnitude: 220.21 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:42.365+08:00] WARNING M magnitude: 220.43 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:43.357+08:00] WARNING M magnitude: 220.53 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:44.350+08:00] WARNING M magnitude: 220.52 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:45.342+08:00] WARNING M magnitude: 220.83 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:46.335+08:00] WARNING M magnitude: 219.79 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:47.328+08:00] WARNING M magnitude: 220.87 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:48.320+08:00] WARNING M magnitude: 220.74 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:49.313+08:00] WARNING M magnitude: 220.78 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:50.306+08:00] WARNING M magnitude: 220.53 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:51.298+08:00] WARNING M magnitude: 220.59 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:52.291+08:00] WARNING M magnitude: 220.01 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:07:53.284+08:00] WARNING M magnitude: 220.36 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:01.226+08:00] WARNING M magnitude: 212.93 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:02.219+08:00] WARNING M magnitude: 212.70 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:03.212+08:00] WARNING M magnitude: 213.22 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:04.205+08:00] WARNING M magnitude: 212.85 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:05.198+08:00] WARNING M magnitude: 213.48 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:06.191+08:00] WARNING M magnitude: 213.14 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:07.184+08:00] WARNING M magnitude: 213.24 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:08.177+08:00] WARNING M magnitude: 212.99 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:09.171+08:00] WARNING M magnitude: 212.81 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:10.163+08:00] WARNING M magnitude: 213.11 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:11.156+08:00] WARNING M magnitude: 213.20 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:12.149+08:00] WARNING M magnitude: 212.96 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:13.142+08:00] WARNING M magnitude: 213.37 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:14.135+08:00] WARNING M magnitude: 213.09 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:15.128+08:00] WARNING M magnitude: 212.91 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:16.121+08:00] WARNING M magnitude: 212.58 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:17.114+08:00] WARNING M magnitude: 212.60 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:18.107+08:00] WARNING M magnitude: 212.66 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:19.101+08:00] WARNING M magnitude: 213.00 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:20.094+08:00] WARNING M magnitude: 212.84 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:21.086+08:00] WARNING M magnitude: 212.97 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:22.079+08:00] WARNING M magnitude: 213.45 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:23.072+08:00] WARNING M magnitude: 212.92 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:24.066+08:00] WARNING M magnitude: 213.09 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:25.059+08:00] WARNING M magnitude: 212.99 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:26.052+08:00] WARNING M magnitude: 215.03 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:27.045+08:00] WARNING M magnitude: 214.42 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:28.039+08:00] WARNING M magnitude: 214.65 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:29.032+08:00] WARNING M magnitude: 214.57 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:30.025+08:00] WARNING M magnitude: 215.11 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:31.019+08:00] WARNING M magnitude: 214.49 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:32.012+08:00] WARNING M magnitude: 214.58 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:33.005+08:00] WARNING M magnitude: 215.37 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:33.999+08:00] WARNING M magnitude: 215.13 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:34.992+08:00] WARNING M magnitude: 214.95 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:35.986+08:00] WARNING M magnitude: 214.97 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:36.979+08:00] WARNING M magnitude: 215.09 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:37.973+08:00] WARNING M magnitude: 214.47 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:38.966+08:00] WARNING M magnitude: 214.64 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:39.959+08:00] WARNING M magnitude: 214.53 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:40.952+08:00] WARNING M magnitude: 215.22 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:41.946+08:00] WARNING M magnitude: 214.75 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:42.939+08:00] WARNING M magnitude: 214.41 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:43.932+08:00] WARNING M magnitude: 214.52 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:44.925+08:00] WARNING M magnitude: 215.24 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:45.918+08:00] WARNING M magnitude: 214.99 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:46.912+08:00] WARNING M magnitude: 214.98 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:47.905+08:00] WARNING M magnitude: 216.07 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:48.898+08:00] WARNING M magnitude: 216.28 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:49.890+08:00] WARNING M magnitude: 216.18 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:50.883+08:00] WARNING M magnitude: 215.78 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:51.876+08:00] WARNING M magnitude: 216.04 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:52.869+08:00] WARNING M magnitude: 215.91 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:53.862+08:00] WARNING M magnitude: 216.21 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:54.854+08:00] WARNING M magnitude: 216.02 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:55.847+08:00] WARNING M magnitude: 215.80 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:56.841+08:00] WARNING M magnitude: 216.06 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:57.835+08:00] WARNING M magnitude: 216.04 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:58.828+08:00] WARNING M magnitude: 215.98 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:08:59.821+08:00] WARNING M magnitude: 216.28 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:00.814+08:00] WARNING M magnitude: 216.15 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:01.807+08:00] WARNING M magnitude: 216.07 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:02.800+08:00] WARNING M magnitude: 215.83 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:03.794+08:00] WARNING M magnitude: 215.83 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:04.787+08:00] WARNING M magnitude: 215.63 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:05.780+08:00] WARNING M magnitude: 216.11 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:06.773+08:00] WARNING M magnitude: 216.29 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:07.766+08:00] WARNING M magnitude: 216.41 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:08.759+08:00] WARNING M magnitude: 216.58 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:09.752+08:00] WARNING M magnitude: 216.29 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:10.745+08:00] WARNING M magnitude: 216.43 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:11.738+08:00] WARNING M magnitude: 216.16 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:12.732+08:00] WARNING M magnitude: 215.90 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:13.725+08:00] WARNING M magnitude: 216.64 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:14.718+08:00] WARNING M magnitude: 216.24 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:15.711+08:00] WARNING M magnitude: 216.27 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:16.704+08:00] WARNING M magnitude: 216.48 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:17.698+08:00] WARNING M magnitude: 216.23 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:18.691+08:00] WARNING M magnitude: 216.14 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:19.684+08:00] WARNING M magnitude: 216.20 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:20.677+08:00] WARNING M magnitude: 216.56 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:21.670+08:00] WARNING M magnitude: 215.34 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:22.663+08:00] WARNING M magnitude: 216.41 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:23.657+08:00] WARNING M magnitude: 216.43 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:24.650+08:00] WARNING M magnitude: 216.49 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:25.643+08:00] WARNING M magnitude: 216.10 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:26.636+08:00] WARNING M magnitude: 216.33 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:27.630+08:00] WARNING M magnitude: 216.48 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:28.623+08:00] WARNING M magnitude: 216.37 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:29.616+08:00] WARNING M magnitude: 216.12 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:09:30.609+08:00] WARNING M magnitude: 215.93 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:17:58.410+08:00] T: 30.51 degC, P: 1010.14 hPa, H: 58.45 %RH, A: [-0.12,-0.04,9.98] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [13.59,-196.21,-23.28] uT
+[2026-10-22T10:17:59.402+08:00] T: 30.51 degC, P: 1010.26 hPa, H: 58.38 %RH, A: [-0.12,-0.04,9.98] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [13.85,-196.25,-22.19] uT
+[2026-10-22T10:18:00.392+08:00] T: 30.55 degC, P: 1010.16 hPa, H: 58.34 %RH, A: [-0.13,-0.04,9.99] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [13.03,-195.89,-23.39] uT
+[2026-10-22T10:18:01.388+08:00] T: 30.50 degC, P: 1010.25 hPa, H: 58.42 %RH, A: [-0.12,-0.05,9.97] m/s^2, G: [-0.35,-1.89,0.28] deg/s, M: [13.65,-196.46,-23.16] uT
+[2026-10-22T10:18:02.381+08:00] T: 30.55 degC, P: 1010.25 hPa, H: 58.24 %RH, A: [-0.13,-0.04,9.99] m/s^2, G: [-0.42,-1.96,0.28] deg/s, M: [13.57,-196.53,-22.67] uT
+[2026-10-22T10:18:03.371+08:00] T: 30.48 degC, P: 1010.22 hPa, H: 58.37 %RH, A: [-0.12,-0.04,9.98] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [13.45,-196.55,-23.59] uT
+[2026-10-22T10:18:04.368+08:00] T: 30.51 degC, P: 1010.21 hPa, H: 58.38 %RH, A: [-0.12,-0.04,9.98] m/s^2, G: [-0.35,-1.96,0.21] deg/s, M: [13.55,-196.53,-23.73] uT
+[2026-10-22T10:18:05.358+08:00] T: 30.50 degC, P: 1010.17 hPa, H: 58.40 %RH, A: [-0.12,-0.04,9.99] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [13.41,-196.46,-23.77] uT
+[2026-10-22T10:18:06.354+08:00] T: 30.51 degC, P: 1010.24 hPa, H: 58.38 %RH, A: [-0.13,-0.04,9.98] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [13.29,-196.27,-23.41] uT
+[2026-10-22T10:18:07.347+08:00] T: 30.53 degC, P: 1010.25 hPa, H: 58.31 %RH, A: [-0.12,-0.04,9.98] m/s^2, G: [-0.35,-2.03,0.28] deg/s, M: [13.47,-196.56,-23.81] uT
+[2026-10-22T10:18:08.341+08:00] T: 30.51 degC, P: 1010.21 hPa, H: 58.41 %RH, A: [-0.13,-0.04,9.99] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [13.85,-196.24,-23.30] uT
+[2026-10-22T10:18:09.334+08:00] T: 30.53 degC, P: 1010.26 hPa, H: 58.41 %RH, A: [-0.11,-0.04,9.97] m/s^2, G: [-0.35,-1.96,0.21] deg/s, M: [13.76,-196.25,-22.85] uT
+[2026-10-22T10:18:10.326+08:00] T: 30.51 degC, P: 1010.29 hPa, H: 58.55 %RH, A: [-0.11,-0.04,9.98] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [14.08,-196.43,-23.44] uT
+[2026-10-22T10:18:11.320+08:00] T: 30.51 degC, P: 1010.18 hPa, H: 58.73 %RH, A: [-0.13,-0.04,9.99] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [13.45,-196.49,-24.00] uT
+[2026-10-22T10:18:12.313+08:00] T: 30.53 degC, P: 1010.25 hPa, H: 58.90 %RH, A: [-0.12,-0.04,9.99] m/s^2, G: [-0.35,-1.96,0.21] deg/s, M: [13.96,-196.52,-24.21] uT
+[2026-10-22T10:18:13.303+08:00] T: 30.53 degC, P: 1010.18 hPa, H: 59.18 %RH, A: [-0.13,-0.04,9.99] m/s^2, G: [-0.35,-1.96,0.21] deg/s, M: [13.71,-196.56,-23.30] uT
+[2026-10-22T10:18:14.299+08:00] T: 30.51 degC, P: 1010.19 hPa, H: 59.21 %RH, A: [-0.12,-0.04,9.98] m/s^2, G: [-0.35,-1.96,0.21] deg/s, M: [13.55,-196.59,-23.14] uT
+[2026-10-22T10:18:15.291+08:00] T: 30.50 degC, P: 1010.25 hPa, H: 59.24 %RH, A: [-0.05,-0.01,9.99] m/s^2, G: [-1.12,-1.75,0.14] deg/s, M: [13.68,-196.14,-22.95] uT
+[2026-10-22T10:18:15.558+08:00] Entering BATTLE MODE
+[2026-10-22T10:18:15.560+08:00] TARGET: ZOMBIE
+[2026-10-22T10:18:16.285+08:00] T: 30.51 degC, P: 1010.28 hPa, H: 59.29 %RH, A: [-0.12,-0.04,9.98] m/s^2, G: [-0.42,-1.96,0.28] deg/s, M: [13.02,-197.89,-23.14] uT
+[2026-10-22T10:18:17.271+08:00] WARNING M magnitude: 200.53 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:18.261+08:00] WARNING M magnitude: 200.51 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:19.257+08:00] WARNING M magnitude: 200.41 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:19.532+08:00] Zombie escaped: penalty; score=-5
+[2026-10-22T10:18:19.533+08:00] TARGET: HUMAN
+[2026-10-22T10:18:20.251+08:00] WARNING M magnitude: 200.82 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:21.241+08:00] WARNING M magnitude: 200.30 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:22.238+08:00] WARNING M magnitude: 200.29 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:23.230+08:00] WARNING M magnitude: 200.75 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:23.504+08:00] Human saved; score=0
+[2026-10-22T10:18:23.506+08:00] TARGET: HUMAN
+[2026-10-22T10:18:24.223+08:00] WARNING M magnitude: 201.19 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:25.218+08:00] WARNING M magnitude: 200.85 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:26.211+08:00] WARNING M magnitude: 200.93 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:27.203+08:00] WARNING M magnitude: 200.72 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:27.477+08:00] Human saved; score=5
+[2026-10-22T10:18:27.480+08:00] TARGET: ZOMBIE
+[2026-10-22T10:18:28.197+08:00] WARNING M magnitude: 200.85 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:29.192+08:00] WARNING M magnitude: 200.78 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:30.185+08:00] WARNING M magnitude: 200.98 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:31.174+08:00] WARNING M magnitude: 200.98 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:31.452+08:00] Zombie escaped: penalty; score=0
+[2026-10-22T10:18:31.453+08:00] TARGET: HUMAN
+[2026-10-22T10:18:32.171+08:00] WARNING M magnitude: 200.67 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:33.164+08:00] WARNING M magnitude: 200.47 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:34.157+08:00] WARNING M magnitude: 200.31 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:35.151+08:00] WARNING M magnitude: 200.61 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:35.427+08:00] Human saved; score=5
+[2026-10-22T10:18:35.429+08:00] TARGET: ZOMBIE
+[2026-10-22T10:18:36.143+08:00] WARNING M magnitude: 200.92 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:37.138+08:00] WARNING M magnitude: 201.88 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:37.552+08:00] LASERGUN_CHARGING: 3/10
+[2026-10-22T10:18:38.131+08:00] WARNING M magnitude: 201.87 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:39.123+08:00] WARNING M magnitude: 201.35 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:39.401+08:00] Zombie escaped: penalty; score=0
+[2026-10-22T10:18:39.405+08:00] DEFEAT! No lives left. Double press for standby.
+[2026-10-22T10:18:40.116+08:00] WARNING M magnitude: 201.38 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:41.109+08:00] WARNING M magnitude: 201.41 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:42.102+08:00] WARNING M magnitude: 201.04 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:43.092+08:00] WARNING M magnitude: 201.54 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:44.088+08:00] WARNING M magnitude: 201.48 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:45.080+08:00] WARNING M magnitude: 201.82 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:46.073+08:00] WARNING M magnitude: 201.40 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:47.066+08:00] WARNING M magnitude: 201.36 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:48.060+08:00] WARNING M magnitude: 200.38 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:48.832+08:00] LASERGUN_CHARGING: 6/10
+[2026-10-22T10:18:48.837+08:00] LASERGUN_FIRED: -5/10; remaining 1/10; target=NONE
+[2026-10-22T10:18:49.052+08:00] WARNING M magnitude: 200.80 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:50.045+08:00] WARNING M magnitude: 201.05 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:50.779+08:00] LASERGUN_CHARGING: 4/10
+[2026-10-22T10:18:51.038+08:00] WARNING M magnitude: 201.09 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:52.031+08:00] WARNING M magnitude: 200.57 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:53.024+08:00] WARNING M magnitude: 201.40 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:54.014+08:00] WARNING M magnitude: 201.12 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:55.010+08:00] WARNING M magnitude: 200.87 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:55.999+08:00] WARNING M magnitude: 201.29 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:56.826+08:00] LASERGUN_CHARGING: 7/10
+[2026-10-22T10:18:56.832+08:00] LASERGUN_FIRED: -5/10; remaining 2/10; target=NONE
+[2026-10-22T10:18:56.995+08:00] WARNING M magnitude: 201.07 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:57.985+08:00] WARNING M magnitude: 201.07 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:58.981+08:00] WARNING M magnitude: 201.60 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:18:59.973+08:00] WARNING M magnitude: 201.89 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:00.967+08:00] WARNING M magnitude: 204.84 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:01.959+08:00] WARNING M magnitude: 207.73 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:02.952+08:00] WARNING M magnitude: 208.98 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:03.944+08:00] WARNING M magnitude: 209.10 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:04.937+08:00] WARNING M magnitude: 209.32 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:05.927+08:00] WARNING M magnitude: 209.05 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:06.923+08:00] WARNING M magnitude: 209.67 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:07.915+08:00] WARNING M magnitude: 208.02 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:08.908+08:00] WARNING M magnitude: 208.67 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:09.901+08:00] WARNING M magnitude: 208.56 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:10.893+08:00] WARNING M magnitude: 208.25 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:11.886+08:00] WARNING M magnitude: 208.71 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:12.879+08:00] WARNING M magnitude: 208.76 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:13.872+08:00] WARNING M magnitude: 208.58 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:14.861+08:00] WARNING M magnitude: 208.48 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:15.857+08:00] WARNING M magnitude: 209.12 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:16.850+08:00] WARNING M magnitude: 208.81 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:17.843+08:00] WARNING M magnitude: 208.78 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:18.835+08:00] WARNING M magnitude: 209.00 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:19.827+08:00] WARNING M magnitude: 208.48 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:20.820+08:00] WARNING M magnitude: 209.43 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:21.813+08:00] WARNING M magnitude: 208.67 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:22.806+08:00] WARNING M magnitude: 208.31 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:23.798+08:00] WARNING M magnitude: 209.33 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:24.792+08:00] WARNING M magnitude: 208.62 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:25.783+08:00] WARNING M magnitude: 209.34 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:26.776+08:00] WARNING M magnitude: 208.93 uT, outside [0.00, 200.00] uT
+[2026-10-22T10:19:27.769+08:00] WARNING M magnitude: 208.33 uT, outside [0.00, 200.00] uT

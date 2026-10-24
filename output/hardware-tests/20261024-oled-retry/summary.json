@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-24",
+  "user_reported_wiring": "One OLED Grove cable plugged into D3",
+  "firmware_oled_bus": "I2C1; SCL PB8/D15, SDA PB9/D14; address 0x3c",
+  "method": "Reset existing D6-buzzer firmware and capture UART; read-only live SWD diagnostics afterward",
+  "firmware_changed": false,
+  "oled_detected_after_retry": false,
+  "diagnostics": {
+    "oled_online": false,
+    "oled_offset": 0,
+    "oled_sending": false,
+    "oled_dirty": false,
+    "oled_failures": 0,
+    "oled_busy_deferrals": 0,
+    "oled_recoveries": 0,
+    "oled_last_status": 0,
+    "oled_last_error": 0,
+    "oled_buffer_sha256": "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+    "oled_send_buffer_sha256": "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+    "hal_i2c_error": "0x20",
+    "i2c1_cr1": "0x1",
+    "i2c1_isr": "0x1",
+    "SCL_PB8": 1,
+    "SDA_PB9": 1
+  },
+  "next_step": "Await user moving OLED cable to a Grove I2C socket before retrying",
+  "physical_panel_damage": "Not confirmed by this test"
+}

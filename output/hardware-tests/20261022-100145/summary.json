@@ -1,0 +1,9 @@
+{
+  "firmware_sha256": "e71592e3b590c7ecbe341bcbaa81d9387b0ffd2f87b061bc5d6437919349102f",
+  "original_flash_backup": "/Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-100145/original-flash.bin",
+  "startup_seen": true,
+  "telemetry_lines": 0,
+  "warning_lines": 8,
+  "hardware_display_button_buzzer": "not observed by this script",
+  "logs": "/Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/hardware-tests/20261022-100145"
+}

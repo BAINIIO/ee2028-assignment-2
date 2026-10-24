@@ -1,0 +1,46 @@
+[
+  {
+    "seconds": 2.477,
+    "text": "Entering STANDBY MODE"
+  },
+  {
+    "seconds": 2.492,
+    "text": "Zombie game ready; sensors=0x3f/0x3f; OLED=online; IR=enabled; buzzer=configured"
+  },
+  {
+    "seconds": 2.497,
+    "text": "Keep board still and upright at boot to calibrate orientation."
+  },
+  {
+    "seconds": 3.49,
+    "text": "T: 30.59 degC, P: 1010.20 hPa, H: 57.84 %RH, A: [-0.14,-0.01,9.98] m/s^2, G: [-0.35,-1.96,0.21] deg/s, M: [14.63,-187.31,-27.26] uT"
+  },
+  {
+    "seconds": 4.483,
+    "text": "T: 30.61 degC, P: 1010.09 hPa, H: 57.80 %RH, A: [-0.14,-0.02,9.98] m/s^2, G: [-0.35,-1.96,0.21] deg/s, M: [15.05,-187.38,-27.54] uT"
+  },
+  {
+    "seconds": 5.477,
+    "text": "T: 30.63 degC, P: 1010.09 hPa, H: 57.91 %RH, A: [-0.14,-0.02,9.98] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [14.95,-186.84,-27.76] uT"
+  },
+  {
+    "seconds": 6.47,
+    "text": "T: 30.61 degC, P: 1010.06 hPa, H: 57.88 %RH, A: [-0.13,-0.01,9.98] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [14.60,-186.90,-27.48] uT"
+  },
+  {
+    "seconds": 7.463,
+    "text": "T: 30.64 degC, P: 1010.09 hPa, H: 57.88 %RH, A: [-0.15,-0.02,9.98] m/s^2, G: [-0.35,-1.96,0.21] deg/s, M: [14.92,-186.98,-27.65] uT"
+  },
+  {
+    "seconds": 8.456,
+    "text": "T: 30.64 degC, P: 1010.10 hPa, H: 57.86 %RH, A: [-0.14,-0.01,9.98] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [14.81,-186.49,-27.36] uT"
+  },
+  {
+    "seconds": 9.449,
+    "text": "T: 30.61 degC, P: 1010.16 hPa, H: 57.92 %RH, A: [-0.14,-0.01,9.98] m/s^2, G: [-0.35,-1.96,0.28] deg/s, M: [14.76,-187.49,-27.79] uT"
+  },
+  {
+    "seconds": 10.442,
+    "text": "T: 30.61 degC, P: 1010.12 hPa, H: 57.80 %RH, A: [-0.15,-0.02,9.98] m/s^2, G: [-0.35,-1.96,0.21] deg/s, M: [14.85,-187.08,-27.23] uT"
+  }
+]

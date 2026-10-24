@@ -1,0 +1,22 @@
+[
+  {
+    "seconds": 0.228,
+    "text": "WARNING M magnitude: 241.73 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 1.224,
+    "text": "WARNING M magnitude: 241.70 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 1.478,
+    "text": "Zombie escaped: penalty; score=-5"
+  },
+  {
+    "seconds": 1.485,
+    "text": "TARGET: ZOMBIE"
+  },
+  {
+    "seconds": 1.979,
+    "text": "TERMINATED: rescue timed out. Communication ending."
+  }
+]

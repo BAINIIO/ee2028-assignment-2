@@ -1,0 +1,21 @@
+{
+  "state": "live",
+  "detail": "Live from your board \u00b7 26.6 fps \u00b7 physical controls active",
+  "pid": 93480,
+  "preview": false,
+  "frame_count": 1977,
+  "session_ended": false,
+  "received_fps": 26.59,
+  "displayed_frame_count": 1977,
+  "displayed_fps": 26.53,
+  "target_fps": 30,
+  "last_frame_unix": 1792827550.235132,
+  "last_frame_timestamp": "2026-10-24T07:39:10.235132+00:00",
+  "updated_at": "2026-10-24T07:39:10.266091+00:00",
+  "window": {
+    "exists": true,
+    "title": "Garden Guard \u2014 laptop display",
+    "geometry": "848x670+34+64"
+  },
+  "snapshot": "/Users/briansimorangkir/Code Stuff/C 2028/Assignment 2/output/laptop-display/live-window.ppm"
+}

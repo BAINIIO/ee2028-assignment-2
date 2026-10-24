@@ -1,0 +1,34 @@
+build/
+/Debug/
+/tmp/
+/.venv/
+/.settings/
+/.metadata/
+/.project
+/.cproject
+/Assignment2.launch
+/Assignment2.cfg
+/Assignment2-AY2526S1.cfg
+/reference/
+.pytest_cache/
+*.pid
+output/submission/
+# Retain the documented bench evidence, but keep recovery images local.
+output/hardware-tests/**/*.bin
+output/hardware-tests/**/*.hex
+output/hardware-tests/**/*.elf
+# The running viewer updates these files continuously.
+/output/laptop-display/*
+!/output/laptop-display/verification*.json
+!/output/laptop-display/*benchmark.json
+!/output/laptop-display/live-screen.png
+__pycache__/
+*.pyc
+*.log
+!output/hardware-tests/**/*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+*.pem
+*.key

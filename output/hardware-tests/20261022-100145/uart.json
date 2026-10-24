@@ -1,0 +1,46 @@
+[
+  {
+    "seconds": 2.338,
+    "text": "Entering STANDBY MODE"
+  },
+  {
+    "seconds": 2.35,
+    "text": "Zombie game ready; sensors=0x3f/0x3f; OLED=absent; IR=enabled; buzzer=configured"
+  },
+  {
+    "seconds": 2.356,
+    "text": "Keep board still and upright at boot to calibrate orientation."
+  },
+  {
+    "seconds": 3.343,
+    "text": "WARNING M magnitude: 214.88 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 4.336,
+    "text": "WARNING M magnitude: 215.00 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 5.33,
+    "text": "WARNING M magnitude: 214.64 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 6.321,
+    "text": "WARNING M magnitude: 215.38 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 7.314,
+    "text": "WARNING M magnitude: 214.05 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 8.307,
+    "text": "WARNING M magnitude: 213.30 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 9.3,
+    "text": "WARNING M magnitude: 215.30 uT, outside [0.00, 200.00] uT"
+  },
+  {
+    "seconds": 10.294,
+    "text": "WARNING M magnitude: 214.60 uT, outside [0.00, 200.00] uT"
+  }
+]
