@@ -30,10 +30,12 @@ APP_SOURCES := $(wildcard Core/Src/*.c)
 SOURCES := $(APP_SOURCES) $(HAL_SOURCES) $(BSP_SOURCES) $(COMPONENT_SOURCES)
 STARTUP := Core/Startup/startup_stm32l4s5vitx.s
 OBJECTS := $(addprefix $(BUILD)/,$(SOURCES:.c=.o)) $(BUILD)/$(STARTUP:.s=.o)
+# Optional private object generated from stdin; credentials never enter source.
+LOCAL_CONFIG_OBJECT := $(wildcard $(BUILD)/network_credentials.o)
 HOST_FLAGS := -std=c11 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror \
  -O1 -g -fsanitize=address,undefined -fno-sanitize-recover=all -ICore/Inc
 HOST_TESTS := $(patsubst tests/%.c,build/host/%,$(wildcard tests/test_*.c))
-PORTABLE_SOURCES := Core/Src/game.c Core/Src/button.c Core/Src/telemetry.c Core/Src/game_display.c
+PORTABLE_SOURCES := Core/Src/game.c Core/Src/button.c Core/Src/telemetry.c Core/Src/game_display.c Core/Src/nfc_ndef.c
 
 .PHONY: all host-test size clean help FORCE
 all: $(TARGET).elf $(TARGET).bin $(TARGET).hex size
@@ -51,8 +53,8 @@ $(BUILD)/%.o: %.s Makefile
 	@mkdir -p "$(@D)"
 	$(CC) $(CPU) -g3 -x assembler-with-cpp -c "$<" -o "$@"
 
-$(TARGET).elf: $(OBJECTS) STM32L4S5VITX_FLASH.ld Makefile
-	$(CC) $(OBJECTS) $(LDFLAGS) -Wl,--start-group -lc -lm -Wl,--end-group -o "$@"
+$(TARGET).elf: $(OBJECTS) $(LOCAL_CONFIG_OBJECT) STM32L4S5VITX_FLASH.ld Makefile
+	$(CC) $(OBJECTS) $(LOCAL_CONFIG_OBJECT) $(LDFLAGS) -Wl,--start-group -lc -lm -Wl,--end-group -o "$@"
 
 $(TARGET).bin: $(TARGET).elf
 	$(ARM_TOOL) objcopy -O binary "$<" "$@"
@@ -74,6 +76,12 @@ build/host/test_app: tests/test_app.c tests/fakes/main.h Core/Src/main.c $(PORTA
 build/host/test_board_uart: tests/test_board_uart.c Core/Src/board_io.c $(wildcard Core/Inc/*.h) Makefile
 	@mkdir -p "$(@D)"
 	clang $(HOST_FLAGS) "$<" -o "$@"
+
+build/host/test_network: tests/test_network.c Core/Src/network_io.c $(wildcard Core/Inc/*.h) Makefile
+	@mkdir -p "$(@D)"
+	clang $(HOST_FLAGS) "$<" -o "$@"
+
+build/host/test_command_telemetry: Core/Src/command_telemetry.c
 
 build/host/test_external_oled: tests/test_external_oled.c tests/fakes/stm32l4xx_hal.h Core/Src/external_io.c $(PORTABLE_SOURCES) $(wildcard Core/Inc/*.h) Makefile
 	@mkdir -p "$(@D)"

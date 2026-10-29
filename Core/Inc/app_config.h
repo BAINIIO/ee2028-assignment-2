@@ -12,6 +12,10 @@
 #ifndef APP_ENABLE_COLOUR
 #define APP_ENABLE_COLOUR 0
 #endif
+#ifndef APP_ENABLE_NFC
+#define APP_ENABLE_NFC 1
+#endif
+#define APP_COMMAND_HTTP_PORT 8080u
 #ifndef APP_ENABLE_IR
 #define APP_ENABLE_IR 1
 #endif

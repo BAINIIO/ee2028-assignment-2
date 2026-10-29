@@ -226,7 +226,9 @@ class DisplayWindow:
         try:
             from live_display_transport import LiveDisplayTransport
 
-            transport = LiveDisplayTransport(serial=self.args.serial)
+            transport = LiveDisplayTransport(serial=self.args.serial,
+                elf_path=getattr(self.args, "elf", None),
+                bin_path=getattr(self.args, "bin", None))
             self.transport = transport
             if self.stop.is_set():
                 return
@@ -434,6 +436,8 @@ class DisplayWindow:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--serial", help="ST-Link probe serial when multiple boards are connected")
+    parser.add_argument("--elf", type=Path, help="Exact ELF currently flashed, when testing a separate candidate build")
+    parser.add_argument("--bin", type=Path, help="Matching BIN for --elf (defaults to its .bin sibling)")
     parser.add_argument("--scale", type=int, choices=range(3, 17), default=6,
                         help="initial integer pixel magnification (default: 6)")
     parser.add_argument("--fps", type=int, choices=range(1, 121), metavar="N", default=30,

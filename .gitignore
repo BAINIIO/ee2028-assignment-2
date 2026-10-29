@@ -13,6 +13,7 @@ build/
 .pytest_cache/
 *.pid
 output/submission/
+/output/command-centre/
 # Retain the documented bench evidence, but keep recovery images local.
 output/hardware-tests/**/*.bin
 output/hardware-tests/**/*.hex

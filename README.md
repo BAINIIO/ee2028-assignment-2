@@ -8,6 +8,12 @@ The [24 October compliance update](docs/compliance-update-2026-10-24.md) records
 
 ## Build and run
 
+The [Wi-Fi/NFC command-centre upgrade](docs/command-centre.md) adds a responsive
+phone dashboard, native board Wi-Fi transport, NFC mission links and field
+check-ins. This is a **software-tested candidate**: the 29 October hotspot and
+iPhone hardware test was deferred, and it has not replaced the working D6
+firmware on the board. The dashboard source is in `web/command-centre/dist/`.
+
 Clone the private GitHub repository with an account that has access:
 
 ```sh
@@ -168,11 +174,12 @@ The tool writes an animated GIF and a contact sheet under `output/game-preview/`
 
 Keep the board still in its intended upright orientation after reset so the first stable acceleration/gyro sample establishes a gravity reference. To demonstrate an attack, flip it smoothly over about **0.5–2 seconds**, then hold inverted. Acceleration supplies absolute tilt relative to the reference; integrated gyro motion corroborates rotation. Inversion must persist at least 350 ms. A gyro alone cannot identify absolute upside-down orientation. After rescue, return upright before the next attack can arm.
 
-The second rescue press must arrive **before 10,000 ms**; exactly 10,000 ms is too late. Terminal state cannot be reversed by another press or sensor update. The application emits its final notification and drains only queued UART/display output, ending as soon as both are idle. `APP_SHUTDOWN_DRAIN_MS` gives a **600 ms** loop budget for serialized UART chunks and the OLED frame, with a deadline check between their work. One already-started bounded UART or OLED call can finish slightly beyond that budget. No further acquisition, game actions or button handling occurs during the drain. UART is then deinitialized, buzzer/interrupt processing stops and the firmware waits for hardware reset. The laptop stops its own debugger polling after its coherent terminal frame; UART silence remains the direct application-cutoff evidence.
+The second rescue press must arrive **before 10,000 ms**; exactly 10,000 ms is too late. Terminal state cannot be reversed by another press or sensor update. The application emits its final notification and drains queued UART/display/network output plus bounded NFC shutdown attempts, ending as soon as they finish. `APP_SHUTDOWN_DRAIN_MS` gives a **600 ms** loop budget, with a deadline check between their work. One already-started bounded peripheral call can finish slightly beyond that budget. No further acquisition, game actions or button handling occurs during the drain. The Wi-Fi module is stopped, UART is deinitialized, buzzer/interrupt processing stops and the firmware waits for hardware reset. The laptop stops its own debugger polling after its coherent terminal frame; UART silence remains the direct application-cutoff evidence. See the command-centre guide for the NFC shutdown verification limits.
 
 ## Evidence and handover
 
 - [Player guide PDF](output/pdf/Garden_Guard_Player_Guide.pdf) and [editable player guide source](docs/how-to-play.md)
+- [Wi-Fi/NFC command-centre setup and current verification](docs/command-centre.md)
 - [Code guidebook PDF](output/pdf/Garden_Guard_Code_Guidebook.pdf) and [editable code guidebook source](docs/code-guidebook.md)
 - [Requirement-to-code matrix, units and threshold rationale](docs/requirements.md)
 - [State, interrupt-input and foreground flowcharts](docs/flowcharts.md)

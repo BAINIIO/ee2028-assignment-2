@@ -92,6 +92,16 @@ static bool fake_rescue_second_sent;
 static bool fake_attacked_single_sent;
 static unsigned fake_late_edges;
 static bool fake_race_armed;
+static unsigned fake_command_inits;
+static unsigned fake_command_events;
+static unsigned fake_command_polls;
+static unsigned fake_command_polls_at_terminal;
+static unsigned fake_command_finish_calls;
+static bool fake_command_final;
+static bool fake_command_stopped;
+static uint32_t fake_command_ready_ms;
+static unsigned fake_nfc_edges;
+static uint32_t fake_nfc_last_edge_ms;
 
 static void send_edge(uint16_t pin)
 {
@@ -182,13 +192,18 @@ void HAL_NVIC_DisableIRQ(int irq)
     fake_button_irq_disabled = true;
 }
 
-void HAL_SuspendTick(void) { fake_tick_suspended = true; }
+void HAL_SuspendTick(void)
+{
+    assert(fake_command_stopped && fake_uart_stopped && fake_external_stopped);
+    fake_tick_suspended = true;
+}
 
 void __WFI(void)
 {
     assert(fake_irq_mask == 1u);
     if (!fake_scenario.boot_failure) {
         assert(fake_uart_stopped && fake_external_stopped);
+        assert(fake_command_stopped);
         assert(fake_tick_suspended && fake_button_irq_disabled);
     }
     longjmp(fake_escape, SIM_HALTED);
@@ -283,6 +298,7 @@ bool Board_UartWrite(const char *message_text)
         fake_sensor_count_at_terminal = fake_sensor_count;
         fake_motion_count_at_terminal = fake_motion_count;
         fake_external_polls_at_terminal = fake_external_polls;
+        fake_command_polls_at_terminal = fake_command_polls;
         fake_uart_idle_checks_at_terminal = fake_uart_idle_checks;
         for (size_t count = 0; count < fake_scenario.terminal_backlog; ++count)
             enqueue_uart("~", 1u);
@@ -368,6 +384,66 @@ ExternalColourSample External_GetColour(void)
     return result;
 }
 
+void Command_Init(uint32_t now_ms)
+{
+    (void)now_ms;
+    assert(!fake_tick_suspended);
+    ++fake_command_inits;
+}
+
+void Command_Event(const GameEvent *event)
+{
+    assert(event != NULL && !fake_command_final && !fake_command_stopped);
+    ++fake_command_events;
+}
+
+void Command_Poll(const Game *current_game, const SensorSample *sample,
+                  TelemetryStatus status, uint32_t now_ms)
+{
+    (void)status;
+    (void)now_ms;
+    assert(current_game == &game && sample == &sensors);
+    assert(fake_terminal_ms == 0u && !fake_command_final && !fake_command_stopped);
+    ++fake_command_polls;
+}
+
+void Command_Final(const Game *current_game, const SensorSample *sample,
+                   TelemetryStatus status, uint32_t now_ms)
+{
+    (void)status;
+    assert(current_game->mode == GAME_TERMINATED && sample == &sensors);
+    assert(!fake_command_final && !fake_tick_suspended);
+    fake_command_final = true;
+    fake_command_ready_ms = now_ms + 40u;
+}
+
+void Command_Finish(uint32_t now_ms)
+{
+    (void)now_ms;
+    assert(fake_command_final && !fake_command_stopped && !fake_tick_suspended);
+    ++fake_command_finish_calls;
+}
+
+bool Command_Idle(void)
+{
+    assert(fake_command_final && !fake_command_stopped);
+    return fake_tick >= fake_command_ready_ms;
+}
+
+void Command_Stop(void)
+{
+    assert(fake_command_final && !fake_command_stopped && !fake_tick_suspended);
+    assert(!fake_uart_stopped && !fake_external_stopped);
+    fake_command_stopped = true;
+}
+
+void Nfc_SignalEdge(uint32_t now_ms)
+{
+    assert(!fake_tick_suspended);
+    ++fake_nfc_edges;
+    fake_nfc_last_edge_ms = now_ms;
+}
+
 static void reset_simulation(Scenario setup)
 {
     fake_scenario = setup;
@@ -398,6 +474,12 @@ static void reset_simulation(Scenario setup)
     fake_attacked_single_sent = false;
     fake_late_edges = 0;
     fake_race_armed = false;
+    fake_command_inits = fake_command_events = fake_command_polls = 0;
+    fake_command_polls_at_terminal = fake_command_finish_calls = 0;
+    fake_command_final = fake_command_stopped = false;
+    fake_command_ready_ms = 0;
+    fake_nfc_edges = 0;
+    fake_nfc_last_edge_ms = 0;
 
     /* Reset firmware static storage as a physical reset would. */
     memset(&game, 0, sizeof game);
@@ -460,6 +542,7 @@ static void test_controls_telemetry_and_sensor_recovery(void)
 {
     reset_simulation((Scenario){.threshold_changes = true, .stop_ms = 5600u});
     add_edge(70u, 1u); /* Unrelated EXTI does not become a user press. */
+    add_edge(80u, 0x0010u); /* NFC GPO routes to NFC, not the button queue. */
     add_edge(100u, BUTTON_EXTI13_Pin);
     add_edge(108u, BUTTON_EXTI13_Pin); /* Contact bounce. */
     add_edge(260u, BUTTON_EXTI13_Pin);
@@ -471,6 +554,9 @@ static void test_controls_telemetry_and_sensor_recovery(void)
     add_edge(4000u, BUTTON_EXTI13_Pin); /* Single ignored in standby. */
     assert(run_firmware() == SIM_LIMIT);
     assert(fake_edge_next == fake_edge_count);
+    assert(fake_nfc_edges == 1u && fake_nfc_last_edge_ms == 80u);
+    assert(fake_command_inits == 1u && fake_command_events > 0u);
+    assert(fake_command_polls > 0u && !fake_command_final && !fake_command_stopped);
     assert(fake_edges_during_reads != 0u);
     assert(count_messages("Entering STANDBY MODE") == 2u);
     assert(count_messages("Entering BATTLE MODE") == 1u);
@@ -562,6 +648,8 @@ static void test_timeout_drains_then_silences_everything(bool jam_uart)
     assert(fake_sensor_count == fake_sensor_count_at_terminal);
     assert(fake_motion_count == fake_motion_count_at_terminal);
     assert(fake_external_polls == fake_external_polls_at_terminal);
+    assert(fake_command_polls == fake_command_polls_at_terminal);
+    assert(fake_command_final && fake_command_stopped && fake_command_finish_calls > 0u);
     assert(fake_late_edges == 2u); /* Arriving after the deadline cannot rescue. */
     assert(strcmp(fake_display_mode, "TERMINATED") == 0);
     const ExternalDisplayFrame *final_frame =
@@ -662,6 +750,7 @@ static void test_startup_failure_halts_without_claiming_success(void)
     assert(fake_trace_count == 0u);
     assert(fake_sensor_count == 0u && fake_motion_count == 0u);
     assert(fake_external_inits == 0u);
+    assert(fake_command_inits == 0u && fake_command_polls == 0u);
 }
 
 int main(void)

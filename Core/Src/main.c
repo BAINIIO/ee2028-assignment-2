@@ -6,6 +6,8 @@
 #include "external_io.h"
 #include "game.h"
 #include "telemetry.h"
+#include "command_telemetry.h"
+#include "nfc_io.h"
 #include <stdio.h>
 
 #define BUTTON_QUEUE_CAPACITY 32u
@@ -71,6 +73,7 @@ static void display_event(const GameEvent *event)
 /* EXTI records timestamps only. No I2C, UART or debounce waits in the ISR. */
 void HAL_GPIO_EXTI_Callback(uint16_t pin)
 {
+    if (pin == 0x0010u) { Nfc_SignalEdge(HAL_GetTick()); return; }
     if (pin != BUTTON_EXTI13_Pin) return;
     uint8_t next = (uint8_t)((edge_write + 1u) % BUTTON_QUEUE_CAPACITY);
     if (next == edge_read) {
@@ -137,6 +140,7 @@ static void handle_events(uint32_t now)
     GameEvent event;
     char message[160];
     while (game_pop_event(&game, &event)) {
+        Command_Event(&event);
         display_event(&event);
         switch (event.type) {
         case GAME_EVENT_STANDBY:
@@ -253,6 +257,7 @@ static void update_display(uint32_t now)
 static void shutdown_system(void)
 {
     Board_LedWrite(false);
+    Command_Final(&game, &sensors, telemetry_status, HAL_GetTick());
     update_display(HAL_GetTick());
     /* The full UART queue needs about 356 ms on the wire at 115200 8N1.
      * Allow the final OLED transfer too; finish sooner when both are idle. */
@@ -261,8 +266,10 @@ static void shutdown_system(void)
         Board_UartPoll();
         if ((uint32_t)(HAL_GetTick() - start) >= APP_SHUTDOWN_DRAIN_MS) break;
         External_FinishDisplay();
-        if (Board_UartIdle() && External_DisplayIdle()) break;
+        Command_Finish(HAL_GetTick());
+        if (Board_UartIdle() && External_DisplayIdle() && Command_Idle()) break;
     }
+    Command_Stop();
     Board_UartStop();
     External_AllStop();
     HAL_NVIC_DisableIRQ(EXTI15_10_IRQn);
@@ -283,6 +290,7 @@ int main(void)
 {
     HAL_Init();
     if (!Board_Init()) Error_Handler();
+    Command_Init(HAL_GetTick());
     External_Init(HAL_GetTick());
     uint32_t now = HAL_GetTick();
     edge_read = edge_write; /* Discard presses during boot. */
@@ -368,6 +376,7 @@ int main(void)
             colour.colour == EXTERNAL_COLOUR_GREEN ? GAME_COLOUR_GREEN : GAME_COLOUR_UNKNOWN);
         if (due(HAL_GetTick(), &last_display, APP_DISPLAY_PERIOD_MS)) update_display(HAL_GetTick());
         Board_LedWrite(game_led(&game, HAL_GetTick()));
+        Command_Poll(&game, &sensors, telemetry_status, HAL_GetTick());
         Board_UartPoll();
     }
 }

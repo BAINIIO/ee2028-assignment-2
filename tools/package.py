@@ -29,7 +29,7 @@ def main():
     archive = output / f"{label}_Code.zip"
     # Historical starter code is not part of the application and contains the
     # old printf/HAL_Delay examples. Keep it out of the submission archive.
-    folders = ["Core", "Drivers", "tools", "tests", "docs", ".vscode"]
+    folders = ["Core", "Drivers", "tools", "tests", "docs", "web", ".vscode"]
     files = ["Makefile", "README.md", ".gitignore", "STM32L4S5VITX_FLASH.ld",
              "STM32L4S5VITX_RAM.ld"]
     sources = [ROOT / name for name in files if (ROOT / name).is_file()]
