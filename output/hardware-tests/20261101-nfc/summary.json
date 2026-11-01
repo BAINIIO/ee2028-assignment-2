@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-01",
+  "probe_serial": "0667FF515652787187041646",
+  "board": "STM32L4S5I-DK",
+  "flash_backup_bytes": 2097152,
+  "flash_backup_sha256": "d64e9b5023a08b1b7a98a4e332e4bf13c07115fc9a82a497fed652c1eb0eb8ae",
+  "wiring": {
+    "oled": "I2C1 PB8/PB9",
+    "ir": "A0 PC5",
+    "buzzer": "D2 PD14"
+  },
+  "nfc_programmed": true,
+  "firmware_programmed_and_verified": true,
+  "firmware_bin_sha256": "d2e43e5710e0a1e064e0c87d14d755e4530e82fbae08cb71c113faf07356353b",
+  "nfc_ready": true,
+  "nfc_error_count": 0,
+  "nfc_ndef_image_bytes": 49,
+  "nfc_url": "http://172.20.10.5:8080/drone/GG01?mission=0",
+  "iphone_notification_confirmed": true,
+  "iphone_dashboard_open_confirmed": true,
+  "d2_gpio_output_verified": true,
+  "d2_audible_operation_confirmed": false,
+  "native_wifi_packets_received": false,
+  "software_checks": "11 C suites with ASan/UBSan; ARM build; reporter override/boundary builds; strict C packet/receiver compatibility; system Python backend tests",
+  "wifi_diagnostics": "Last-response marker flags and failure stage; no raw replies or credentials retained.",
+  "native_wifi_failure": {
+    "stage": "JOIN",
+    "stage_index": 5,
+    "response_flags": 10,
+    "markers": [
+      "ERROR",
+      "Usage"
+    ],
+    "controlled_cycle_spi_errors": 0,
+    "next_step": "Confirm current hotspot details and reconnect Mac after failed credential check."
+  },
+  "observed_nfc_field_events_before_diagnostic_reset": 7,
+  "uart_evidence": "configured-uart.log normalizes CRLF to LF for review; exact UART bytes preserved locally in ignored configured-uart.bin."
+}

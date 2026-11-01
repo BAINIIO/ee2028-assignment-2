@@ -14,7 +14,10 @@ extern I2C_HandleTypeDef hI2cHandler;
 #define NFC_DATA 0xa6u
 #define NFC_SYSTEM 0xaeu
 #define NFC_TIMEOUT_MS 2u
-#define NFC_CHUNK 16u
+/* One aligned 4-byte EEPROM page needs at most 5 ms (DS10925 6.4.2).
+ * Sequential writes spanning pages multiply that time; keep each 7 ms
+ * scheduled write interval within one page. Reads use the same small chunk. */
+#define NFC_CHUNK 4u
 #define NFC_IMAGE_CAPACITY 256u
 #define NFC_RF_MANAGEMENT 0x2003u
 #define NFC_INTERRUPT_STATUS 0x2005u
@@ -137,7 +140,9 @@ void Nfc_Poll(uint32_t now, bool allow_update)
     case NFC_PROBE:
         if (!read_bytes(NFC_DATA, 0, data, 4)) { online = false; retry(now); return; }
         online = true;
-        step = NFC_PASSWORD;
+        /* Without a destination URL this service does not own the tag.
+         * Detect its presence without changing existing configuration or RF. */
+        step = desired_size == 0u ? NFC_IDLE : NFC_PASSWORD;
         break;
     case NFC_PASSWORD: {
         /* Present the documented factory I2C password; never change or lock it. */
@@ -276,6 +281,9 @@ void Nfc_BeginStop(void)
     stop_phase = 1;
     stop_attempts = 0;
     stop_due_ms = HAL_GetTick();
+    /* An unconfigured service must leave an existing tag usable, including
+     * during shutdown. Quiet remains false because RF silence is not owned. */
+    if (desired_size == 0u) stop_phase = 3;
 }
 void Nfc_FinishStop(uint32_t now)
 {

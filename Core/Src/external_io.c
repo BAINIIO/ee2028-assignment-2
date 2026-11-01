@@ -15,7 +15,7 @@
 #define APP_BUZZER_ACTIVE 0
 #endif
 
-/* PB8/PB9 = Arduino D15/D14, PB1 = D6, PC5 = A0. No on-board sensor pins. */
+/* PB8/PB9 = Arduino D15/D14, PD14 = D2, PC5 = A0. No on-board sensor pins. */
 #define EXTERNAL_I2C_TIMEOUT_MS 5u
 #define EXTERNAL_OLED_TIMEOUT_MS 8u
 #define EXTERNAL_OLED_RETRY_MS 1000u

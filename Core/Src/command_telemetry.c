@@ -1,4 +1,4 @@
-/* One authoritative game, two output transports. Formatting never sends UART. */
+/* One authoritative game. JSON uses WiFi; concise device notices use UART. */
 #include "command_telemetry.h"
 #include "network_io.h"
 #include "nfc_io.h"
@@ -11,8 +11,9 @@
 
 static uint32_t sequence, last_snapshot;
 static uint8_t mission;
-static bool dirty, draining, was_connected;
+static bool dirty, draining, was_connected, was_nfc_ready;
 static char packet[NETWORK_PACKET_MAX];
+static char nfc_dashboard_url[180];
 
 static const char *target_text(GameTarget target)
 {
@@ -103,15 +104,25 @@ void Command_Init(uint32_t now)
     dirty = true;
     draining = false;
     was_connected = false;
+    was_nfc_ready = false;
     last_snapshot = now - 1000u;
     Network_Init(now);
-    char url[150] = "";
-    const NetworkConfig *config = Network_GetConfig();
-    if (config && config->server_ipv4[0] != 0u)
-        (void)snprintf(url, sizeof url, "http://%u.%u.%u.%u:%u/drone/GG01",
-            config->server_ipv4[0], config->server_ipv4[1],
-            config->server_ipv4[2], config->server_ipv4[3], (unsigned)APP_COMMAND_HTTP_PORT);
-    Nfc_Init(url, now);
+    nfc_dashboard_url[0] = '\0';
+    const char *override_url = APP_NFC_DASHBOARD_URL;
+    const size_t override_length = strlen(override_url);
+    if (override_length > 0u) {
+        /* Reject an oversized override instead of publishing a truncated URL. */
+        if (override_length < sizeof nfc_dashboard_url)
+            memcpy(nfc_dashboard_url, override_url, override_length + 1u);
+    } else {
+        const NetworkConfig *config = Network_GetConfig();
+        if (config && config->server_ipv4[0] != 0u)
+            (void)snprintf(nfc_dashboard_url, sizeof nfc_dashboard_url,
+                "http://%u.%u.%u.%u:%u/drone/GG01",
+                config->server_ipv4[0], config->server_ipv4[1],
+                config->server_ipv4[2], config->server_ipv4[3], (unsigned)APP_COMMAND_HTTP_PORT);
+    }
+    Nfc_Init(nfc_dashboard_url, now);
 }
 
 void Command_Poll(const Game *game, const SensorSample *sample,
@@ -143,6 +154,18 @@ void Command_Poll(const Game *game, const SensorSample *sample,
         dirty = true;
     }
     Nfc_Poll(now, game->mode == GAME_STANDBY);
+    const bool nfc_ready = Nfc_Ready();
+    if (nfc_ready != was_nfc_ready) {
+        dirty = true;
+        was_nfc_ready = nfc_ready;
+        if (nfc_ready) {
+            char notice[256];
+            (void)snprintf(notice, sizeof notice,
+                "NFC READY: %s?mission=%u | tap the board NFC antenna\r\n",
+                nfc_dashboard_url, (unsigned)mission);
+            (void)Board_UartWrite(notice);
+        }
+    }
     uint32_t tap_ms;
     if (Nfc_PopTap(&tap_ms)) {
         char notice[80];

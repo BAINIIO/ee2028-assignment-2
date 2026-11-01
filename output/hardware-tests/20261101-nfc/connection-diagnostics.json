@@ -1,0 +1,253 @@
+{
+  "records": [
+    {
+      "wifi": {
+        "state": 2,
+        "error": 0,
+        "retries": 0,
+        "commands": 5,
+        "sent_packets": 0,
+        "sent_bytes": 0,
+        "received_missions": 0,
+        "dropped": 4,
+        "spi_errors": 0,
+        "at_errors": 0,
+        "stage": 5,
+        "queued": 0,
+        "response_flags": 0,
+        "failure_stage": 0
+      },
+      "api_link": {
+        "source": "none",
+        "status": "offline",
+        "wifi": false,
+        "uart": false,
+        "last_seen": null,
+        "age_ms": null
+      },
+      "seq": null
+    },
+    {
+      "wifi": {
+        "state": 2,
+        "error": 0,
+        "retries": 0,
+        "commands": 5,
+        "sent_packets": 0,
+        "sent_bytes": 0,
+        "received_missions": 0,
+        "dropped": 9,
+        "spi_errors": 0,
+        "at_errors": 0,
+        "stage": 5,
+        "queued": 0,
+        "response_flags": 0,
+        "failure_stage": 0
+      },
+      "api_link": {
+        "source": "none",
+        "status": "offline",
+        "wifi": false,
+        "uart": false,
+        "last_seen": null,
+        "age_ms": null
+      },
+      "seq": null
+    },
+    {
+      "wifi": {
+        "state": 2,
+        "error": 0,
+        "retries": 0,
+        "commands": 5,
+        "sent_packets": 0,
+        "sent_bytes": 0,
+        "received_missions": 0,
+        "dropped": 14,
+        "spi_errors": 0,
+        "at_errors": 0,
+        "stage": 5,
+        "queued": 0,
+        "response_flags": 0,
+        "failure_stage": 0
+      },
+      "api_link": {
+        "source": "none",
+        "status": "offline",
+        "wifi": false,
+        "uart": false,
+        "last_seen": null,
+        "age_ms": null
+      },
+      "seq": null
+    },
+    {
+      "wifi": {
+        "state": 2,
+        "error": 0,
+        "retries": 0,
+        "commands": 5,
+        "sent_packets": 0,
+        "sent_bytes": 0,
+        "received_missions": 0,
+        "dropped": 19,
+        "spi_errors": 0,
+        "at_errors": 0,
+        "stage": 5,
+        "queued": 0,
+        "response_flags": 0,
+        "failure_stage": 0
+      },
+      "api_link": {
+        "source": "none",
+        "status": "offline",
+        "wifi": false,
+        "uart": false,
+        "last_seen": null,
+        "age_ms": null
+      },
+      "seq": null
+    },
+    {
+      "wifi": {
+        "state": 2,
+        "error": 0,
+        "retries": 0,
+        "commands": 5,
+        "sent_packets": 0,
+        "sent_bytes": 0,
+        "received_missions": 0,
+        "dropped": 24,
+        "spi_errors": 0,
+        "at_errors": 0,
+        "stage": 5,
+        "queued": 0,
+        "response_flags": 0,
+        "failure_stage": 0
+      },
+      "api_link": {
+        "source": "none",
+        "status": "offline",
+        "wifi": false,
+        "uart": false,
+        "last_seen": null,
+        "age_ms": null
+      },
+      "seq": null
+    },
+    {
+      "wifi": {
+        "state": 2,
+        "error": 0,
+        "retries": 0,
+        "commands": 5,
+        "sent_packets": 0,
+        "sent_bytes": 0,
+        "received_missions": 0,
+        "dropped": 29,
+        "spi_errors": 0,
+        "at_errors": 0,
+        "stage": 5,
+        "queued": 0,
+        "response_flags": 0,
+        "failure_stage": 0
+      },
+      "api_link": {
+        "source": "none",
+        "status": "offline",
+        "wifi": false,
+        "uart": false,
+        "last_seen": null,
+        "age_ms": null
+      },
+      "seq": null
+    },
+    {
+      "wifi": {
+        "state": 5,
+        "error": 4,
+        "retries": 1,
+        "commands": 5,
+        "sent_packets": 0,
+        "sent_bytes": 0,
+        "received_missions": 0,
+        "dropped": 34,
+        "spi_errors": 0,
+        "at_errors": 1,
+        "stage": 5,
+        "queued": 0,
+        "response_flags": 10,
+        "failure_stage": 5
+      },
+      "api_link": {
+        "source": "none",
+        "status": "offline",
+        "wifi": false,
+        "uart": false,
+        "last_seen": null,
+        "age_ms": null
+      },
+      "seq": null
+    },
+    {
+      "wifi": {
+        "state": 2,
+        "error": 4,
+        "retries": 1,
+        "commands": 10,
+        "sent_packets": 0,
+        "sent_bytes": 0,
+        "received_missions": 0,
+        "dropped": 39,
+        "spi_errors": 0,
+        "at_errors": 1,
+        "stage": 5,
+        "queued": 0,
+        "response_flags": 10,
+        "failure_stage": 5
+      },
+      "api_link": {
+        "source": "none",
+        "status": "offline",
+        "wifi": false,
+        "uart": false,
+        "last_seen": null,
+        "age_ms": null
+      },
+      "seq": null
+    },
+    {
+      "wifi": {
+        "state": 2,
+        "error": 4,
+        "retries": 1,
+        "commands": 10,
+        "sent_packets": 0,
+        "sent_bytes": 0,
+        "received_missions": 0,
+        "dropped": 44,
+        "spi_errors": 0,
+        "at_errors": 1,
+        "stage": 5,
+        "queued": 0,
+        "response_flags": 10,
+        "failure_stage": 5
+      },
+      "api_link": {
+        "source": "none",
+        "status": "offline",
+        "wifi": false,
+        "uart": false,
+        "last_seen": null,
+        "age_ms": null
+      },
+      "seq": null
+    }
+  ],
+  "nfc": {
+    "online": 1,
+    "ready": 1,
+    "errors": 0,
+    "tap_count": 0
+  }
+}

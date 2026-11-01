@@ -61,7 +61,7 @@ static HAL_StatusTypeDef fake_spi_status;
 static uint8_t fake_tx[1200], fake_rx[1536], fake_wire[16384];
 static size_t fake_tx_length, fake_rx_length, fake_rx_offset, fake_wire_length;
 static char fake_last_command[128];
-static const char *fake_downlink;
+static const char *fake_downlink, *fake_join_reply;
 static const NetworkConfig fake_valid_config = {
     "host-test-network", "host-test-password", {192, 0, 2, 10}, 8081u
 };
@@ -138,7 +138,9 @@ static void process_command(void)
         fake_response_pending = false;
         return;
     }
-    if (strcmp(fake_last_command, "R0") == 0) {
+    if (fake_join_reply && strcmp(fake_last_command, "C0") == 0) {
+        load_response((const uint8_t *)fake_join_reply, strlen(fake_join_reply));
+    } else if (strcmp(fake_last_command, "R0") == 0) {
         char reply[512] = "\r\n";
         if (fake_downlink) {
             assert(strlen(fake_downlink) < 400u);
@@ -256,7 +258,7 @@ static void setup(void)
     fake_spi_calls = fake_command_count = fake_reset_count = 0;
     fake_tx_length = fake_rx_length = fake_rx_offset = fake_wire_length = 0;
     fake_spi_status = HAL_OK;
-    fake_downlink = NULL;
+    fake_downlink = fake_join_reply = NULL;
     fake_config = &fake_valid_config;
     Network_Init(fake_tick);
 }
@@ -313,6 +315,45 @@ static void test_missing_hotspot_is_async_and_retry_is_bounded(void)
     }
     assert(Network_GetStatus().last_error == NETWORK_ERROR_TIMEOUT);
     assert(Network_GetStatus().retries == 1u);
+    Network_Stop();
+}
+
+static void test_failure_markers_are_safe_and_survive_reconnection(void)
+{
+    setup();
+    fake_join_reply = "\r\n[JOIN ] host-test-network\r\n[JOIN ] Failed\r\n"
+                      "ERROR: Unknown Error\r\nUsage: C0\r\n> ";
+    for (unsigned polls = 0; Network_GetStatus().state != NETWORK_RETRY; ++polls) {
+        assert(polls < 2000u); poll_once();
+    }
+    NetworkStatus failed = Network_GetStatus();
+    assert(failed.last_error == NETWORK_ERROR_RESPONSE && failed.failure_stage == STAGE_JOIN);
+    assert(failed.last_response_flags == (NETWORK_RESPONSE_ERROR |
+        NETWORK_RESPONSE_JOIN_FAILED | NETWORK_RESPONSE_USAGE));
+    assert(response[0] == '\0' && transmit[0] == '\0');
+
+    fake_join_reply = NULL;
+    fake_command_count = 0; /* Restart the fake's setup-command expectations. */
+    for (unsigned polls = 0; !Network_Connected(); ++polls) {
+        assert(polls < 8000u); poll_once();
+    }
+    NetworkStatus recovered = Network_GetStatus();
+    assert(recovered.last_response_flags == failed.last_response_flags);
+    assert(recovered.failure_stage == STAGE_JOIN);
+    Network_Stop();
+
+    setup();
+    assert(Network_GetStatus().last_response_flags == 0u);
+    assert(Network_GetStatus().failure_stage == 0u);
+    /* Classification sees a real OK token even though the existing strict
+     * parser rejects extra trailing bytes. Do not relax parser behavior. */
+    fake_join_reply = "\r\n[JOIN ] host-test-network,192.0.2.2,0,0\r\nOK\r\n> \r\n";
+    for (unsigned polls = 0; Network_GetStatus().state != NETWORK_RETRY; ++polls) {
+        assert(polls < 2000u); poll_once();
+    }
+    failed = Network_GetStatus();
+    assert(failed.last_error == NETWORK_ERROR_RESPONSE && failed.failure_stage == STAGE_JOIN);
+    assert(failed.last_response_flags == NETWORK_RESPONSE_OK);
     Network_Stop();
 }
 static void test_queue_capacity_masked_poll_and_stop(void)
@@ -474,6 +515,7 @@ int main(void)
     test_join_queue_and_fragments();
     test_mission_stream_is_strict_and_fragmented();
     test_missing_hotspot_is_async_and_retry_is_bounded();
+    test_failure_markers_are_safe_and_survive_reconnection();
     test_queue_capacity_masked_poll_and_stop();
     test_invalid_or_absent_config_does_not_touch_hardware();
     test_final_drain_finishes_tx_and_never_reads_or_rejoins();

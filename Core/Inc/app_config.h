@@ -15,6 +15,9 @@
 #ifndef APP_ENABLE_NFC
 #define APP_ENABLE_NFC 1
 #endif
+#ifndef APP_NFC_DASHBOARD_URL
+#define APP_NFC_DASHBOARD_URL ""
+#endif
 #define APP_COMMAND_HTTP_PORT 8080u
 #ifndef APP_ENABLE_IR
 #define APP_ENABLE_IR 1
@@ -41,16 +44,16 @@
 #ifndef APP_BUZZER_ACTIVE_LOW
 #define APP_BUZZER_ACTIVE_LOW 0
 #endif
-/* User's buzzer is connected to Arduino D6 / PB1. Timer-driven GPIO also
+/* User's buzzer is connected to Arduino D2 / PD14. Timer-driven GPIO also
  * supports pins without a hardware PWM alternate function. */
 #ifndef APP_BUZZER_GPIO_PORT
-#define APP_BUZZER_GPIO_PORT GPIOB
+#define APP_BUZZER_GPIO_PORT GPIOD
 #endif
 #ifndef APP_BUZZER_GPIO_PIN
-#define APP_BUZZER_GPIO_PIN GPIO_PIN_1
+#define APP_BUZZER_GPIO_PIN GPIO_PIN_14
 #endif
 #ifndef APP_BUZZER_GPIO_CLOCK_ENABLE
-#define APP_BUZZER_GPIO_CLOCK_ENABLE() __HAL_RCC_GPIOB_CLK_ENABLE()
+#define APP_BUZZER_GPIO_CLOCK_ENABLE() __HAL_RCC_GPIOD_CLK_ENABLE()
 #endif
 
 #define APP_UART_BAUD 115200u
@@ -63,7 +66,7 @@
 #define APP_DEBOUNCE_MS 30u
 #define APP_DOUBLE_PRESS_MS 500u
 #define APP_RESCUE_MS 10000u
-/* Drain queued UART bytes and the final OLED frame before shutting down. */
+/* Drain pending outputs and bounded NFC shutdown work before stopping. */
 #define APP_SHUTDOWN_DRAIN_MS 600u
 
 /* Empirical starting points: calibrate and justify these for the demo. */

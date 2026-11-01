@@ -28,6 +28,13 @@ typedef enum {
     NETWORK_ERROR_TIMEOUT, NETWORK_ERROR_RESPONSE, NETWORK_ERROR_OVERFLOW
 } NetworkError;
 
+/* Literal response markers recorded at the last transport failure. These
+ * expose no response text or credentials and persist until Network_Init(). */
+#define NETWORK_RESPONSE_OK          0x01u /* "\r\nOK\r\n> " anywhere */
+#define NETWORK_RESPONSE_ERROR       0x02u /* "ERROR" */
+#define NETWORK_RESPONSE_JOIN_FAILED 0x04u /* "[JOIN ] Failed" */
+#define NETWORK_RESPONSE_USAGE       0x08u /* "Usage" */
+
 typedef struct {
     NetworkState state;
     NetworkError last_error;
@@ -41,6 +48,8 @@ typedef struct {
     uint32_t at_errors;
     uint8_t stage;               /* Command index; never command/credential text. */
     uint8_t queued;
+    uint8_t last_response_flags; /* NETWORK_RESPONSE_* from the last failure. */
+    uint8_t failure_stage;       /* Command index at that same failure. */
 } NetworkStatus;
 
 const NetworkConfig *Network_GetConfig(void);

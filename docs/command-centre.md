@@ -1,22 +1,35 @@
 # Local Garden Guard command centre
 
-## Current verification — 29 October 2026
+## Current verification — 1 November 2026
 
-The website, backend, native SPI3 Wi-Fi transport, NFC NDEF encoder and
-firmware integration are implemented. The ARM build and automated C/Python
-checks pass. Native Wi-Fi association, tag EEPROM programming and an iPhone
-tap have **not** been verified on the connected board: the user deferred the
-hotspot test before leaving. The board retains the previously verified D6
-firmware. Do not treat the website's offline preview as a wireless hardware
-demonstration.
+The NFC firmware was programmed and verified on the connected STM32L4S5I-DK
+(probe `0667FF515652787187041646`). The tag committed and read back the 49-byte
+record with zero NFC errors. The iPhone displayed an NFC notification and the
+user confirmed the Garden Guard website opens. The current local link is
+`http://172.20.10.5:8080/drone/GG01?mission=0`; it requires the Mac server to
+remain running and the phone to reach that hotspot network.
 
-The matching baseline ELF/BIN/HEX/MAP were preserved locally under
+Current wiring is OLED on Grove I2C, IR on A0/PC5 and buzzer on D2/PD14. The
+board reports all six sensors valid and OLED online; PD14 is configured as an
+output. Audible D2 operation is not yet independently confirmed. Native board
+Wi-Fi telemetry is not yet connected: the module rejected its hotspot join
+before reaching TCP setup. Its retained failure markers were `ERROR` and
+`Usage` at join stage 5, with zero SPI errors in the controlled retry cycle.
+The website opening through NFC does not establish live wireless sensor
+delivery. Confirm the current hotspot details before further Wi-Fi testing.
+
+The connected board's original 2 MiB flash was backed up locally before the
+update under `output/hardware-tests/20261101-nfc/`. That directory also holds
+the programming logs, UART NFC-ready message and initial live status reads.
+
+The older 29 October D6 baseline ELF/BIN/HEX/MAP were preserved locally under
 `build/known-working/`. Its BIN SHA-256 is
 `4f18a88f7a81fcba3ac7b6df86cad44b9f04eaa7888f9d8140eb65b868682554`.
-While the candidate is being built, view that unchanged board with:
+Use those files only for a board still running that baseline. For the current
+flashed firmware, the viewer uses the matching build by default:
 
 ```sh
-sh tools/live_display.command --elf build/known-working/zombie_game.elf
+sh tools/live_display.command
 ```
 
 ## Prepare the board on the intended network
@@ -40,6 +53,20 @@ sh tools/live_display.command --elf build/known-working/zombie_game.elf
    printed NFC antenna with the top of the iPhone, then tap its notification.
    The page opens in Safari; the phone must reach the Mac's local network.
 
+For NFC setup without board Wi-Fi credentials, a build can instead supply
+`APP_NFC_DASHBOARD_URL`. It overrides the URL derived from the network object:
+
+```sh
+make EXTRA_DEFINES='-DAPP_NFC_DASHBOARD_URL=\"http://MAC_IP:8080/drone/GG01\"'
+```
+
+Replace `MAC_IP` with the Mac's reachable numeric address. This programs the
+phone link; live wireless telemetry still requires the board's network
+configuration. Keep the same override on subsequent builds. The base URL must
+be shorter than 180 bytes. A missing or invalid URL leaves the existing tag's
+memory and RF settings untouched. Once the URL has been committed and read
+back, UART emits `NFC READY` with the URL and the antenna instruction.
+
 Mission selection is available only in standby. The STM32 validates the
 request again, updates its mission identifier and NFC record, and reports the
 result. A detected RF field creates an NFC check-in event and a short sound;
@@ -49,6 +76,10 @@ does not perform the compulsory rescue or modify the laser energy rules.
 NFC uses short I2C2 operations alongside the existing sensors. Accepted NDEF
 writes finish in bounded steps even if the game changes modes. The length is
 invalidated first and committed last, and the complete record is read back.
+Each EEPROM transfer stays within one aligned four-byte page and waits seven
+milliseconds through SysTick scheduling. This respects the ST25DV's per-page
+programming time; a sixteen-byte transfer would need multiple write cycles.
+See [ST DS10925, section 6.4.2](https://www.st.com/resource/en/datasheet/st25dv04k.pdf).
 The driver attempts to set RF sleep as the static default when its factory
 I2C configuration session is available, and explicitly wakes the tag only
 after programming. A customized tag can reject that factory session; the
@@ -267,6 +298,13 @@ existing human-readable UART lines automatically. It is an integration point
 for a separate relay, not a claim that UART fallback is already connected.
 
 ## Verification
+
+The 1 November update passed all 11 C suites, including a new actual-driver
+fake-bus test that models EEPROM busy time per four-byte page. It covers
+complete URI programming/readback, retries, unchanged records, an unconfigured
+tag remaining untouched, shared-bus deferral and bounded RF shutdown. Reporter
+tests also cover standalone URL precedence and one UART notice per readiness
+transition, including accepted/rejected URL length boundaries.
 
 The 29 October candidate passed the ARM build, all 10 C test suites with
 AddressSanitizer/UndefinedBehaviorSanitizer, 35 Python tests and 30 browser

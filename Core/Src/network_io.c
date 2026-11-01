@@ -195,6 +195,21 @@ void EXTI1_IRQHandler(void)
 
 static void retry_later(uint32_t now, NetworkError error)
 {
+    /* Classify before clearing/resetting, retaining constants only. A fault
+     * can interrupt a response, so never search beyond its bounded buffer. */
+    size_t length = response_length;
+    if (length > RESPONSE_CAPACITY) length = RESPONSE_CAPACITY;
+    response[length] = '\0';
+    status.failure_stage = stage;
+    status.last_response_flags = 0;
+    if (strstr((const char *)response, "\r\nOK\r\n> ") != NULL)
+        status.last_response_flags |= NETWORK_RESPONSE_OK;
+    if (strstr((const char *)response, "ERROR") != NULL)
+        status.last_response_flags |= NETWORK_RESPONSE_ERROR;
+    if (strstr((const char *)response, "[JOIN ] Failed") != NULL)
+        status.last_response_flags |= NETWORK_RESPONSE_JOIN_FAILED;
+    if (strstr((const char *)response, "Usage") != NULL)
+        status.last_response_flags |= NETWORK_RESPONSE_USAGE;
     if (hardware_ready) {
         chip_select(false);
         HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8, GPIO_PIN_RESET);

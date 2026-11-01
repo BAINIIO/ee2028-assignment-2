@@ -6,13 +6,17 @@ Firmware for the **B-L4S5I-IOT01A / STM32L4S5** combines the compulsory scouting
 
 The [24 October compliance update](docs/compliance-update-2026-10-24.md) records the revised polling-UART and terminal-aware viewer build. The programmed board reported all six sensors valid and OLED online, continued approximately one-second UART warnings, and supplied 175 coherent laptop frames in six seconds (about 29.18 fps) without recorded UART transmit failures or dropped bytes. An explicitly debugger-injected timeout exercised the final frame/connection close and final UART notification followed by three seconds of silence. This verifies that hardware-executed path; it does not establish physical inversion or a successful manual rescue.
 
+**Current wiring, 1 November 2026:** OLED in a Grove I2C socket, reflective IR in A0/PC5, and buzzer moved to D2/PD14. Firmware defaults now match D2; audible operation on this new connection has not yet been verified. The D6 result above is dated evidence for the previous wiring.
+
 ## Build and run
 
 The [Wi-Fi/NFC command-centre upgrade](docs/command-centre.md) adds a responsive
 phone dashboard, native board Wi-Fi transport, NFC mission links and field
-check-ins. This is a **software-tested candidate**: the 29 October hotspot and
-iPhone hardware test was deferred, and it has not replaced the working D6
-firmware on the board. The dashboard source is in `web/command-centre/dist/`.
+check-ins. On 1 November, NFC URL programming/readback and opening the website
+on the iPhone were verified. Native board Wi-Fi telemetry is still being
+checked; opening the website alone does not establish live sensor delivery.
+The current wiring is listed above. The dashboard source is in
+`web/command-centre/dist/`.
 
 Clone the private GitHub repository with an account that has access:
 
@@ -75,20 +79,20 @@ See [wiring and module identification](docs/external-hardware.md) before connect
 | --- | --- |
 | OLED SCL / SDA | PB8 / PB9, Arduino D15 / D14, I2C1 |
 | Reflective IR digital output | PC5, Arduino A0 header, active-low by default |
-| Buzzer signal | PB1, Arduino D6, timer-driven GPIO tones |
+| Buzzer signal | PD14, Arduino D2 (CN3 pin 3), timer-driven GPIO tones |
 | External supply/reference | Suitable 3.3 V supply and common ground |
 | Six on-board sensors | Existing I2C2, PB10 / PB11; no extra wiring |
 | UART telemetry | USART1 PB6 / PB7 through ST-Link VCP |
 | User button / status LED | PC13 EXTI / PB14 LED2 |
 
-Use 3.3 V logic and I2C pull-ups. Identify the buzzer's type and driver/current needs; D6 is a control signal. The reflective module uses a digital signal even though it is connected to the A0 header. Optional modules can be disabled independently:
+The D2/PD14 mapping is specified in [ST UM2708, table 6, page 23](https://www.st.com/resource/en/user_manual/dm00698410-.pdf). Use 3.3 V logic and I2C pull-ups. Identify the buzzer's type and driver/current needs; D2 is a control signal. The reflective module uses a digital signal even though it is connected to the A0 header. Optional modules can be disabled independently:
 
 ```sh
 make EXTRA_DEFINES="-DAPP_ENABLE_OLED=0 -DAPP_ENABLE_IR=0 -DAPP_ENABLE_BUZZER=0"
 make EXTRA_DEFINES="-DAPP_BUZZER_ACTIVE=1"
 ```
 
-The second example selects active-buzzer on/off patterns; passive square-wave melodies are the default. TIM2 interrupts toggle D6/PB1 without requiring a hardware PWM alternate function. The buzzer defaults follow the user's corrected D6 wiring reported on 24 October 2026; older hardware reports record the earlier D7 wiring. Port/pin/clock macros and active-low polarity are configurable in `app_config.h`. Include all desired overrides in each build command. The configuration stamp tracks flags and automatically rebuilds affected objects when `EXTRA_DEFINES` changes, including a return to plain `make`. Defaults and empirical thresholds are in [app_config.h](Core/Inc/app_config.h); game constants are in [game_config.h](Core/Inc/game_config.h).
+The second example selects active-buzzer on/off patterns; passive square-wave melodies are the default. TIM2 interrupts toggle D2/PD14 without requiring a hardware PWM alternate function. The buzzer defaults follow the user's D2 wiring reported on 1 November 2026; audible operation on D2 is pending verification. Dated hardware reports retain the earlier D6 and D7 results. Port/pin/clock macros and active-low polarity are configurable in `app_config.h`. Include all desired overrides in each build command. The configuration stamp tracks flags and automatically rebuilds affected objects when `EXTRA_DEFINES` changes, including a return to plain `make`. Defaults and empirical thresholds are in [app_config.h](Core/Inc/app_config.h); game constants are in [game_config.h](Core/Inc/game_config.h).
 
 ## Assignment and Lab 5 references
 
@@ -125,8 +129,8 @@ Target sequences are deterministic and reproducible. The monochrome OLED disting
 ### Live laptop display
 
 The original game can be shown in a laptop window while the STM32 runs the
-game and reads the physical USER button and sensors. The buzzer remains on
-D6/PB1. The OLED can be disconnected: the laptop frame updates independently.
+game and reads the physical USER button and sensors. The buzzer is configured
+for D2/PD14. The OLED can be disconnected: the laptop frame updates independently.
 
 After building and flashing the current firmware, double-click
 `tools/live_display.command` on macOS, or run:

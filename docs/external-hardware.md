@@ -6,6 +6,8 @@ The OLED is monochrome. Garden Guard uses different animated zombie and friendly
 
 ## Wiring
 
+**Current wiring reported on 1 November 2026:** OLED in a Grove I2C socket, reflective IR in A0/PC5, and buzzer in D2/PD14. Firmware defaults match this connection; audible buzzer operation on D2 has not yet been verified. Earlier D6 and D7 results below remain dated test evidence.
+
 Power down before connecting modules. Use a common ground and **3.3 V logic**, including I2C pull-ups and the IR digital output. A module powered from 5 V may drive a 5 V output even if its label says it is Arduino-compatible. Verify its output voltage or use an appropriate level shifter.
 
 | Module signal | B-L4S5I-IOT01A connection | Firmware use |
@@ -15,12 +17,12 @@ Power down before connecting modules. Use a common ground and **3.3 V logic**, i
 | OLED SDA | Arduino D14 / PB9 | I2C1 SDA |
 | IR VCC / GND | 3V3 / GND, if module supports 3.3 V | Module supply |
 | IR digital OUT / DO | Arduino A0 / PC5 | Digital object presence, active-low by default |
-| Buzzer control / signal | Arduino D6 / PB1 | Timer-driven square wave or digital on/off |
+| Buzzer control / signal | Arduino D2 / PD14 (CN3 pin 3) | Timer-driven square wave or digital on/off |
 | Buzzer ground | GND | Common reference |
 | Optional TCS34725 SCL / SDA | PB8 / PB9, shared with OLED | I2C address `0x29` |
 | Optional TCS34725 supply | 3V3 / GND | Confirm breakout supply requirements |
 
-The header labels match `Core/Inc/main.h`: Arduino D6 is **PB1** and Arduino A0 is **PC5**. The buzzer default follows the user's corrected D6 wiring reported on 24 October 2026; the earlier 22 October tests used D7/PA4. The A0 label identifies the header pin; a reflective module with a digital comparator output can use it as a GPIO input. A module with a true analog-only output would require a separate ADC driver. PB6/PB7 remain available for USART1 telemetry; the on-board six sensors use separate I2C2 on PB10/PB11. Do not connect another output to the buzzer or IR signal pins.
+The header labels match `Core/Inc/main.h` and [ST UM2708, table 6, page 23](https://www.st.com/resource/en/user_manual/dm00698410-.pdf): Arduino D2 is **PD14** and Arduino A0 is **PC5**. The buzzer default follows the user's D2 wiring reported on 1 November 2026. The A0 label identifies the header pin; a reflective module with a digital comparator output can use it as a GPIO input. A module with a true analog-only output would require a separate ADC driver. PB6/PB7 remain available for USART1 telemetry; the on-board six sensors and NFC tag use separate I2C2 on PB10/PB11. D2 does not overlap the NFC tag or native Wi-Fi pins. Do not connect another output to the buzzer or IR signal pins.
 
 I2C requires external pull-ups to **3.3 V**; many OLED breakouts already include them. Do not add multiple low-value pull-ups in parallel. A typical short connection uses approximately 4.7 kOhm if pull-ups are absent. Keep wires short. The firmware deliberately avoids enabling the MCU's weak internal pull-ups for I2C.
 
@@ -36,8 +38,8 @@ The buzzer output is a **control signal**. A three-pin buzzer module with a suit
 | `APP_ENABLE_IR` | `1` | Digital reflective sensor on Arduino A0 / PC5 |
 | `APP_IR_GPIO_PORT` / `APP_IR_GPIO_PIN` | `GPIOC` / `GPIO_PIN_5` | Configurable IR digital GPIO; also update its clock-enable macro when changing port |
 | `APP_IR_ACTIVE_LOW` | `1` | `0` means object detected; use `0` for active-high modules |
-| `APP_ENABLE_BUZZER` | `1` | Buzzer signal on Arduino D6 / PB1 |
-| `APP_BUZZER_GPIO_PORT` / `APP_BUZZER_GPIO_PIN` | `GPIOA` / `GPIO_PIN_4` | Configurable buzzer GPIO; also update its clock-enable macro when changing port |
+| `APP_ENABLE_BUZZER` | `1` | Buzzer signal on Arduino D2 / PD14 |
+| `APP_BUZZER_GPIO_PORT` / `APP_BUZZER_GPIO_PIN` | `GPIOD` / `GPIO_PIN_14` | Configurable buzzer GPIO; clock-enable macro defaults to `__HAL_RCC_GPIOD_CLK_ENABLE()` |
 | `APP_BUZZER_ACTIVE` | `0` | Passive piezo: pitch-changing square-wave melodies |
 | `APP_BUZZER_ACTIVE` | set to `1` for active buzzer | On/off patterns; active buzzers cannot reproduce the melody pitches |
 | `APP_BUZZER_ACTIVE_LOW` | `0` | Set to `1` for a module whose control input is active-low; also sets the correct idle level |
@@ -61,7 +63,7 @@ The SSD1306 uses a 1,024-byte drawing framebuffer and a separate 1,024-byte immu
 
 When no target is displayed, the application supplies a context-specific control hint rather than presenting controls that are unavailable in standby, attacked or terminal states. During termination, `External_FinishDisplay()` advances only pending OLED transfers; it does not sample IR or the colour sensor or initiate OLED recovery. `External_DisplayIdle()` reports whether the screen has finished or is offline, allowing the application to bound its final screen/UART drain before shutdown.
 
-The passive driver uses a 1 MHz TIM2 counter with update interrupts at twice the requested pitch, toggling D6/PB1 for a square wave without requiring a TIM2 alternate-function pin. The highest pitch (2400 Hz) requires 4800 short interrupts per second. Notes and gaps remain tick-driven; no foreground delays generate sound. Idle gaps and `External_AllStop()` disable timer interrupts and restore the inactive GPIO level. Active modules use GPIO on/off control without TIM2 interrupts. Attack/rescue sounds preempt routine sounds; defeat has the highest priority.
+The passive driver uses a 1 MHz TIM2 counter with update interrupts at twice the requested pitch, toggling D2/PD14 for a square wave without requiring a TIM2 alternate-function pin. The highest pitch (2400 Hz) requires 4800 short interrupts per second. Notes and gaps remain tick-driven; no foreground delays generate sound. Idle gaps and `External_AllStop()` disable timer interrupts and restore the inactive GPIO level. Active modules use GPIO on/off control without TIM2 interrupts. Attack/rescue sounds preempt routine sounds; defeat has the highest priority.
 
 The optional TCS34725 driver checks device ID `0x44` or `0x4d`, selects 4x gain and 50.4 ms integration, powers the oscillator for at least 3 ms before enabling conversion, and reads valid RGBC samples after integration. Channels are normalized to clear intensity. Red or green must dominate both other colour channels by `APP_COLOUR_RATIO`; dark, saturated or ambiguous samples do not claim a colour. `APP_COLOUR_MIN_CLEAR` and the ratio need calibration for lighting and distance. Keep the sensing surface separate from the reflective sensor's output: they are different measurements.
 

@@ -15,7 +15,7 @@ static unsigned line_count;
 static char fixtures[4][NETWORK_PACKET_MAX];
 static bool fake_connected, fake_network_idle, fake_begin_drain, fake_network_stopped;
 static bool fake_nfc_stopped, fake_mission_pending, fake_tap_pending;
-static bool fake_nfc_stop_done;
+static bool fake_nfc_stop_done, fake_nfc_ready;
 static bool fake_queue_full;
 static uint8_t fake_requested, fake_nfc_mission;
 static uint32_t fake_tap_ms, fake_taps, fake_drop;
@@ -24,7 +24,8 @@ static unsigned nfc_finish_calls;
 static unsigned final_queues, uart_messages, tap_sounds;
 static char last_uart[256];
 static bool last_nfc_allow;
-static char nfc_url[150];
+static char nfc_url[180];
+static const char *nfc_borrowed_url;
 static const NetworkConfig *fake_config;
 static char trace[512];
 static unsigned trace_used;
@@ -94,6 +95,7 @@ void Nfc_Init(const char *url, uint32_t now_ms)
     (void)now_ms;
     assert(url != NULL && strlen(url) < sizeof nfc_url);
     strcpy(nfc_url, url);
+    nfc_borrowed_url = url;
     mark('i');
 }
 void Nfc_Poll(uint32_t now_ms, bool allow_update)
@@ -110,7 +112,7 @@ bool Nfc_SetMission(uint8_t id)
     fake_nfc_mission = id;
     return true;
 }
-bool Nfc_Ready(void) { return !fake_nfc_stopped; }
+bool Nfc_Ready(void) { return fake_nfc_ready && !fake_nfc_stopped; }
 uint32_t Nfc_Taps(void) { return fake_taps; }
 bool Nfc_PopTap(uint32_t *time_ms)
 {
@@ -169,6 +171,7 @@ static void reset(uint32_t now)
     fake_network_idle = fake_begin_drain = fake_network_stopped = false;
     fake_nfc_stopped = fake_mission_pending = fake_tap_pending = false;
     fake_nfc_stop_done = false;
+    fake_nfc_ready = false;
     fake_queue_full = false;
     fake_requested = fake_nfc_mission = 0;
     fake_tap_ms = fake_taps = fake_drop = 0;
@@ -191,18 +194,39 @@ static unsigned sequence_of(const char *line)
     return value;
 }
 
+static void assert_dashboard_url(const char *derived)
+{
+    (void)derived;
+#if defined(TEST_NFC_URL_OVERRIDE)
+    assert(strcmp(nfc_url, "https://garden.example/drone/GG01") == 0);
+#elif defined(TEST_NFC_URL_LENGTH)
+    if (TEST_NFC_URL_LENGTH >= 180) assert(nfc_url[0] == '\0');
+    else {
+        static const char prefix[] = "https://example.test/";
+        assert(strlen(nfc_url) == TEST_NFC_URL_LENGTH);
+        assert(strncmp(nfc_url, prefix, sizeof prefix - 1u) == 0);
+        for (size_t i = sizeof prefix - 1u; i < strlen(nfc_url); ++i)
+            assert(nfc_url[i] == 'x');
+    }
+#else
+    assert(strcmp(nfc_url, derived) == 0);
+#endif
+    /* A caller retaining the URL must not observe Command_Init stack storage. */
+    assert(strcmp(nfc_borrowed_url, nfc_url) == 0);
+}
+
 static void test_initialization_and_canonical_snapshot(void)
 {
     reset(1000u);
-    assert(strcmp(nfc_url, "") == 0);
+    assert_dashboard_url("");
     const NetworkConfig no_address = {NULL, NULL, {0, 0, 0, 0}, 8081};
     fake_config = &no_address;
     Command_Init(1000u);
-    assert(strcmp(nfc_url, "") == 0);
+    assert_dashboard_url("");
     const NetworkConfig known_address = {NULL, NULL, {10, 1, 2, 3}, 8081};
     fake_config = &known_address;
     Command_Init(1000u);
-    assert(strcmp(nfc_url, "http://10.1.2.3:8080/drone/GG01") == 0);
+    assert_dashboard_url("http://10.1.2.3:8080/drone/GG01");
     fake_config = NULL;
 
     Game current;
@@ -220,7 +244,7 @@ static void test_initialization_and_canonical_snapshot(void)
         "\"abnormal\":0", "\"unavailable\":0", "\"t\":29.500", "\"p\":1010.250",
         "\"h\":60.500", "\"a\":[0.000,-0.125,9.810]", "\"g\":[1.000,-2.000,3.500]",
         "\"m\":[10.000,-20.000,30.000]", "\"ir\":false", "\"mission\":0",
-        "\"nfc\":true", "\"nfc_taps\":0", "\"wifi\":true", "\"wifi_drop\":4"
+        "\"nfc\":false", "\"nfc_taps\":0", "\"wifi\":true", "\"wifi_drop\":4"
     };
     for (size_t i = 0; i < sizeof required / sizeof required[0]; ++i)
         assert(strstr(lines[0], required[i]) != NULL);
@@ -335,6 +359,49 @@ static void test_mission_gate_and_nfc_tap_publish_immediately(void)
     assert(strstr(lines[9], "\"event\":\"mission_rejected\"") != NULL);
 }
 
+static void test_nfc_readiness_publishes_and_announces_each_ready_edge_once(void)
+{
+    reset(1000u);
+    const NetworkConfig config = {NULL, NULL, {10, 1, 2, 3}, 8081};
+    fake_config = &config;
+    Command_Init(1000u);
+    assert_dashboard_url("http://10.1.2.3:8080/drone/GG01");
+    Game current;
+    SensorSample sensors = sample();
+    game_init(&current, 0u);
+    Command_Poll(&current, &sensors, (TelemetryStatus){0u, 0u}, 1000u);
+    Command_Poll(&current, &sensors, (TelemetryStatus){0u, 0u}, 1001u);
+    assert(line_count == 1u && uart_messages == 0u);
+    assert(strstr(lines[0], "\"nfc\":false") != NULL);
+
+    fake_nfc_ready = true;
+    Command_Poll(&current, &sensors, (TelemetryStatus){0u, 0u}, 1002u);
+    assert(line_count == 2u && uart_messages == 1u);
+    assert(strstr(lines[1], "\"nfc\":true") != NULL);
+    assert(strstr(last_uart, "NFC READY: ") != NULL);
+    assert(strstr(last_uart, nfc_url) != NULL);
+    assert(strstr(last_uart, "?mission=0") != NULL);
+    assert(strstr(last_uart, "tap the board NFC antenna") != NULL);
+    Command_Poll(&current, &sensors, (TelemetryStatus){0u, 0u}, 1003u);
+    assert(line_count == 2u && uart_messages == 1u);
+
+    fake_nfc_ready = false;
+    Command_Poll(&current, &sensors, (TelemetryStatus){0u, 0u}, 1004u);
+    assert(line_count == 3u && uart_messages == 1u);
+    assert(strstr(lines[2], "\"nfc\":false") != NULL);
+    fake_requested = 2;
+    fake_mission_pending = true;
+    Command_Poll(&current, &sensors, (TelemetryStatus){0u, 0u}, 1005u);
+    assert(mission_sets == 1u && fake_nfc_mission == 2u && uart_messages == 2u);
+    fake_nfc_ready = true;
+    Command_Poll(&current, &sensors, (TelemetryStatus){0u, 0u}, 1006u);
+    assert(line_count == 6u && uart_messages == 3u);
+    assert(strstr(last_uart, "NFC READY: ") != NULL);
+    assert(strstr(last_uart, "?mission=2") != NULL);
+    Command_Poll(&current, &sensors, (TelemetryStatus){0u, 0u}, 1007u);
+    assert(line_count == 6u && uart_messages == 3u);
+}
+
 static void test_final_snapshot_precedes_drain_and_no_new_acquisition(void)
 {
     reset(0u);
@@ -432,6 +499,7 @@ int main(int argc, char **argv)
     test_events_preserve_old_target_and_share_sequence();
     test_finite_and_unavailable_values_are_json_null();
     test_mission_gate_and_nfc_tap_publish_immediately();
+    test_nfc_readiness_publishes_and_announces_each_ready_edge_once();
     test_final_snapshot_precedes_drain_and_no_new_acquisition();
     test_snapshot_cadence_across_tick_wrap();
     test_reconnect_publishes_current_snapshot_without_waiting_one_second();

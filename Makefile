@@ -81,6 +81,10 @@ build/host/test_network: tests/test_network.c Core/Src/network_io.c $(wildcard C
 	@mkdir -p "$(@D)"
 	clang $(HOST_FLAGS) "$<" -o "$@"
 
+build/host/test_nfc_io: tests/test_nfc_io.c tests/fakes/nfc/stm32l4xx_hal.h Core/Src/nfc_io.c Core/Src/nfc_ndef.c $(wildcard Core/Inc/*.h) Makefile
+	@mkdir -p "$(@D)"
+	clang -Itests/fakes/nfc $(HOST_FLAGS) "$<" Core/Src/nfc_ndef.c -lm -o "$@"
+
 build/host/test_command_telemetry: Core/Src/command_telemetry.c
 
 build/host/test_external_oled: tests/test_external_oled.c tests/fakes/stm32l4xx_hal.h Core/Src/external_io.c $(PORTABLE_SOURCES) $(wildcard Core/Inc/*.h) Makefile
