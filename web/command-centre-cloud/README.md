@@ -1,12 +1,12 @@
-# Garden Guard hosted command centre
+# Garden Guard hosted outputs
 
-A standalone Cloudflare Worker serving the existing Garden Guard dashboard
-and a persistent, read-only view of real GG01 telemetry.
+A standalone Cloudflare Worker serving two outputs: the board's actual OLED
+framebuffer and its UART messages.
 
-The firmware's native Wi-Fi TCP stream still reaches the Mac receiver.
-`tools/cloud_relay.py` uploads that receiver's state over authenticated HTTPS.
-The cloud retains the actual source and receipt time, and expires stale data.
-The database starts empty. Public mission writes are disabled.
+`tools/cloud_relay.py --outputs-only` captures the selected board outputs and
+uploads them over authenticated HTTPS. The cloud retains the actual receipt
+times and marks stale data. The database starts empty. The existing telemetry
+API remains compatible, and public mission writes remain disabled.
 
 ## Build and check
 
@@ -28,7 +28,7 @@ Edit the authored files, then rebuild; do not edit generated `dist/` files.
 The tracked `.openai/hosting.json` preserves the registered Site ID and
 declares the logical D1 binding `DB`. The schema-only migration and journal
 in `drizzle/` are included by the Sites archive helper and applied on deploy.
-The database stores one bounded current state/history record for GG01.
+The database stores one bounded current state and output record for GG01.
 
 Set `RELAY_TOKEN` as a secret in the Site's runtime environment and use the
 same value for the Python relay. Never add it to assets, source or URLs.

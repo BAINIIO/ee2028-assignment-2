@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Relay real local Garden Guard state to its hosted HTTPS dashboard.
 
-Read-only: this program never opens a board/UART, flashes firmware or forwards
-mission commands. Supply GARDEN_GUARD_RELAY_TOKEN or use --token-prompt; the
+Read-only: optional --oled/--uart-port capture real output; firmware is never
+flashed and mission commands are never forwarded. Use --uart-log when an
+existing terminal owns serial. Supply GARDEN_GUARD_RELAY_TOKEN or --token-prompt; the
 secret stays in process memory and is never included in a URL, file or log.
 Only the Python standard library is required.
 """
@@ -168,18 +169,41 @@ def validate_token(token):
 
 class CloudRelay:
     def __init__(self, cloud_url: str, token: str, *, local_url="http://127.0.0.1:8080",
-                 http=None, relay_id=None):
+                 http=None, relay_id=None, outputs=None, outputs_only=False, clock=time.time):
         self.cloud = Endpoint.parse(cloud_url)
         self.local = Endpoint.parse(local_url, local=True)
         self.token = validate_token(token)
         self.http = http if http is not None else JsonHTTP()
         self.relay_id = relay_id or uuid.uuid4().hex
+        self.outputs, self.outputs_only, self.clock = outputs, outputs_only, clock
+        self.output_revision = 0
 
     def sync_once(self):
-        snapshot = validate_snapshot(self.http.request(
-            self.local, "GET", "/api/state", maximum=MAX_LOCAL_BYTES))
-        body = encode_object({"version": 1, "relay_id": self.relay_id,
-                              "snapshot": snapshot, "acknowledgements": []}, MAX_SYNC_BYTES)
+        if self.outputs_only:
+            self.output_revision += 1
+            snapshot = {"revision": self.output_revision, "generated_at": self.clock(),
+                        "server_instance": self.relay_id, "telemetry": None,
+                        "link": {"source": "none", "status": "offline", "wifi": False,
+                                 "uart": False, "last_seen": None, "age_ms": None},
+                        "events": [], "missions": [], "server": {"drone_id": "GG01"}}
+        else:
+            snapshot = validate_snapshot(self.http.request(
+                self.local, "GET", "/api/state", maximum=MAX_LOCAL_BYTES))
+        if self.outputs is not None:
+            snapshot["outputs"] = self.outputs.snapshot()
+            if self.outputs_only:
+                snapshot["generated_at"] = self.clock()
+        envelope = {"version": 1, "relay_id": self.relay_id,
+                    "snapshot": snapshot, "acknowledgements": []}
+        while True:
+            try:
+                body = encode_object(envelope, MAX_SYNC_BYTES)
+                break
+            except RelayError as error:
+                lines = snapshot.get("outputs", {}).get("uart", {}).get("lines", [])
+                if str(error) != "State exceeds the cloud relay size limit" or not lines:
+                    raise
+                lines.pop(0)  # Preserve the newest actual lines if JSON escaping grows them.
         reply = self.http.request(self.cloud, "POST", "/api/relay/sync", body=body,
                                   token=self.token, accepted=(200, 202))
         if reply.get("ok") is not True or reply.get("commands") != []:
@@ -194,6 +218,10 @@ class CloudRelay:
             try:
                 link = self.sync_once()
                 message = f"Cloud relay connected; board source={link['source']}, status={link['status']}."
+                if self.outputs is not None:
+                    errors = self.outputs.errors()
+                    if errors:
+                        message += " " + " / ".join(errors)
                 failures = 0
             except RelayError as error:
                 message = f"Cloud relay waiting: {error}."
@@ -212,8 +240,16 @@ def main(argv=None):
     parser.add_argument("--token-prompt", action="store_true", help="Read the token silently from a terminal")
     parser.add_argument("--interval", type=float, default=1.0, help="Sync interval in seconds (0.5–5)")
     parser.add_argument("--once", action="store_true", help="Send one real local snapshot, then exit")
+    parser.add_argument("--outputs-only", action="store_true", help="Capture outputs without a local dashboard server")
+    parser.add_argument("--oled", action="store_true", help="Read the real verified framebuffer over ST-Link")
+    parser.add_argument("--oled-serial", help="Select an ST-Link probe serial (not a UART port)")
+    parser.add_argument("--elf", help="Exact running firmware ELF for OLED verification; matching BIN required")
+    uart = parser.add_mutually_exclusive_group()
+    uart.add_argument("--uart-port", help="Explicit POSIX 115200 8N1 port; close other serial readers first")
+    uart.add_argument("--uart-log", help="Tail an existing UART log without opening the serial port")
     args = parser.parse_args(argv)
     stopping = threading.Event()
+    outputs = None
     try:
         if not math.isfinite(args.interval) or not 0.5 <= args.interval <= 5:
             raise RelayError("Sync interval must be between 0.5 and 5 seconds")
@@ -225,10 +261,20 @@ def main(argv=None):
                 token = getpass.getpass("Cloud relay token (hidden): ")
         else:
             token = os.environ.get("GARDEN_GUARD_RELAY_TOKEN")
-        relay = CloudRelay(args.cloud_url, token, local_url=args.local_url)
+        if args.outputs_only or args.oled or args.uart_port or args.uart_log:
+            from output_capture import OutputCollector
+            outputs = OutputCollector(oled=args.oled, uart_port=args.uart_port,
+                                      uart_log=args.uart_log, oled_serial=args.oled_serial, elf=args.elf)
+        relay = CloudRelay(args.cloud_url, token, local_url=args.local_url,
+                           outputs=outputs, outputs_only=args.outputs_only)
+        if outputs is not None:
+            outputs.start()
         if args.once:
             link = relay.sync_once()
             print(f"State relayed; board source={link['source']}, status={link['status']}.", flush=True)
+            if outputs is not None:
+                for error in outputs.errors():
+                    print(error, file=sys.stderr)
             return 0
         signal.signal(signal.SIGINT, lambda *_: stopping.set())
         signal.signal(signal.SIGTERM, lambda *_: stopping.set())
@@ -239,6 +285,9 @@ def main(argv=None):
         return 1
     except (EOFError, KeyboardInterrupt):
         return 130
+    finally:
+        if outputs is not None:
+            outputs.close()
 
 
 if __name__ == "__main__":

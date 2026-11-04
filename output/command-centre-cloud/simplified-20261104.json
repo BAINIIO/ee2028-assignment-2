@@ -1,0 +1,72 @@
+{
+  "verified_on": "2026-11-04",
+  "timezone": "Asia/Singapore",
+  "project_id": "appgprj_6aeac35dea648191b1a9d079ee6c665b",
+  "version_id": "appgprj_6aeac35dea648191b1a9d079ee6c665b~appgver_149b7fd2f91c81918fb85530f4f3a0ee",
+  "version_number": 2,
+  "deployment_id": "appgdep_6aeac92d98fc81919b8e1edb2fbb55c7",
+  "cloud_source_commit": "83907d731683f2a92a0e77ce4e75cf72985dcc51",
+  "url": "https://garden-guard-gg01.spunkybroom4.chatgpt.site/drone/GG01",
+  "access": "public",
+  "page_sections": [
+    "OLED",
+    "UART"
+  ],
+  "refresh_seconds": 1,
+  "tests": {
+    "worker_sqlite": 25,
+    "output_capture_including_macos_pty": 8,
+    "https_relay": 12
+  },
+  "production_verification": {
+    "/app.css": {
+      "bytes": 1567,
+      "content_type": "text/css; charset=utf-8",
+      "status": 200
+    },
+    "/app.js": {
+      "bytes": 5774,
+      "content_type": "text/javascript; charset=utf-8",
+      "status": 200
+    },
+    "/drone/GG01": {
+      "bytes": 2389,
+      "content_type": "text/html; charset=utf-8",
+      "status": 200
+    },
+    "link": {
+      "age_ms": null,
+      "last_seen": null,
+      "source": "none",
+      "status": "offline",
+      "uart": false,
+      "wifi": false
+    },
+    "only_oled_and_uart_sections": true,
+    "outputs": {
+      "oled": null,
+      "uart": {
+        "lines": [],
+        "received_at": null,
+        "status": "offline"
+      }
+    },
+    "public_mission_status": 403,
+    "public_state": true,
+    "real_empty_output_collector_relay": true,
+    "telemetry": null,
+    "unauthenticated_upload_status": 401
+  },
+  "browser_visual_check": {
+    "viewport": [
+      1100,
+      760
+    ],
+    "two_output_panels": true
+  },
+  "hardware": {
+    "board_connected": false,
+    "live_output_bench_check": "pending_board_reconnection",
+    "firmware_changed": false
+  }
+}

@@ -1,6 +1,7 @@
 """Read-only relay contract tests; no board, credentials or Internet involved."""
 
 import contextlib
+import base64
 import copy
 import importlib.util
 import io
@@ -76,6 +77,47 @@ class CloudRelayTests(unittest.TestCase):
         client = FakeHTTP(state)
         relay.CloudRelay("https://cloud.example", TEST_TOKEN, http=client).sync_once()
         self.assertIsNone(json.loads(client.calls[-1][3]["body"])["snapshot"]["telemetry"])
+
+    def test_outputs_only_uses_real_frame_and_lines_without_local_http(self):
+        outputs = mock.Mock()
+        outputs.snapshot.return_value = {"oled": {
+            "width": 128, "height": 64, "format": "ssd1306-pages",
+            "data": base64.b64encode(bytes(range(256)) * 4).decode(),
+            "sequence": 2, "received_at": 1700000000.0, "status": "online"},
+            "uart": {"lines": [{"id": 1, "at": 1700000000.5, "text": "  Actual UART message  "}],
+                     "received_at": 1700000000.5, "status": "online"}}
+        client = FakeHTTP()
+        bridge = relay.CloudRelay("https://cloud.example", TEST_TOKEN, http=client,
+            outputs=outputs, outputs_only=True, relay_id="real-capture-session", clock=lambda: 1700000001.0)
+        bridge.sync_once()
+        self.assertEqual(len(client.calls), 1)
+        state = json.loads(client.calls[0][3]["body"])["snapshot"]
+        self.assertEqual(state["outputs"], outputs.snapshot.return_value)
+        self.assertIsNone(state["telemetry"])
+        self.assertEqual(state["link"], {"source": "none", "status": "offline", "wifi": False,
+                                         "uart": False, "last_seen": None, "age_ms": None})
+        self.assertEqual((state["server_instance"], state["revision"]), ("real-capture-session", 1))
+        self.assertEqual(state["generated_at"], 1700000001.0)
+        bridge.sync_once()
+        second = json.loads(client.calls[1][3]["body"])["snapshot"]
+        self.assertEqual(second["revision"], 2)
+        self.assertEqual(second["outputs"]["uart"]["received_at"], 1700000000.5)
+
+    def test_output_json_growth_prunes_old_lines_without_creating_readings(self):
+        outputs = mock.Mock()
+        outputs.snapshot.return_value = {"oled": None, "uart": {
+            "lines": [{"id": number, "at": 100.0, "text": "\x00" * 1000} for number in range(1, 25)],
+            "received_at": 100.0, "status": "offline"}}
+        client = FakeHTTP()
+        relay.CloudRelay("https://cloud.example", TEST_TOKEN, http=client,
+                         outputs=outputs, outputs_only=True).sync_once()
+        raw = client.calls[0][3]["body"]
+        self.assertLessEqual(len(raw), relay.MAX_SYNC_BYTES)
+        state = json.loads(raw)["snapshot"]
+        self.assertIsNone(state["telemetry"])
+        lines = state["outputs"]["uart"]["lines"]
+        self.assertLess(len(lines), 24)
+        self.assertEqual(lines[-1], {"id": 24, "at": 100.0, "text": "\x00" * 1000})
 
     def test_missing_local_api_does_not_publish_an_old_snapshot(self):
         client = FakeHTTP()

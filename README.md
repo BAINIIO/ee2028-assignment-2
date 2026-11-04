@@ -18,11 +18,12 @@ checked; opening the website alone does not establish live sensor delivery.
 The current wiring is listed above. The dashboard source is in
 `web/command-centre/dist/`.
 
-The [hosted dashboard](https://garden-guard-gg01.spunkybroom4.chatgpt.site/drone/GG01)
-opens over the Internet. See the [cloud hosting guide](docs/cloud-hosting.md)
-for the telemetry relay and new NFC URL. The page remains available when the
-Mac is off; live readings still require the board and gateway. The public
-dashboard is read-only, and native board Wi-Fi association remains unverified.
+The [hosted page](https://garden-guard-gg01.spunkybroom4.chatgpt.site/drone/GG01)
+shows just the actual **OLED image** and **UART messages**. See the
+[cloud hosting guide](docs/cloud-hosting.md) for the capture command and NFC
+URL. The page remains available when the Mac is off; live outputs require
+the board and capture relay. The public page is read-only, and native board
+Wi-Fi association remains unverified.
 
 Clone the private GitHub repository with an account that has access:
 

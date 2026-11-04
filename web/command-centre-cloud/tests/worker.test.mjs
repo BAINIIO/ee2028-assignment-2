@@ -24,6 +24,12 @@ function snapshot(overrides={}){return{
   revision:5,generated_at:BASE,server_instance:'local-server-one',telemetry:telemetry(),
   link:{source:'wifi',status:'online',wifi:true,uart:false,last_seen:BASE,age_ms:0},events:[],...overrides};}
 function empty(overrides={}){return snapshot({telemetry:null,link:{source:'none',status:'offline',wifi:false,uart:false,last_seen:null,age_ms:null},...overrides});}
+function outputs(overrides={}){return{
+  oled:{width:128,height:64,format:'ssd1306-pages',
+    data:Buffer.from(Array.from({length:1024},(_,i)=>i%256)).toString('base64'),
+    received_at:BASE,sequence:2,status:'online'},
+  uart:{lines:[{id:1,at:BASE,text:'  T=27.500 C\t<script>not HTML</script>  '}],received_at:BASE,status:'online'},
+  ...overrides};}
 function harness(){
   let now=BASE;const DB=new D1(),env={DB,RELAY_TOKEN:TOKEN},worker=createWorker({now:()=>now});
   return{DB,env,worker,setTime(value){now=value;},
@@ -47,17 +53,22 @@ test('an empty database returns offline null data and no synthetic readings',asy
   const h=harness(),state=await h.get();assert.equal(state.telemetry,null);assert.equal(state.link.source,'none');
   assert.equal(state.link.status,'offline');assert.equal(state.link.age_ms,null);assert.deepEqual(state.events,[]);
   assert.equal(state.permissions.mission_write,false);assert.equal(state.server.relay_status,'offline');
+  assert.deepEqual(state.outputs,{oled:null,uart:{lines:[],received_at:null,status:'offline'}});
 });
-test('embedded page and assets preserve the dashboard and expose no relay credential',async()=>{
+test('embedded OLED and UART page has no game widgets or exposed relay credential',async()=>{
   const h=harness();
   for(const path of ['/','/drone/GG01','/drone/GG01/','/app.css','/app.js']){
     const response=await h.worker.fetch(new Request(ORIGIN+path),h.env);assert.equal(response.status,200);
     const source=await response.text();assert.ok(source.length>100);assert.ok(!source.includes(TOKEN));
     assert.ok(!source.includes('Sites Worker ESM starter'));
   }
+  const page=await(await h.worker.fetch(new Request(ORIGIN),h.env)).text();
+  assert.match(page,/<h1[^>]*>OLED<\/h1>/);assert.match(page,/<h2[^>]*>UART<\/h2>/);
+  assert.equal((page.match(/<canvas\b/g)||[]).length,1);assert.equal((page.match(/<pre\b/g)||[]).length,1);
+  assert.doesNotMatch(page,/id="(?:sensor-grid|mission-options|history-chart|energy-meter)"/);
   const script=await(await h.worker.fetch(new Request(`${ORIGIN}/app.js`),h.env)).text();
-  assert.match(script,/setInterval\(fetchState,1000\)/);assert.doesNotMatch(script,/new EventSource/);
-  assert.match(script,/Cloud view is read-only/);
+  assert.match(script,/\/api\/state/);assert.doesNotMatch(script,/new EventSource/);
+  assert.doesNotMatch(script,/\/api\/mission/);
 });
 test('ingest requires the secret and never writes on failed authorization',async()=>{
   const h=harness();
@@ -160,4 +171,87 @@ test('public mission writes stay forbidden and relay never produces commands',as
   }
   assert.deepEqual((await h.upload(snapshot())).body.commands,[]);
   assert.equal((await h.upload(snapshot(),{envelope:{acknowledgements:[{id:'x',status:'delivered'}]}})).status,400);
+});
+test('legacy snapshots supply empty outputs without inventing frame or UART text',async()=>{
+  const h=harness();await h.upload(snapshot());
+  assert.deepEqual((await h.get()).outputs,{oled:null,uart:{lines:[],received_at:null,status:'offline'}});
+});
+test('output-only capture preserves exact frame bytes, raw text and source timestamps',async()=>{
+  const h=harness(),captured=outputs();captured.oled.private='discard';captured.uart.lines[0].html='discard';
+  const value=empty({outputs:captured});assert.equal((await h.upload(value)).status,202);
+  const state=await h.get();assert.equal(state.telemetry,null);assert.equal(state.link.status,'offline');
+  assert.equal(state.link.wifi,false);assert.equal(state.outputs.oled.status,'online');
+  assert.equal(state.outputs.oled.received_at,BASE);assert.equal(state.outputs.oled.sequence,2);
+  assert.deepEqual(Buffer.from(state.outputs.oled.data,'base64'),Buffer.from(captured.oled.data,'base64'));
+  assert.equal(state.outputs.oled.private,undefined);assert.equal(state.outputs.uart.lines[0].html,undefined);
+  assert.equal(state.outputs.uart.lines[0].text,captured.uart.lines[0].text);
+  assert.equal(state.outputs.uart.received_at,BASE);
+});
+test('frozen raw outputs age independently and retain the last captured content',async()=>{
+  const h=harness(),captured=outputs();await h.upload(empty({outputs:captured}));
+  h.setTime(BASE+4);let state=await h.get();
+  assert.equal(state.outputs.oled.status,'stale');assert.equal(state.outputs.uart.status,'stale');
+  h.setTime(BASE+11);state=await h.get();
+  assert.equal(state.outputs.oled.status,'offline');assert.equal(state.outputs.uart.status,'offline');
+  assert.equal(state.outputs.oled.data,captured.oled.data);assert.deepEqual(state.outputs.uart.lines,captured.uart.lines);
+  assert.equal(state.outputs.oled.received_at,BASE);assert.equal(state.outputs.uart.received_at,BASE);
+});
+test('a fresh relay upload never renews old output capture times or a closed channel',async()=>{
+  const h=harness(),captured=outputs();await h.upload(empty({outputs:captured}));h.setTime(BASE+12);
+  await h.upload(empty({revision:6,generated_at:BASE+12,outputs:captured}));
+  let state=await h.get();assert.equal(state.server.relay_status,'online');
+  assert.equal(state.outputs.oled.status,'offline');assert.equal(state.outputs.uart.status,'offline');
+  captured.oled.received_at=BASE+12;captured.oled.sequence=4;
+  captured.uart.status='offline';captured.uart.received_at=BASE+12;
+  await h.upload(empty({revision:7,generated_at:BASE+12,outputs:captured}));state=await h.get();
+  assert.equal(state.outputs.oled.status,'online');assert.equal(state.outputs.uart.status,'offline');
+});
+test('invalid OLED dimensions, byte count, encoding and incomplete sequences cannot write',async()=>{
+  const h=harness();
+  const invalid=[{width:64},{height:128},{format:'reconstructed-pixels'},{sequence:0},{sequence:3},
+    {data:Buffer.alloc(1023).toString('base64')},{data:Buffer.alloc(1025).toString('base64')},
+    {data:'!'.repeat(1366)+'=='},{received_at:BASE+301}];
+  const noncanonical=Buffer.alloc(1024).toString('base64');
+  invalid.push({data:noncanonical.slice(0,-3)+'B=='});
+  for(const change of invalid){const captured=outputs();Object.assign(captured.oled,change);
+    assert.equal((await h.upload(empty({outputs:captured}))).status,400);}
+  assert.equal(h.DB.count(),0);
+});
+test('UART limits count UTF-8 bytes, preserve whitespace and require ordered capture ids',async()=>{
+  const h=harness();
+  const invalid=[
+    {lines:Array.from({length:101},(_,id)=>({id,at:BASE,text:''}))},
+    {lines:[{id:1,at:BASE,text:'\u00e9'.repeat(1025)}]},
+    {lines:[{id:1,at:BASE,text:'a'},{id:1,at:BASE,text:'b'}]},
+    {lines:[{id:1,at:BASE,text:'a'}],received_at:null},
+    {lines:[],received_at:null,status:'online'},
+    {lines:[{id:1,at:BASE,text:42}]},
+    {lines:Array.from({length:100},(_,id)=>({id,at:BASE,text:'x'.repeat(id===99?241:240)}))},
+  ];
+  for(const change of invalid){const captured=outputs();Object.assign(captured.uart,change);
+    assert.equal((await h.upload(empty({outputs:captured}))).status,400);}
+  const captured=outputs({oled:null});captured.uart.lines=Array.from({length:100},(_,id)=>({id,at:BASE,text:' '.repeat(240)}));
+  assert.equal((await h.upload(empty({outputs:captured}))).status,202);
+  assert.equal((await h.get()).outputs.uart.lines[99].text,' '.repeat(240));
+});
+test('raw output termination is sticky and only a new session with fresh capture can clear it',async()=>{
+  const h=harness(),captured=outputs();captured.oled.status='terminated';
+  assert.equal((await h.upload(empty({outputs:captured}))).status,202);h.setTime(BASE+60);
+  let state=await h.get();assert.equal(state.link.status,'terminated');
+  assert.equal(state.outputs.oled.status,'terminated');assert.equal(state.outputs.uart.status,'terminated');
+  captured.oled.status='online';captured.oled.sequence=4;captured.oled.received_at=BASE+60;
+  assert.equal((await h.upload(empty({revision:6,generated_at:BASE+60,outputs:captured}))).status,409);
+  assert.equal((await h.upload(empty({server_instance:'local-server-two',revision:0,generated_at:BASE+60}))).status,409);
+  captured.oled.received_at=BASE;captured.uart.status='offline';
+  assert.equal((await h.upload(empty({server_instance:'local-server-two',revision:0,generated_at:BASE+60,outputs:captured}))).status,409);
+  captured.oled.received_at=BASE+60;
+  assert.equal((await h.upload(empty({server_instance:'local-server-two',revision:0,generated_at:BASE+60,outputs:captured}))).status,202);
+  state=await h.get();assert.equal(state.link.status,'offline');assert.equal(state.outputs.oled.status,'online');
+});
+test('a new UART capture session can resume after terminal silence with no OLED available',async()=>{
+  const h=harness(),captured=outputs({oled:null});captured.uart.status='terminated';
+  assert.equal((await h.upload(empty({outputs:captured}))).status,202);h.setTime(BASE+5);
+  captured.uart={lines:[{id:1,at:BASE+5,text:'Zombie game ready; sensors=0x3f/0x3f'}],received_at:BASE+5,status:'online'};
+  assert.equal((await h.upload(empty({server_instance:'local-server-two',revision:0,generated_at:BASE+5,outputs:captured}))).status,202);
+  assert.equal((await h.get()).outputs.uart.status,'online');
 });
