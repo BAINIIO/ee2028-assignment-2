@@ -1,0 +1,16 @@
+import {readFile,writeFile,mkdir,copyFile,rm} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import {resolve} from 'node:path';
+const root=resolve(fileURLToPath(new URL('..',import.meta.url)));
+const files=['index.html','app.css','app.js'];
+const assets=Object.fromEntries(await Promise.all(files.map(async name=>[name,await readFile(resolve(root,'assets',name),'utf8')])));
+const source=await readFile(resolve(root,'worker/index.js'),'utf8');
+const marker='const ASSETS = {}; // __GARDEN_GUARD_ASSETS__';
+if(!source.includes(marker))throw new Error('Worker asset embedding marker is missing.');
+const compiled=source.replace(marker,`const ASSETS = ${JSON.stringify(assets)};`);
+await rm(resolve(root,'dist'),{recursive:true,force:true});
+await mkdir(resolve(root,'dist/server'),{recursive:true});
+await mkdir(resolve(root,'dist/.openai'),{recursive:true});
+await writeFile(resolve(root,'dist/server/index.js'),compiled);
+await copyFile(resolve(root,'.openai/hosting.json'),resolve(root,'dist/.openai/hosting.json'));
+console.log('Built the Garden Guard Worker with embedded dashboard assets.');

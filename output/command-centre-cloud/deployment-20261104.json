@@ -1,0 +1,53 @@
+{
+  "verified_on": "2026-11-04",
+  "timezone": "Asia/Singapore",
+  "project_id": "appgprj_6aeac35dea648191b1a9d079ee6c665b",
+  "version_id": "appgprj_6aeac35dea648191b1a9d079ee6c665b~appgver_dc39bd0de1588191be208c59aa158685",
+  "version_number": 1,
+  "deployment_id": "appgdep_6aeac5b7bdfc81918618ced795b6324e",
+  "cloud_source_commit": "a1e345dbda568721773e1d8f01956f9c95eeca41",
+  "url": "https://garden-guard-gg01.spunkybroom4.chatgpt.site/drone/GG01",
+  "access": "public",
+  "mission_control": "read_only",
+  "tests": {
+    "worker_sqlite": 17,
+    "https_relay": 10,
+    "local_receiver": 10
+  },
+  "production_verification": {
+    "/app.css": {
+      "bytes": 23275,
+      "content_type": "text/css; charset=utf-8",
+      "status": 200
+    },
+    "/app.js": {
+      "bytes": 24125,
+      "content_type": "text/javascript; charset=utf-8",
+      "status": 200
+    },
+    "/drone/GG01": {
+      "bytes": 12084,
+      "content_type": "text/html; charset=utf-8",
+      "status": 200
+    },
+    "link": {
+      "age_ms": null,
+      "last_seen": null,
+      "source": "none",
+      "status": "offline",
+      "uart": false,
+      "wifi": false
+    },
+    "public_mission_status": 403,
+    "public_state": true,
+    "real_empty_receiver_relay": true,
+    "server_url": "https://garden-guard-gg01.spunkybroom4.chatgpt.site",
+    "telemetry": null,
+    "unauthenticated_upload_status": 401
+  },
+  "hardware": {
+    "board_connected": false,
+    "native_board_wifi": "not_yet_verified",
+    "nfc_tag_url": "earlier_local_URL_requires_reprogramming"
+  }
+}
