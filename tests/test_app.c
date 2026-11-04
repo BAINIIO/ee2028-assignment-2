@@ -92,6 +92,10 @@ static bool fake_rescue_second_sent;
 static bool fake_attacked_single_sent;
 static unsigned fake_late_edges;
 static bool fake_race_armed;
+static unsigned fake_nfc_inits, fake_nfc_polls, fake_nfc_polls_at_terminal;
+static unsigned fake_nfc_finish_calls, fake_nfc_edges;
+static uint32_t fake_nfc_last_edge_ms, fake_nfc_stop_ready_ms;
+static bool fake_nfc_stopping;
 
 static void send_edge(uint16_t pin)
 {
@@ -283,6 +287,7 @@ bool Board_UartWrite(const char *message_text)
         fake_sensor_count_at_terminal = fake_sensor_count;
         fake_motion_count_at_terminal = fake_motion_count;
         fake_external_polls_at_terminal = fake_external_polls;
+        fake_nfc_polls_at_terminal = fake_nfc_polls;
         fake_uart_idle_checks_at_terminal = fake_uart_idle_checks;
         for (size_t count = 0; count < fake_scenario.terminal_backlog; ++count)
             enqueue_uart("~", 1u);
@@ -368,6 +373,46 @@ ExternalColourSample External_GetColour(void)
     return result;
 }
 
+void Nfc_Init(const char *url, uint32_t now_ms)
+{
+    assert(strcmp(url, APP_NFC_DASHBOARD_URL) == 0);
+    assert(strstr(url, "https://") == url && now_ms == fake_tick);
+    ++fake_nfc_inits;
+}
+
+void Nfc_Poll(uint32_t now_ms, bool allow_update)
+{
+    assert(now_ms == fake_tick && !fake_nfc_stopping && fake_terminal_ms == 0u);
+    assert(allow_update == (game.mode == GAME_STANDBY));
+    ++fake_nfc_polls;
+}
+
+bool Nfc_Ready(void) { return fake_tick >= 100u && !fake_nfc_stopping; }
+bool Nfc_PopTap(uint32_t *time_ms) { (void)time_ms; return false; }
+uint32_t Nfc_Taps(void) { return 0u; }
+void Nfc_SignalEdge(uint32_t now_ms)
+{
+    assert(!fake_tick_suspended);
+    ++fake_nfc_edges;
+    fake_nfc_last_edge_ms = now_ms;
+}
+void Nfc_BeginStop(void)
+{
+    assert(!fake_nfc_stopping && !fake_tick_suspended);
+    fake_nfc_stopping = true;
+    fake_nfc_stop_ready_ms = fake_tick + 40u;
+}
+void Nfc_FinishStop(uint32_t now_ms)
+{
+    assert(fake_nfc_stopping && !fake_tick_suspended && now_ms == fake_tick);
+    ++fake_nfc_finish_calls;
+}
+bool Nfc_StopDone(void)
+{
+    assert(fake_nfc_stopping);
+    return fake_tick >= fake_nfc_stop_ready_ms;
+}
+
 static void reset_simulation(Scenario setup)
 {
     fake_scenario = setup;
@@ -398,6 +443,10 @@ static void reset_simulation(Scenario setup)
     fake_attacked_single_sent = false;
     fake_late_edges = 0;
     fake_race_armed = false;
+    fake_nfc_inits = fake_nfc_polls = fake_nfc_polls_at_terminal = 0u;
+    fake_nfc_finish_calls = fake_nfc_edges = 0u;
+    fake_nfc_last_edge_ms = fake_nfc_stop_ready_ms = 0u;
+    fake_nfc_stopping = false;
 
     /* Reset firmware static storage as a physical reset would. */
     memset(&game, 0, sizeof game);
@@ -460,6 +509,7 @@ static void test_controls_telemetry_and_sensor_recovery(void)
 {
     reset_simulation((Scenario){.threshold_changes = true, .stop_ms = 5600u});
     add_edge(70u, 1u); /* Unrelated EXTI does not become a user press. */
+    add_edge(80u, 0x0010u); /* NFC GPO belongs to NFC, not the user button. */
     add_edge(100u, BUTTON_EXTI13_Pin);
     add_edge(108u, BUTTON_EXTI13_Pin); /* Contact bounce. */
     add_edge(260u, BUTTON_EXTI13_Pin);
@@ -471,6 +521,12 @@ static void test_controls_telemetry_and_sensor_recovery(void)
     add_edge(4000u, BUTTON_EXTI13_Pin); /* Single ignored in standby. */
     assert(run_firmware() == SIM_LIMIT);
     assert(fake_edge_next == fake_edge_count);
+    assert(fake_nfc_inits == 1u && fake_nfc_polls > 0u);
+    assert(fake_nfc_edges == 1u && fake_nfc_last_edge_ms == 80u);
+    assert(count_messages("NFC READY:") == 1u);
+    assert(find_message("NFC READY:", 0u)->at_ms >= 100u);
+    assert(strstr(find_message("NFC READY:", 0u)->text,
+                  APP_NFC_DASHBOARD_URL "?mission=0") != NULL);
     assert(fake_edges_during_reads != 0u);
     assert(count_messages("Entering STANDBY MODE") == 2u);
     assert(count_messages("Entering BATTLE MODE") == 1u);
@@ -562,6 +618,8 @@ static void test_timeout_drains_then_silences_everything(bool jam_uart)
     assert(fake_sensor_count == fake_sensor_count_at_terminal);
     assert(fake_motion_count == fake_motion_count_at_terminal);
     assert(fake_external_polls == fake_external_polls_at_terminal);
+    assert(fake_nfc_polls == fake_nfc_polls_at_terminal);
+    assert(fake_nfc_stopping && fake_nfc_finish_calls > 0u);
     assert(fake_late_edges == 2u); /* Arriving after the deadline cannot rescue. */
     assert(strcmp(fake_display_mode, "TERMINATED") == 0);
     const ExternalDisplayFrame *final_frame =
@@ -662,6 +720,7 @@ static void test_startup_failure_halts_without_claiming_success(void)
     assert(fake_trace_count == 0u);
     assert(fake_sensor_count == 0u && fake_motion_count == 0u);
     assert(fake_external_inits == 0u);
+    assert(fake_nfc_inits == 0u && fake_nfc_polls == 0u);
 }
 
 int main(void)

@@ -1,0 +1,17 @@
+{
+  "site_url": "https://garden-guard-gg01.spunkybroom4.chatgpt.site/drone/GG01",
+  "site_version": 3,
+  "source_commit": "489d9728786d8e0dd479e339414ac4e42befe043",
+  "deployment_id": "appgdep_6aead120b6c08191a4f0b1c802a7775b",
+  "status": "succeeded",
+  "nfc_url": "https://garden-guard-gg01.spunkybroom4.chatgpt.site/drone/GG01?mission=0",
+  "nfc_verification": "Firmware committed and read back the NDEF image, then enabled RF. Smartphone opening is not simulated by this check.",
+  "validation": {
+    "c_suites_passed": 9,
+    "python_tests_passed": 30,
+    "python_tests_skipped": 1,
+    "website_tests_passed": 33,
+    "c_assertions_enabled": true,
+    "c_sanitizers_used": false
+  }
+}

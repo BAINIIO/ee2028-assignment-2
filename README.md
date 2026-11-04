@@ -116,6 +116,22 @@ Target sequences are deterministic and reproducible. The monochrome OLED disting
 
 ## Animated OLED game
 
+### Website display
+
+The existing [Garden Guard website](https://garden-guard-gg01.spunkybroom4.chatgpt.site/drone/GG01)
+shows the board's actual OLED framebuffer and UART text. On Windows, run
+`tools/website.ps1 -Port COM3` with the project virtual environment and pyserial
+installed. It discovers STM32CubeIDE and prompts silently for the relay token.
+Keep USB connected and the laptop awake and online. The relay captures up to 30 real frames per
+second, uploads batches every 250 ms and the browser plays them with a short
+500 ms buffer. See [website relay setup](docs/cloud-hosting.md) for details.
+
+The on-board NFC tag now opens the same hosted website. Firmware programs the
+URL at boot, verifies the EEPROM record, and prints `NFC READY` after success.
+Tap the board's printed NFC antenna with the top of your phone, then open the
+notification. The 4 November board check verified the hosted URL with zero NFC
+errors; the USB relay still supplies live website output.
+
 ### Live laptop display
 
 The original game can be shown in a laptop window while the STM32 runs the
@@ -154,7 +170,7 @@ For an explicitly labelled offline animation of the actual renderer, use
 
 The display uses original pixel artwork, with a swaying plant, walking targets, flying peas, hit bursts and result scenes. The HUD shows score, hearts, zombie progress and energy. `ZOMBIE` means charge to shoot; `HUMAN` / `HOLD FIRE` means let the friendly target pass. The energy meter follows the compulsory +3 charge / −5 automatic shot rules. An aim marker shows the reflective IR state and a small warning indicator shows abnormal or unavailable sensor readings.
 
-Frames are rendered every 33 ms (about 30 per second) for the laptop. The physical OLED remains limited by its 100 kHz I2C bus and sends the latest complete frame when it can, skipping superseded frames. Its driver sends one bounded 16-byte chunk per foreground iteration, so animation does not wait for a whole screen transfer or alter button deadlines. Each transfer uses an immutable snapshot. The display follows game events; projectile flight is a visual effect after the shot has been scored. Attacked mode takes priority and shows the rescue countdown; termination queues a static reset screen and drains pending output within its shutdown budget.
+Frames are rendered every 33 ms (about 30 per second) for the OLED and USB/web capture. The physical OLED uses a 400 kHz I2C bus and sends one bounded 32-byte chunk per foreground iteration, skipping superseded frames. Each transfer uses an immutable snapshot. A six-second measurement on 4 November recorded 183 completed OLED transfers in 6,035 ms (30.32 fps), with zero failures or recoveries, and 20.67 coherent USB frames per second. The display follows game events; projectile flight is a visual effect after the shot has been scored. Attacked mode takes priority and shows the rescue countdown; termination queues a static reset screen and drains pending output within its shutdown budget.
 
 A previously working OLED recovers from a failed transfer by retrying after one second and redrawing a complete current frame. Bus BUSY defers work. Recovery does not run during terminal shutdown; a missing display at boot is not repeatedly probed.
 

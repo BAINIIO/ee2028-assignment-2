@@ -19,7 +19,7 @@
 #define EXTERNAL_I2C_TIMEOUT_MS 5u
 #define EXTERNAL_OLED_TIMEOUT_MS 8u
 #define EXTERNAL_OLED_RETRY_MS 1000u
-#define EXTERNAL_OLED_CHUNK 16u
+#define EXTERNAL_OLED_CHUNK 32u
 #define TCS_COMMAND 0x80u
 #define TCS_AUTO_INCREMENT 0x20u
 #define TCS_REG_ENABLE 0x00u
@@ -75,8 +75,10 @@ static bool i2c_init(void)
     if (HAL_RCCEx_PeriphCLKConfig(&clock) != HAL_OK) return false;
     __HAL_RCC_I2C1_CLK_ENABLE();
     external_i2c.Instance = I2C1;
-    /* PRESC=3, SCLDEL=12, SDADEL=2, SCLH=89, SCLL=99: nominal 100 kHz. */
-    external_i2c.Init.Timing = 0x30c25963u;
+    /* ST's CubeL4 I2C_TwoBoards_MasterTx_SlaveRx example uses this
+     * CubeMX timing at 80 MHz / 400 kHz, analog filter on, digital filter 0
+     * (100 ns rise / 10 ns fall). External pull-ups must support Fast-mode. */
+    external_i2c.Init.Timing = APP_OLED_I2C_TIMING_80MHZ;
     external_i2c.Init.OwnAddress1 = 0;
     external_i2c.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
     external_i2c.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
@@ -199,6 +201,16 @@ static volatile uint32_t oled_failures;
 static volatile uint32_t oled_recoveries;
 static volatile uint32_t oled_last_status;
 static volatile uint32_t oled_last_error;
+/* Count only successfully completed physical frames, independently of the
+ * renderer / USB mirror. Read these over SWD to measure real OLED throughput. */
+static volatile uint32_t oled_frames_completed;
+static volatile uint32_t oled_last_frame_ms;
+static volatile uint32_t oled_last_transfer_ms;
+static volatile uint32_t oled_longest_transfer_ms;
+static uint32_t oled_transfer_started_ms;
+
+_Static_assert(sizeof oled_send_buffer % EXTERNAL_OLED_CHUNK == 0,
+               "OLED chunks must divide the complete framebuffer");
 
 static HAL_StatusTypeDef oled_write(uint8_t *bytes, uint16_t length)
 {
@@ -264,6 +276,7 @@ static void oled_poll(uint32_t now_ms, bool allow_recovery)
         oled_sending = true;
         oled_dirty = false;
         oled_offset = 0;
+        oled_transfer_started_ms = now_ms;
         return;                 /* At most one bounded OLED transaction per poll. */
     }
     uint8_t packet[EXTERNAL_OLED_CHUNK + 1];
@@ -273,7 +286,14 @@ static void oled_poll(uint32_t now_ms, bool allow_recovery)
     if (status == HAL_BUSY) return;
     if (status != HAL_OK) goto failed;
     oled_offset += EXTERNAL_OLED_CHUNK;
-    if (oled_offset >= sizeof oled_buffer) oled_sending = false;
+    if (oled_offset >= sizeof oled_buffer) {
+        oled_sending = false;
+        ++oled_frames_completed;
+        oled_last_frame_ms = HAL_GetTick();
+        oled_last_transfer_ms = oled_last_frame_ms - oled_transfer_started_ms;
+        if (oled_last_transfer_ms > oled_longest_transfer_ms)
+            oled_longest_transfer_ms = oled_last_transfer_ms;
+    }
     return;
 failed:
     oled_online = false;
@@ -470,6 +490,11 @@ void External_Init(uint32_t now_ms)
     oled_recoveries = 0;
     oled_last_status = (uint32_t)HAL_OK;
     oled_last_error = 0;
+    oled_frames_completed = 0;
+    oled_last_frame_ms = 0;
+    oled_last_transfer_ms = 0;
+    oled_longest_transfer_ms = 0;
+    oled_transfer_started_ms = now_ms;
     memset(oled_buffer, 0, sizeof oled_buffer);
     if (i2c_online) oled_init();
 #endif

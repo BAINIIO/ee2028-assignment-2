@@ -33,7 +33,7 @@ HAL_StatusTypeDef HAL_RCCEx_PeriphCLKConfig(const RCC_PeriphCLKInitTypeDef *cloc
 }
 HAL_StatusTypeDef HAL_I2C_Init(I2C_HandleTypeDef *handle)
 {
-    assert(handle->Instance == I2C1 && handle->Init.Timing == 0x30c25963u);
+    assert(handle->Instance == I2C1 && handle->Init.Timing == 0x00f02b86u);
     return HAL_OK;
 }
 HAL_StatusTypeDef HAL_I2CEx_ConfigAnalogFilter(I2C_HandleTypeDef *handle, uint32_t setting)
@@ -179,9 +179,45 @@ static void test_retry_backoff_and_absent_boot(void)
     assert(fake_transmits == previous && fake_probes == probes);
 }
 
+static void test_fast_frames_keep_transfer_snapshot_immutable(void)
+{
+    fake_present = true;
+    fake_i2c_busy = 0;
+    fake_next_status = HAL_OK;
+    External_Init(0);
+    assert(oled_frames_completed == 0u);
+    ExternalDisplayFrame first = { .scene = EXTERNAL_SCENE_BATTLE,
+        .target = EXTERNAL_COLOUR_RED, .energy = 3u, .lives = 3u,
+        .target_period_ms = 4000u, .goal_hits = 6u };
+    ExternalDisplayFrame second = first;
+    second.now_ms = 900u;
+    second.energy = 1u;
+    second.score = 15;
+    second.target = EXTERNAL_COLOUR_GREEN;
+    uint8_t expected_first[1024], expected_second[1024];
+    GameDisplay_Render(expected_first, &first);
+    GameDisplay_Render(expected_second, &second);
+    External_SetDisplay(&first);
+    unsigned before = fake_transmits;
+    poll(1u); /* Address then exactly 32 data calls, still one call per poll. */
+    for (uint32_t now = 2u; now <= 11u; ++now) poll(now);
+    assert(oled_sending && oled_offset == 320u);
+    External_SetDisplay(&second);
+    for (uint32_t now = 12u; now <= 33u; ++now) poll(now);
+    assert(fake_transmits - before == 33u && !oled_sending && oled_dirty);
+    assert(memcmp(fake_ram, expected_first, sizeof fake_ram) == 0);
+    assert(oled_frames_completed == 1u && oled_last_frame_ms == 33u);
+    assert(oled_last_transfer_ms == 32u && oled_longest_transfer_ms == 32u);
+    for (uint32_t now = 34u; !External_DisplayIdle(); ++now) poll(now);
+    assert(fake_transmits - before == 66u);
+    assert(memcmp(fake_ram, expected_second, sizeof fake_ram) == 0);
+    assert(oled_frames_completed == 2u);
+}
+
 int main(void)
 {
     test_busy_then_nack_recovery();
     test_retry_backoff_and_absent_boot();
-    puts("OLED transport tests passed: BUSY defer, partial NACK/full-frame recovery, backoff, terminal drain, absent module.");
+    test_fast_frames_keep_transfer_snapshot_immutable();
+    puts("OLED transport tests passed: Fast-mode, bounded 32-byte chunks, immutable frames, BUSY defer, partial NACK/full-frame recovery, backoff, terminal drain, absent module.");
 }

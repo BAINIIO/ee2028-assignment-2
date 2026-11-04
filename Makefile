@@ -33,7 +33,7 @@ OBJECTS := $(addprefix $(BUILD)/,$(SOURCES:.c=.o)) $(BUILD)/$(STARTUP:.s=.o)
 HOST_FLAGS := -std=c11 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror \
  -O1 -g -fsanitize=address,undefined -fno-sanitize-recover=all -ICore/Inc
 HOST_TESTS := $(patsubst tests/%.c,build/host/%,$(wildcard tests/test_*.c))
-PORTABLE_SOURCES := Core/Src/game.c Core/Src/button.c Core/Src/telemetry.c Core/Src/game_display.c
+PORTABLE_SOURCES := Core/Src/game.c Core/Src/button.c Core/Src/telemetry.c Core/Src/game_display.c Core/Src/nfc_ndef.c
 
 .PHONY: all host-test size clean help FORCE
 all: $(TARGET).elf $(TARGET).bin $(TARGET).hex size
@@ -74,6 +74,10 @@ build/host/test_app: tests/test_app.c tests/fakes/main.h Core/Src/main.c $(PORTA
 build/host/test_board_uart: tests/test_board_uart.c Core/Src/board_io.c $(wildcard Core/Inc/*.h) Makefile
 	@mkdir -p "$(@D)"
 	clang $(HOST_FLAGS) "$<" -o "$@"
+
+build/host/test_nfc_io: tests/test_nfc_io.c tests/fakes/nfc/stm32l4xx_hal.h Core/Src/nfc_io.c Core/Src/nfc_ndef.c $(wildcard Core/Inc/*.h) Makefile
+	@mkdir -p "$(@D)"
+	clang -Itests/fakes/nfc $(HOST_FLAGS) "$<" Core/Src/nfc_ndef.c -lm -o "$@"
 
 build/host/test_external_oled: tests/test_external_oled.c tests/fakes/stm32l4xx_hal.h Core/Src/external_io.c $(PORTABLE_SOURCES) $(wildcard Core/Inc/*.h) Makefile
 	@mkdir -p "$(@D)"

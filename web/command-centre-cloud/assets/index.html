@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111412">
+  <meta name="description" content="The board's OLED output and raw UART messages.">
+  <title>OLED / UART</title>
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <section aria-labelledby="oled-heading">
+      <header><h1 id="oled-heading">OLED</h1><p id="oled-status" class="status" data-state="offline">Offline</p></header>
+      <div id="oled-display" class="oled-display">
+        <canvas id="oled-canvas" width="128" height="64" role="img" aria-label="The board's latest OLED frame" hidden></canvas>
+        <p id="oled-empty" class="empty">No OLED frame received.</p>
+      </div>
+    </section>
+    <section aria-labelledby="uart-heading">
+      <header><h2 id="uart-heading">UART</h2><p id="uart-status" class="status" data-state="offline">Offline</p></header>
+      <div id="uart-display" class="uart-display" tabindex="0" aria-label="Raw UART messages">
+        <pre id="uart-text" hidden></pre>
+        <p id="uart-empty" class="empty">No UART messages received.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

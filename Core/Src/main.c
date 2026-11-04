@@ -6,6 +6,7 @@
 #include "external_io.h"
 #include "game.h"
 #include "telemetry.h"
+#include "nfc_io.h"
 #include <stdio.h>
 
 #define BUTTON_QUEUE_CAPACITY 32u
@@ -71,6 +72,8 @@ static void display_event(const GameEvent *event)
 /* EXTI records timestamps only. No I2C, UART or debounce waits in the ISR. */
 void HAL_GPIO_EXTI_Callback(uint16_t pin)
 {
+    /* ST25DV GPO on PE4 records RF-field edges without I2C in the ISR. */
+    if (pin == 0x0010u) { Nfc_SignalEdge(HAL_GetTick()); return; }
     if (pin != BUTTON_EXTI13_Pin) return;
     uint8_t next = (uint8_t)((edge_write + 1u) % BUTTON_QUEUE_CAPACITY);
     if (next == edge_read) {
@@ -253,6 +256,7 @@ static void update_display(uint32_t now)
 static void shutdown_system(void)
 {
     Board_LedWrite(false);
+    Nfc_BeginStop();
     update_display(HAL_GetTick());
     /* The full UART queue needs about 356 ms on the wire at 115200 8N1.
      * Allow the final OLED transfer too; finish sooner when both are idle. */
@@ -261,7 +265,9 @@ static void shutdown_system(void)
         Board_UartPoll();
         if ((uint32_t)(HAL_GetTick() - start) >= APP_SHUTDOWN_DRAIN_MS) break;
         External_FinishDisplay();
-        if (Board_UartIdle() && External_DisplayIdle()) break;
+        if ((uint32_t)(HAL_GetTick() - start) >= APP_SHUTDOWN_DRAIN_MS) break;
+        Nfc_FinishStop(HAL_GetTick());
+        if (Board_UartIdle() && External_DisplayIdle() && Nfc_StopDone()) break;
     }
     Board_UartStop();
     External_AllStop();
@@ -283,6 +289,7 @@ int main(void)
 {
     HAL_Init();
     if (!Board_Init()) Error_Handler();
+    Nfc_Init(APP_NFC_DASHBOARD_URL, HAL_GetTick());
     External_Init(HAL_GetTick());
     uint32_t now = HAL_GetTick();
     edge_read = edge_write; /* Discard presses during boot. */
@@ -312,6 +319,7 @@ int main(void)
     uint32_t last_display = now - APP_DISPLAY_PERIOD_MS;
     bool previous_warning = false;
     bool previous_display_online = External_DisplayOnline();
+    bool previous_nfc_ready = false;
 
     for (;;) {
         handle_buttons();
@@ -355,6 +363,23 @@ int main(void)
         }
 
         External_Poll(now);
+        /* At most one bounded I2C2 transaction; sensors keep their schedule.
+         * Ready means the committed NDEF bytes were read back successfully. */
+        Nfc_Poll(HAL_GetTick(), game.mode == GAME_STANDBY);
+        bool nfc_ready = Nfc_Ready();
+        if (nfc_ready && !previous_nfc_ready) {
+            char notice[256];
+            (void)snprintf(notice, sizeof notice,
+                "NFC READY: %s?mission=0 | tap the board NFC antenna\r\n",
+                APP_NFC_DASHBOARD_URL);
+            uart_message(notice);
+        }
+        previous_nfc_ready = nfc_ready;
+        if (Nfc_PopTap(NULL)) {
+            (void)snprintf(message, sizeof message,
+                "NFC CHECK-IN: RF field detected #%lu\r\n", (unsigned long)Nfc_Taps());
+            uart_message(message);
+        }
         bool display_online = External_DisplayOnline();
         if (display_online != previous_display_online) {
             uart_message(display_online ? "DISPLAY: OLED recovered\r\n" :

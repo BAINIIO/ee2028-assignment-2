@@ -1,0 +1,9 @@
+{
+  "requests": 27,
+  "unique_real_frames": 181,
+  "capture_fps": 21.02,
+  "latest_batch_frames": 20,
+  "oled_status": "online",
+  "uart_status": "online",
+  "tested_hosted_script_matches": true
+}

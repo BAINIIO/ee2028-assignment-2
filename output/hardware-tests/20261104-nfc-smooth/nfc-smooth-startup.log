@@ -1,0 +1,13 @@
+Entering STANDBY MODE
+Zombie game ready; sensors=0x3f/0x3f; OLED=online; IR=enabled; buzzer=configured
+Keep board still and upright at boot to calibrate orientation.
+NFC READY: https://garden-guard-gg01.spunkybroom4.chatgpt.site/drone/GG01?mission=0 | tap the board NFC antenna
+NFC CHECK-IN: RF field detected #1
+T: 30.88 degC, P: 1008.14 hPa, H: 44.78 %RH, A: [0.23,-0.14,10.02] m/s^2, G: [0.42,-2.17,0.35] deg/s, M: [-79.51,-174.50,-23.10] uT
+T: 30.86 degC, P: 1008.03 hPa, H: 44.78 %RH, A: [0.22,-0.14,10.01] m/s^2, G: [0.42,-2.24,0.35] deg/s, M: [-78.90,-174.27,-23.53] uT
+T: 30.90 degC, P: 1008.16 hPa, H: 44.71 %RH, A: [0.23,-0.14,10.01] m/s^2, G: [0.35,-2.31,0.35] deg/s, M: [-79.37,-174.13,-22.62] uT
+T: 30.86 degC, P: 1008.14 hPa, H: 44.89 %RH, A: [0.23,-0.14,10.00] m/s^2, G: [0.42,-2.31,0.35] deg/s, M: [-78.48,-174.26,-22.57] uT
+T: 30.90 degC, P: 1008.15 hPa, H: 44.76 %RH, A: [0.23,-0.14,10.00] m/s^2, G: [0.35,-2.24,0.35] deg/s, M: [-78.25,-174.10,-22.85] uT
+T: 30.84 degC, P: 1008.10 hPa, H: 44.72 %RH, A: [0.23,-0.14,10.00] m/s^2, G: [0.35,-2.24,0.35] deg/s, M: [-78.95,-174.16,-22.75] uT
+T: 30.88 degC, P: 1008.15 hPa, H: 44.92 %RH, A: [0.22,-0.14,10.00] m/s^2, G: [0.35,-2.24,0.35] deg/s, M: [-79.30,-173.71,-23.25] uT
+T: 30.86 degC, P: 1008.10 hPa, H: 44.90 %RH, A: [0.23,-0.14,10.01] m/s^2, G: [0.35,-2.24,0.35] deg/s, M: [-78.71,-174.24,-24.01] uT

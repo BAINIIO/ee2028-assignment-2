@@ -12,6 +12,12 @@
 #ifndef APP_ENABLE_COLOUR
 #define APP_ENABLE_COLOUR 0
 #endif
+#ifndef APP_ENABLE_NFC
+#define APP_ENABLE_NFC 1
+#endif
+#ifndef APP_NFC_DASHBOARD_URL
+#define APP_NFC_DASHBOARD_URL "https://garden-guard-gg01.spunkybroom4.chatgpt.site/drone/GG01"
+#endif
 #ifndef APP_ENABLE_IR
 #define APP_ENABLE_IR 1
 #endif
@@ -53,8 +59,8 @@
 #define APP_SENSOR_PERIOD_MS 1000u
 #define APP_MOTION_PERIOD_MS 50u
 #define APP_EXTERNAL_PERIOD_MS 150u
-/* About 30 fps for the laptop. The OLED sends complete snapshots at the
- * slower rate supported by its 100 kHz bus, skipping superseded frames. */
+/* About 30 fps for USB / web capture and the Fast-mode I2C OLED. Complete
+ * immutable OLED snapshots skip superseded frames if the bus falls behind. */
 #define APP_DISPLAY_PERIOD_MS 33u
 #define APP_DEBOUNCE_MS 30u
 #define APP_DOUBLE_PRESS_MS 500u
@@ -75,6 +81,13 @@
 
 /* External I2C modules use I2C1 on PB8/PB9, separate from on-board I2C2. */
 #define APP_OLED_ADDRESS 0x3cu
+/* STM32CubeL4's 80 MHz / 400 kHz Fast-mode timing. Override with the
+ * previous 100 kHz value 0x30c25963u if a long bus cannot meet Fast-mode.
+ * Source: STMicroelectronics/STM32CubeL4, NUCLEO-L476RG/Examples_LL/I2C/
+ * I2C_TwoBoards_MasterTx_SlaveRx/Src/main.c (rise 100 ns, fall 10 ns). */
+#ifndef APP_OLED_I2C_TIMING_80MHZ
+#define APP_OLED_I2C_TIMING_80MHZ 0x00f02b86u
+#endif
 #define APP_COLOUR_ADDRESS 0x29u
 #define APP_COLOUR_MIN_CLEAR 40u
 #define APP_COLOUR_RATIO 1.35f

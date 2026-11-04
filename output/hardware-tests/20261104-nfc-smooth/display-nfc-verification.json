@@ -1,0 +1,27 @@
+{
+  "method": "verified ELF/BIN; read-only SWD without halt, reset or injected inputs",
+  "physical_oled": {
+    "online": true,
+    "completed_frames": 183,
+    "measurement_ms": 6035,
+    "frames_per_second": 30.32,
+    "failures_before": 0,
+    "failures_after": 0,
+    "recoveries": 0,
+    "last_transfer_ms": 31,
+    "longest_transfer_ms": 59
+  },
+  "usb_capture": {
+    "frames": 124,
+    "seconds": 6.0,
+    "frames_per_second": 20.67
+  },
+  "nfc": {
+    "online": true,
+    "ready": true,
+    "errors": 0,
+    "image_size": 76,
+    "verified_ndef_url": "https://garden-guard-gg01.spunkybroom4.chatgpt.site/drone/GG01?mission=0",
+    "ndef_hex": "e14040000345d10141550467617264656e2d67756172642d676730312e7370756e6b7962726f6f6d342e636861746770742e736974652f64726f6e652f474730313f6d697373696f6e3d30fe"
+  }
+}
