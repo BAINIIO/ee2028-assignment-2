@@ -1,0 +1,27 @@
+{
+  "method": "verified ELF/BIN; read-only SWD without halt, reset or injected inputs",
+  "physical_oled": {
+    "online": true,
+    "completed_frames": 30,
+    "measurement_ms": 1008,
+    "frames_per_second": 29.76,
+    "failures_before": 0,
+    "failures_after": 0,
+    "recoveries": 0,
+    "last_transfer_ms": 26,
+    "longest_transfer_ms": 50
+  },
+  "usb_capture": {
+    "frames": 30,
+    "seconds": 1.0,
+    "frames_per_second": 30.0
+  },
+  "nfc": {
+    "online": true,
+    "ready": true,
+    "errors": 0,
+    "image_size": 70,
+    "verified_ndef_url": "https://garden-guard.brian-ee2028.workers.dev/drone/GG01?mission=0",
+    "ndef_hex": "e1404000033fd1013b550467617264656e2d67756172642e627269616e2d6565323032382e776f726b6572732e6465762f64726f6e652f474730313f6d697373696f6e3d30fe"
+  }
+}

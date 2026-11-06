@@ -272,13 +272,23 @@ class SerialUartCapture(UartBuffer):
             self.active = False
             if fd is not None:
                 try:
-                    if original is not None:
-                        termios.tcsetattr(fd, termios.TCSANOW, original)
-                    if hasattr(termios, "TIOCNXCL"):
-                        fcntl.ioctl(fd, termios.TIOCNXCL)
-                except OSError:
-                    pass
-                os.close(fd)
+                    try:
+                        if original is not None:
+                            termios.tcsetattr(fd, termios.TCSANOW, original)
+                    except (OSError, termios.error):
+                        # macOS raises termios.error after a USB disconnect;
+                        # it is not an OSError on every supported Python.
+                        pass
+                    try:
+                        if hasattr(termios, "TIOCNXCL"):
+                            fcntl.ioctl(fd, termios.TIOCNXCL)
+                    except OSError:
+                        pass
+                finally:
+                    try:
+                        os.close(fd)
+                    except OSError:
+                        pass
 
     def _run_windows(self):
         try:

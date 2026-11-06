@@ -1,0 +1,35 @@
+{
+  "verified_on": "2026-11-06",
+  "timezone": "Asia/Singapore",
+  "probe_serial": "0667FF515652787187041646",
+  "board": "STM32L4S5I-DK",
+  "firmware_source_commit": "518dbf3",
+  "firmware_bin_sha256": "abce3adce4877a53f63181f734f94390930bb8b389f6eb2ea200cbbe6eaf9aad",
+  "flash_verified": true,
+  "startup_uart": "Zombie game ready; sensors=0x3f/0x3f; OLED=online; IR=enabled; buzzer=configured",
+  "all_six_sensors_detected": true,
+  "nfc_ready_uart_observed": true,
+  "site_url": "https://garden-guard.brian-ee2028.workers.dev/drone/GG01",
+  "tera_term": {
+    "connected_clients": 1,
+    "shared_feed_origin": "https://garden-guard.brian-ee2028.workers.dev",
+    "bytes_delivered": 271058,
+    "last_error": null
+  },
+  "observed_uart_warning": {
+    "sensor": "magnetometer",
+    "approximate_magnitude_uT": 236,
+    "configured_upper_limit_uT": 200
+  },
+  "original_flash_backup": {
+    "local_path": "build/recovery-20261106-0667FF515652787187041646/before-flash.bin",
+    "bytes": 2097152,
+    "sha256": "ab7111edd82d1640e1f25e51edb3b080f07335c71db217ba41a4007ab4f73a84",
+    "committed": false
+  },
+  "host_cleanup_regression_tests": {
+    "capture": 15,
+    "relay": 18,
+    "hardware_inputs": "mocked and local PTY only"
+  }
+}

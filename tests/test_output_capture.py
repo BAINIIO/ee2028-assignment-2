@@ -1,6 +1,7 @@
 """Bounded raw-output collector tests; fake transport and temporary UART logs only."""
 
 import base64
+import errno
 import importlib.util
 import os
 from pathlib import Path
@@ -242,6 +243,84 @@ class OutputCaptureTests(unittest.TestCase):
             source._run()
         self.assertIn("requires pyserial", source.error)
         self.assertEqual(source.snapshot()["status"], "offline")
+
+    @unittest.skipUnless(os.name == "posix", "POSIX serial cleanup only")
+    def test_posix_unplug_restore_error_still_releases_and_closes_descriptor(self):
+        import fcntl
+        import select
+        import termios
+        fd = 123
+        for release_fails in (False, True):
+            with self.subTest(release_fails=release_fails):
+                original = [0, 0, 0, 0, 0, 0, [0] * 32]
+                attributes = [0, 0, 0, 0, 0, 0, [0] * 32]
+                def ioctl(_fd, request):
+                    if release_fails and request == getattr(termios, "TIOCNXCL", None):
+                        raise OSError(errno.ENXIO, "Device not configured")
+                source = capture.SerialUartCapture("unused-test-port", clock=lambda: 100.0)
+                with patch.object(capture.os, "open", return_value=fd), \
+                        patch.object(fcntl, "flock"), \
+                        patch.object(fcntl, "ioctl", side_effect=ioctl) as release, \
+                        patch.object(termios, "tcgetattr", side_effect=[original, attributes]), \
+                        patch.object(termios, "tcsetattr", side_effect=[
+                            None, termios.error(errno.ENXIO, "Device not configured")]), \
+                        patch.object(select, "select", return_value=([fd], [], [])), \
+                        patch.object(capture.os, "read", side_effect=[
+                            b"Actual UART before unplug  \r\n",
+                            OSError(errno.ENXIO, "Device not configured")]), \
+                        patch.object(capture.os, "close") as close:
+                    source._run()
+                close.assert_called_once_with(fd)
+                if hasattr(termios, "TIOCNXCL"):
+                    self.assertIn(unittest.mock.call(fd, termios.TIOCNXCL), release.call_args_list)
+                self.assertIn("Device not configured", source.error)
+                result = source.snapshot()
+                self.assertEqual(result["status"], "offline")
+                self.assertEqual(result["received_at"], 100.0)
+                self.assertEqual(result["lines"], [{"id": 1, "at": 100.0,
+                                                  "text": "Actual UART before unplug  "}])
+
+    @unittest.skipUnless(os.name == "posix", "PTY serial capture is POSIX-only")
+    def test_real_posix_uart_hangup_closes_descriptor_without_thread_error(self):
+        master, slave = os.openpty()
+        port = os.ttyname(slave)
+        os.close(slave)
+        opened = []
+        thread_errors = []
+        real_open = os.open
+        def record_open(*args, **kwargs):
+            fd = real_open(*args, **kwargs)
+            opened.append(fd)
+            return fd
+        source = capture.SerialUartCapture(port, clock=lambda: 100.0)
+        try:
+            with patch.object(capture.os, "open", side_effect=record_open), \
+                    patch.object(threading, "excepthook", side_effect=thread_errors.append):
+                source.start()
+                deadline = time.monotonic() + 2
+                while not source.active and source.error is None and time.monotonic() < deadline:
+                    time.sleep(0.01)
+                self.assertTrue(source.active, source.error)
+                os.write(master, b"Last real PTY message\r\n")
+                while not source.snapshot()["lines"] and time.monotonic() < deadline:
+                    time.sleep(0.01)
+                self.assertEqual(source.snapshot()["lines"][0]["text"], "Last real PTY message")
+                os.close(master)
+                master = None
+                source.thread.join(2)
+                self.assertFalse(source.thread.is_alive())
+                self.assertEqual(thread_errors, [])
+                self.assertFalse(source.active)
+                self.assertEqual(source.snapshot()["status"], "offline")
+                self.assertEqual(source.snapshot()["received_at"], 100.0)
+                self.assertEqual(len(opened), 1)
+                with self.assertRaises(OSError) as error:
+                    os.fstat(opened[0])
+                self.assertEqual(error.exception.errno, errno.EBADF)
+        finally:
+            source.close()
+            if master is not None:
+                os.close(master)
 
     @unittest.skipUnless(os.name == "posix", "PTY serial capture is POSIX-only")
     def test_real_posix_uart_path_with_pty_and_exclusive_cleanup(self):
