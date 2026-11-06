@@ -1,0 +1,21 @@
+{
+  "verified_on": "2026-11-06",
+  "timezone": "Asia/Singapore",
+  "probe_serial": "0667FF515652787187041646",
+  "magnetometer_upper_limit_uT": 300,
+  "warning_only_behavior_preserved": true,
+  "normal_uart_visible": true,
+  "normal_sensor_lines_observed": 49,
+  "latest_actual_sensor_line": "T: 32.16 degC, P: 1003.77 hPa, H: 70.80 %RH, A: [0.18,0.09,10.03] m/s^2, G: [0.35,-2.31,0.42] deg/s, M: [-19.01,-234.50,-11.66] uT",
+  "uart_status": "online",
+  "oled_status": "online",
+  "firmware_bin_sha256": "82e5c5bd8ba33572395d78ba88dc47588af480a2a5988f37ea105a6dce416087",
+  "c_host_suites_passed": 9,
+  "host_boundary_checks_uT": {
+    "236": "normal all-six output",
+    "300": "normal inclusive limit",
+    "301": "warning-only output",
+    "recovery_to_236": "normal output resumes"
+  },
+  "telemetry_formatter_source_changed": false
+}

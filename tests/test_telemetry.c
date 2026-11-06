@@ -48,6 +48,24 @@ int main(void)
     assert(Telemetry_Format(&sample, text, sizeof text));
     assert(strstr(text, "WARNING") == NULL); /* automatically resumes */
 
+    /* The replacement board's ~236 uT baseline must retain all six readings;
+     * warning-only output begins strictly above the configured 300 uT limit. */
+    sample.magnetic_ut[0] = 236.0f;
+    sample.magnetic_ut[1] = sample.magnetic_ut[2] = 0.0f;
+    assert(Telemetry_Check(&sample).abnormal == 0u);
+    assert(Telemetry_Format(&sample, text, sizeof text));
+    assert(strstr(text, "T:") != NULL && strstr(text, "M: [236.00,0.00,0.00] uT") != NULL);
+    sample.magnetic_ut[0] = APP_MAG_MAX_UT;
+    assert(Telemetry_Check(&sample).abnormal == 0u);
+    sample.magnetic_ut[0] = APP_MAG_MAX_UT + 1.0f;
+    assert(Telemetry_Check(&sample).abnormal == SENSOR_MAGNETOMETER);
+    assert(Telemetry_Format(&sample, text, sizeof text));
+    assert(strstr(text, "WARNING M magnitude: 301.00 uT") != NULL);
+    assert(strstr(text, "T:") == NULL); /* Preserve compulsory suppression. */
+    sample.magnetic_ut[0] = 236.0f;
+    assert(Telemetry_Format(&sample, text, sizeof text));
+    assert(strstr(text, "WARNING") == NULL && strstr(text, "T:") != NULL);
+
     sample.acceleration_ms2[0] = INFINITY;
     assert((Telemetry_Check(&sample).unavailable & SENSOR_ACCELEROMETER) != 0u);
     memset(text, 'x', sizeof text);

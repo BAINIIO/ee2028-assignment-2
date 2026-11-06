@@ -52,9 +52,11 @@ The extra game round result is distinct from compulsory termination. Victory or 
 
 The UART prints all three axes with units for A/G/M when no threshold is violated. Thresholds for these vectors use Euclidean magnitude, `sqrt(x²+y²+z²)`. A failed read clears its validity and exposes unavailable data rather than a fabricated zero. Runtime I2C transactions use a 5 ms HAL timeout and reject a pre-existing BUSY flag before entering HAL's separate busy wait. Initialized sensor health can be inspected through `Board_SensorHealth`; the first connected-board snapshot confirmed valid converted values after conversion began, but did not calibrate their accuracy.
 
-## Starting thresholds and calibration
+## Current thresholds and calibration
 
 These are engineering starting values, not measured laboratory limits or universal safety limits. Values exactly on a boundary are accepted. Tune `Core/Inc/app_config.h`, then rebuild and record the change and its measured reason.
+
+The magnetic-field upper limit is now the user-selected **300 µT** default (6 November 2026), raised from the initial 200 µT. The dated warning and recovery observations above retain their original 200 µT threshold; the change does not establish calibrated sensor accuracy.
 
 | Sensor | Accepted range | Initial reasoning and calibration task |
 | --- | --- | --- |
@@ -63,7 +65,7 @@ These are engineering starting values, not measured laboratory limits or univers
 | Humidity | 20–85 %RH | Broad comfort/operating envelope. Compare against a reference meter where available and record room variation. |
 | Acceleration magnitude | 0–30 m/s² | Approximately 3 g marks a large disturbance relative to the ~9.81 m/s² resting magnitude. A ±2 g sensor can clip; this is not a calibrated impact recorder. |
 | Angular-rate magnitude | 0–250 °/s | Indicates rapid rotation. A smooth flip can trigger an attack without necessarily exceeding this independent warning threshold. |
-| Magnetic-field magnitude | 0–200 µT | Separates a broad normal Earth-field range from a nearby strong magnetic disturbance; local metal and electronics require a measured baseline. |
+| Magnetic-field magnitude | 0–300 µT | User-selected warning limit; local metal and electronics require a measured baseline and physical justification. |
 
 For each sensor, record at least a quiet baseline, expected handling variation, chosen threshold, the resulting warning log and recovery. Do not heat, wet or impact the board merely to force a threshold. A clearly declared debugger-injected demonstration can show logic when environmental manipulation is impractical; see the [demo checklist](demo-checklist.md).
 

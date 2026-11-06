@@ -77,7 +77,7 @@
 #define APP_HUMIDITY_MAX_PCT 85.0f
 #define APP_ACCEL_MAX_MS2 30.0f
 #define APP_GYRO_MAX_DPS 250.0f
-#define APP_MAG_MAX_UT 200.0f
+#define APP_MAG_MAX_UT 300.0f
 
 /* External I2C modules use I2C1 on PB8/PB9, separate from on-board I2C2. */
 #define APP_OLED_ADDRESS 0x3cu

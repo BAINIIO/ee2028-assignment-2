@@ -323,11 +323,13 @@ units. If any quantity is abnormal or unavailable, `Telemetry_Format()` emits
 the relevant warning lines and suppresses the normal complete reading.
 Normal reporting resumes when all quantities recover.
 
-The 200 microtesla magnetic limit is an empirical starting point. Readings
-around 233 microtesla in a recorded session explain repeated magnetic warnings;
-they do not establish calibration or the cause of that field. Thresholds need
-a measured baseline and a physical explanation. Pressure is reported directly;
-this code does not calculate calibrated altitude from it.
+The current magnetic limit is 300 microtesla, selected by the user on
+6 November 2026. Earlier recorded sessions used the initial 200 microtesla
+limit; readings around 233 microtesla explain repeated warnings under that
+earlier setting. Neither the measurements nor the threshold change establish
+calibration or the cause of that field. Thresholds need a measured baseline
+and a physical explanation. Pressure is reported directly; this code does not
+calculate calibrated altitude from it.
 
 ## 10. Detecting attack and timing rescue
 
