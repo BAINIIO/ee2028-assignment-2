@@ -1,2 +1,6 @@
 dist/
 site.tar.gz
+.wrangler/
+.dev.vars
+.dev.vars.*
+node_modules/

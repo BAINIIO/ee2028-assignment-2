@@ -1,0 +1,40 @@
+{
+  "verified_on": "2026-11-06",
+  "timezone": "Asia/Singapore",
+  "provider": "Cloudflare Workers",
+  "site_url": "https://garden-guard.brian-ee2028.workers.dev/drone/GG01",
+  "worker": "garden-guard",
+  "worker_version_id": "c03c5016-aeb9-4e89-8a8f-1178c79c8eb8",
+  "database_name": "garden-guard",
+  "database_id": "850821f6-bd1f-4a8a-906b-e0d4805b5be6",
+  "source_base_commit": "0b095c707d5ab608f402f82a01632c33f625e13f",
+  "firmware_bin_sha256": "abce3adce4877a53f63181f734f94390930bb8b389f6eb2ea200cbbe6eaf9aad",
+  "worker_entry_input_sha256": "115c667419ac290fe4acf4bfc4bb4563f4042a69ac87592756880438cbc3fe48",
+  "probe_serial": "066EFF3231454D3043044250",
+  "original_flash_backup": {
+    "path": "build/recovery-20261106/before-website-recovery.bin",
+    "bytes": 2097152,
+    "sha256": "ecb28908a1733597494ef5ba66e9ff62abdde4de9d11e34bb12c250ba769284b",
+    "committed": false
+  },
+  "validation": {
+    "c_suites_passed": 9,
+    "c_sanitizers": "ASan+UBSan",
+    "python_tests_passed": 31,
+    "worker_tests_passed": 33,
+    "wrangler_dry_run_passed": true
+  },
+  "live_evidence": [
+    "display-nfc-verification.json",
+    "website-stream-verification.json"
+  ],
+  "nfc_phone_tap": "not separately observed in this run",
+  "tera_term": {
+    "transport": "read-only local TCP mirror of real UART capture",
+    "host": "127.0.0.1",
+    "port": 8023,
+    "shared_with_website": true
+  },
+  "runtime_secrets": "Cloudflare secret and gateway process memory; no secrets committed",
+  "limits": "Keep gateway awake/USB connected. Free plan daily request/write quotas apply."
+}

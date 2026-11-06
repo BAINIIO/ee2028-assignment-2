@@ -1,0 +1,95 @@
+{
+  "verified_at": "2026-11-06T09:47:39.261025+00:00",
+  "endpoint": "https://garden-guard.brian-ee2028.workers.dev/api/state",
+  "method": "Public HTTPS GET only; no authentication, uploads, hardware or serial access. API frame and UART bodies are omitted from this report.",
+  "public_pages": [
+    {
+      "path": "/",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "section_count": 2,
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "OLED"
+        },
+        {
+          "tag": "h2",
+          "text": "UART"
+        }
+      ],
+      "password_inputs": 0,
+      "authentication_forms": 0,
+      "www_authenticate_present": false
+    },
+    {
+      "path": "/drone/GG01",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "section_count": 2,
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "OLED"
+        },
+        {
+          "tag": "h2",
+          "text": "UART"
+        }
+      ],
+      "password_inputs": 0,
+      "authentication_forms": 0,
+      "www_authenticate_present": false
+    }
+  ],
+  "observation_seconds": 10.51,
+  "first": {
+    "seconds": 0.26,
+    "revision": 246,
+    "board_link_source": "none",
+    "board_link_status": "offline",
+    "telemetry_is_null": true,
+    "oled_status": "online",
+    "oled_age_ms": 400,
+    "sequence": 11080,
+    "batch_frames": 20,
+    "frame_bytes": 1024,
+    "uart_status": "online",
+    "uart_age_ms": 1164,
+    "uart_lines": 62,
+    "last_uart_id": 62
+  },
+  "last": {
+    "seconds": 10.21,
+    "revision": 286,
+    "board_link_source": "none",
+    "board_link_status": "offline",
+    "telemetry_is_null": true,
+    "oled_status": "online",
+    "oled_age_ms": 217,
+    "sequence": 11698,
+    "batch_frames": 20,
+    "frame_bytes": 1024,
+    "uart_status": "online",
+    "uart_age_ms": 1181,
+    "uart_lines": 72,
+    "last_uart_id": 72
+  },
+  "requests_ok": 19,
+  "errors": {},
+  "output_status_pairs": [
+    {
+      "oled": "online",
+      "uart": "online"
+    }
+  ],
+  "observed_unique_real_frames": 289,
+  "distinct_pixel_images": 119,
+  "frame_receipt_span_seconds": 10.126,
+  "observed_capture_fps": 28.44,
+  "batch_frames_min": 20,
+  "batch_frames_max": 20,
+  "oled_age_ms_max": 439,
+  "uart_age_ms_max": 1352,
+  "all_sensor_telemetry_null": true
+}

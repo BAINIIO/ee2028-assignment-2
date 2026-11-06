@@ -1,0 +1,18 @@
+{
+  "name": "garden-guard",
+  "main": "dist/server/index.js",
+  "compatibility_date": "2026-11-06",
+  "workers_dev": true,
+  "build": {
+    "command": "node scripts/embed-assets.mjs"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "garden-guard",
+      "database_id": "850821f6-bd1f-4a8a-906b-e0d4805b5be6",
+      "migrations_dir": "drizzle"
+    }
+  ],
+  "account_id": "71cc0e14b1d201fd2793876a8a3720c3"
+}

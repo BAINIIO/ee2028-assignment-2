@@ -94,6 +94,7 @@ static void test_real_urls_and_capacity(void)
         "http://192.168.1.20:8080/drone/GG01?mission=2",
         "https://garden.example/drone/GG01?mission=0&name=Last%20Hope",
         "https://garden-guard-gg01.spunkybroom4.chatgpt.site/drone/GG01?mission=0",
+        "https://garden-guard.brian-ee2028.workers.dev/drone/GG01?mission=0",
         "http://localhost:8080/drone/GG01#status"
     };
     uint8_t bytes[OUTPUT_BYTES];

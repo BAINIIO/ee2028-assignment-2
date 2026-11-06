@@ -27,7 +27,7 @@ import uuid
 import warnings
 
 
-DEFAULT_CLOUD = "https://garden-guard-gg01.spunkybroom4.chatgpt.site"
+DEFAULT_CLOUD = "https://garden-guard.brian-ee2028.workers.dev"
 MAX_SYNC_BYTES = 64 * 1024
 MAX_LOCAL_BYTES = 256 * 1024
 

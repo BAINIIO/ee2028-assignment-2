@@ -25,12 +25,19 @@ Edit the authored files, then rebuild; do not edit generated `dist/` files.
 
 ## Runtime and publication
 
-The tracked `.openai/hosting.json` preserves the registered Site ID and
-declares the logical D1 binding `DB`. The schema-only migration and journal
-in `drizzle/` are included by the Sites archive helper and applied on deploy.
-The database stores one bounded current state and output record for GG01.
+The active deployment is
+<https://garden-guard.brian-ee2028.workers.dev/drone/GG01>.
+`wrangler.jsonc` contains its account and D1 binding identifiers, without
+credentials. Use [the deployment steps](CLOUDFLARE.md) to update it or copy
+`wrangler.example.jsonc` when deploying to a different account. Free-plan
+quotas apply to the current upload and playback traffic.
 
-Set `RELAY_TOKEN` as a secret in the Site's runtime environment and use the
+The active `wrangler.jsonc` declares the logical D1 binding `DB`. Its schema-only
+migration in `drizzle/` is applied with Wrangler. The database stores one bounded
+current state and output record for GG01. The old `.openai/hosting.json` and
+Drizzle journal retain the original Site identity for the previous host.
+
+Set `RELAY_TOKEN` as a secret in the Worker's runtime environment and use the
 same value for the Python relay. Never add it to assets, source or URLs.
 `POST /api/relay/sync` requires that token. `GET /api/state` is public;
 `POST /api/mission` returns 403. The browser polls every 250 ms and plays up to
@@ -38,10 +45,9 @@ same value for the Python relay. Never add it to assets, source or URLs.
 separate capture sessions; stale/offline images freeze and final frames bypass
 the buffer.
 
-Publishing uses the Sites source workflow with the exact pushed source
-commit and a matching archive. Keep the publishing checkout separate from the
-firmware source, for example in the ignored `build/site-source/` directory.
-Reuse this Site's existing ID when updating it.
+Publishing to Cloudflare uses the built entry and the checked-in Wrangler
+configuration. The Sites source workflow applies only when updating the
+previous host; retain its existing ID in that case.
 
 See [the cloud hosting guide](../../docs/cloud-hosting.md) for the public URL,
 gateway startup and the NFC firmware override.

@@ -16,7 +16,7 @@
 #define APP_ENABLE_NFC 1
 #endif
 #ifndef APP_NFC_DASHBOARD_URL
-#define APP_NFC_DASHBOARD_URL "https://garden-guard-gg01.spunkybroom4.chatgpt.site/drone/GG01"
+#define APP_NFC_DASHBOARD_URL "https://garden-guard.brian-ee2028.workers.dev/drone/GG01"
 #endif
 #ifndef APP_ENABLE_IR
 #define APP_ENABLE_IR 1

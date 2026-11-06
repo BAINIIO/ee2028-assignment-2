@@ -118,7 +118,7 @@ Target sequences are deterministic and reproducible. The monochrome OLED disting
 
 ### Website display
 
-The existing [Garden Guard website](https://garden-guard-gg01.spunkybroom4.chatgpt.site/drone/GG01)
+The existing [Garden Guard website](https://garden-guard.brian-ee2028.workers.dev/drone/GG01)
 shows the board's actual OLED framebuffer and UART text. On Windows, run
 `tools/website.ps1 -Port COM3` with the project virtual environment and pyserial
 installed. It discovers STM32CubeIDE and prompts silently for the relay token.

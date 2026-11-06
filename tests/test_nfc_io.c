@@ -186,11 +186,11 @@ static void test_retry_keeps_desired_image(void)
 static void test_hosted_url_is_programmed_and_reused_after_reset(void)
 {
     reset_fake(APP_NFC_DASHBOARD_URL);
-    assert(strlen(APP_NFC_DASHBOARD_URL) == 62u);
-    assert(expected_size == 76u); /* 72-byte URI, compressed HTTPS prefix. */
+    assert(strlen(APP_NFC_DASHBOARD_URL) == 56u);
+    assert(expected_size == 70u); /* 66-byte URI, compressed HTTPS prefix. */
     run_until_ready(1000u);
-    assert(Nfc_Errors() == 0u && fake_memory[5] == 69u);
-    assert(fake_memory[8] == 65u && fake_memory[10] == 0x04u);
+    assert(Nfc_Errors() == 0u && fake_memory[5] == 63u);
+    assert(fake_memory[8] == 59u && fake_memory[10] == 0x04u);
     unsigned previous = fake_eeprom_writes;
     Nfc_Init(APP_NFC_DASHBOARD_URL, fake_tick);
     run_until_ready(fake_tick + 1000u);
